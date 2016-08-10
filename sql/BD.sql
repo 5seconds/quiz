@@ -8,6 +8,7 @@ nome varchar(50) not null
 insert into TipoUsuario (nome) values ("Usuario Normal");
 insert into TipoUsuario (nome) values ("Usuario ADM");
 
+select * from Usuario;
 
 
 create table Usuario(
@@ -21,6 +22,7 @@ tipoUsuarioFk int,
 foreign key (tipoUsuarioFK) references TipoUsuario(id)
 );
 
+insert into Usuario (nome,email,senha,tipoUsuarioFk) values ("Administrador", "administrador@adm.com","adm123",2);
 
 
 
