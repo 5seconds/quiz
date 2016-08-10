@@ -1,5 +1,7 @@
 package br.com.fiveseconds.quiz.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,7 @@ public class LoginController {
 	
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model
-	model) {
+	model) throws SQLException {
 	
 		LoginDao dao = new LoginDao();
 	Usuario usuarioLogado = dao.buscarUsuario(usuario);
@@ -30,7 +32,7 @@ public class LoginController {
 	session.setAttribute("usuarioLogado", usuarioLogado);
 	return "Login/home";
 	}
-	
+	dao.fecharConexao();
 	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
 	return "Login/login";
 	}

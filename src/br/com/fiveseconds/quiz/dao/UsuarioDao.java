@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 
 public class UsuarioDao {
@@ -31,7 +30,7 @@ public class UsuarioDao {
 			stmt.setString(3, usuario.getSenha());
 			stmt.setInt(4, usuario.getTipoUsuario().getId());
 			stmt.execute();
-			connection.close();
+			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -52,7 +51,7 @@ public class UsuarioDao {
 
 			rs.close();
 			stmt.close();
-			connection.close();
+			
 
 			return listaUsuario;
 
@@ -75,7 +74,7 @@ public class UsuarioDao {
 
 			rs.close();
 			stmt.close();
-			connection.close();
+		
 			return usuario;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -96,7 +95,7 @@ public class UsuarioDao {
 			stmt.setInt(4, usuario.getId());
 			stmt.execute();
 			stmt.close();
-			connection.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -109,7 +108,7 @@ public class UsuarioDao {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, usuario.getId());
 			stmt.execute();
-			connection.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -125,6 +124,11 @@ public class UsuarioDao {
 		usuario.setSenha(rs.getString("senha"));
 		int id = rs.getInt("tipoUsuarioFk");
 		return usuario;
+	}
+	
+	public void fecharConexao() throws SQLException{
+		
+		connection.close();
 	}
 
 }

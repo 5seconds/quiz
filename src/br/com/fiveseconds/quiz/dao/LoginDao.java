@@ -58,4 +58,10 @@ public class LoginDao {
 		return usuario;
 	}
 
+
+	public void fecharConexao() throws SQLException{
+		
+		connection.close();
+	}
+	
 }

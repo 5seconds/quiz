@@ -160,7 +160,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="nome" id="nome"  placeholder="Digite seu nome"/>
+									<input type="text" class="form-control" name="nome" id="nome"  placeholder="Digite seu nome"
+									required="required"autofocus=""/>
 								</div>
 							</div>
 						</div>
@@ -170,7 +171,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail"/>
+									<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail"
+									required="required"autofocus=""/>
 								</div>
 							</div>
 						</div>
@@ -182,7 +184,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="senha" id="senha"  placeholder="Digite sua senha"/>
+									<input type="password" class="form-control" name="senha" id="senha"  placeholder="Digite sua senha"
+									required="required"autofocus=""/>
 								</div>
 							</div>
 						</div>
@@ -192,7 +195,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confsenha" id="confsenha"  placeholder="Confirme sua senha"/>
+									<input type="password" class="form-control" name="confsenha" id="confsenha"  placeholder="Confirme sua senha"
+									required="required"autofocus=""/>
 								</div>
 							</div>
 						</div>
