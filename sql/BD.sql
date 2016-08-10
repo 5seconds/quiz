@@ -1,4 +1,3 @@
-
 create database projeto;
 
 create table TipoUsuario(
@@ -6,18 +5,24 @@ create table TipoUsuario(
 id int primary key auto_increment,
 nome varchar(50) not null
 );
+insert into TipoUsuario (nome) values ("Usuario Normal");
+insert into TipoUsuario (nome) values ("Usuario ADM");
+
 
 
 create table Usuario(
 
 id int primary key auto_increment,
 nome varchar(100) not null,
-email varchar(50) not null,
+email varchar(50) not null unique,
 senha varchar(15) not null,
 tipoUsuarioFk int,
 
 foreign key (tipoUsuarioFK) references TipoUsuario(id)
 );
+
+
+
 
 create table Disciplina(
 
@@ -26,12 +31,15 @@ nome varchar(100) not null
 
 );
 
+
+
 create table Nivel(
 
 id int primary key auto_increment,
 nome varchar(100) not null
 
 );
+
 
 create table Perguntas(
 
@@ -44,6 +52,7 @@ foreign key (idNivelFK) references Nivel(id),
 foreign key (idDisciplinaFK) references Disciplina(id)
 
 );
+
 
 
 create table Alternativa(

@@ -20,7 +20,12 @@
   </bean>
   
   <mvc:default-servlet-handler/>
-  
 
+
+	<mvc:interceptors>
+		<bean class="br.com.fiveseconds.quiz.model.AutorizadorInterceptor" />
+	</mvc:interceptors>  
+	
+	
 
 </beans>

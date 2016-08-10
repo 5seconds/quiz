@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fiveseconds.quiz.dao.UsuarioDao;
@@ -19,7 +20,7 @@ public class UsuarioController {
 	@RequestMapping("/ExibirIndex")
 	public String ExibirIndex() {
 		
-	return "Usuario/index";
+	return "PaginaPrincipal/index";
 	}
 	
 
@@ -42,7 +43,7 @@ public class UsuarioController {
 	model.addAttribute("mensagem", "Cadastro Realizado com Sucesso");
 	return "Usuario/CadastroUsuario";
 	}
-	
+
 	  @RequestMapping("/exibirAlterarUsuario")
 	    public String exibirAlterarUsuario(Model model, Usuario usuario) {
 

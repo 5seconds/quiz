@@ -1,14 +1,14 @@
 package br.com.fiveseconds.quiz.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
 public class UsuarioDao {
 
@@ -25,7 +25,7 @@ public class UsuarioDao {
 	public void salvar(Usuario usuario) {
 		try {
 			String sql = "INSERT INTO Usuario (nome, email, senha, tipoUsuarioFk) VALUES (?,?,?,?)";
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getEmail());
 			stmt.setString(3, usuario.getSenha());
@@ -42,7 +42,7 @@ public class UsuarioDao {
 
 		try {
 			List<Usuario> listaUsuario= new ArrayList<Usuario>();
-			PreparedStatement stmt = (PreparedStatement) this.connection.prepareStatement("SELECT * FROM Usuario");
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Usuario");
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -64,7 +64,7 @@ public class UsuarioDao {
 	public Usuario buscarPorId(int id) {
 
 		try {
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement("SELECT * FROM Usuario WHERE id = ?");
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Usuario WHERE id = ?");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 
@@ -89,7 +89,7 @@ public class UsuarioDao {
 
 		try {
 
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, usuario.getNome());
 			stmt.setString(2, usuario.getEmail());
 			stmt.setString(3, usuario.getSenha());
@@ -106,7 +106,7 @@ public class UsuarioDao {
 
 		try {
 			String sql = "DELETE FROM Usuario WHERE id = ?";
-			PreparedStatement stmt = (PreparedStatement) connection.prepareStatement(sql);
+			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, usuario.getId());
 			stmt.execute();
 			connection.close();
