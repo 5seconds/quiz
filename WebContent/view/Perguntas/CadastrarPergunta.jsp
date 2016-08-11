@@ -157,8 +157,7 @@
 
 				<div class="mensagemCadastro">${mensagem}</div>
 
-				<form class="form-horizontal" method="post"
-					action="CadastrarUsuario" id="Form1">
+				<form class="form-horizontal" method="post"	action="CadastrarPerguntas" id="Form1">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Pergunta</label>
