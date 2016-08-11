@@ -16,20 +16,20 @@ import br.com.fiveseconds.quiz.model.Usuario;
 @Controller
 public class UsuarioController {
 	
-	
+	//Feito!
 	@RequestMapping("/ExibirIndex")
 	public String ExibirIndex() {
 		
 	return "PaginaPrincipal/index";
 	}
 	
-
+	//Feito!
 	@RequestMapping("/ExibirCadastrarUsuario")
 	public String ExibirCadastrarUsuario(Model model) {
 			
 	return "Usuario/CadastroUsuario";
 	}
-	
+	//Feito!
 	@RequestMapping("CadastrarUsuario")
 	public String CadastrarUsuario(@Valid Usuario usuario , Model model) throws SQLException {
 		
@@ -45,6 +45,12 @@ public class UsuarioController {
 	return "Usuario/CadastroUsuario";
 	}
 
+
+		@RequestMapping("/ExibirAlterarUsuario")
+		public String ExibirAlterarUsuario(Model model) {
+				
+		return "Usuario/AlterarUsuario";
+		}
 	  @RequestMapping("/exibirAlterarUsuario")
 	    public String exibirAlterarUsuario(Model model, Usuario usuario) throws SQLException {
 
@@ -53,8 +59,12 @@ public class UsuarioController {
 		model.addAttribute("usuario", usuario);
 		dao.fecharConexao();
 
-		return "Usuario/AlterarUsuario";
+		return "Usuario/ListarUsuario";
 	    }
+	  
+	  
+	  
+	  
 	    
 	    @RequestMapping("alterarUsuario")
 	    public String alterarProduto(Usuario usuario1, Model model) throws SQLException {
@@ -68,11 +78,19 @@ public class UsuarioController {
 		return "Usuario/AlterarUsuario";
 	    }
 	
+	    
+	  //Exibi na tela  
+	@RequestMapping("/ExibirListarUsuario")
+	public String ExibirListarUsuario(Model model) {
+				
+		return "Usuario/ListarUsuario";
+		}
 	
+	//Joga para o DAO
 	@RequestMapping("listarUsuario")
 	public String listarUsuario(Model model) throws SQLException {
 		
-		UsuarioDao dao = new UsuarioDao();
+	UsuarioDao dao = new UsuarioDao();
 	List<Usuario> listaUsuario = dao.listar();
 	model.addAttribute("listaUsuario", listaUsuario);
 	dao.fecharConexao();
@@ -83,7 +101,9 @@ public class UsuarioController {
 	
 	
 	
-	@RequestMapping("removerUsuario")
+	
+	//Feito !
+		@RequestMapping("removerUsuario")
 	public String removerUsuario(Usuario usuario, Model model) throws SQLException {
 		
 		UsuarioDao dao = new UsuarioDao();

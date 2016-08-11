@@ -30,7 +30,7 @@ public class LoginController {
 	
 	if (usuarioLogado != null) {
 	session.setAttribute("usuarioLogado", usuarioLogado);
-	return "Login/home";
+	return "Login/HomeAdm";
 	}
 	dao.fecharConexao();
 	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");

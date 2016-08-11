@@ -48,21 +48,26 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Five Quiz</a>
+                
+                
+                <a class="navbar-brand page-scroll" href="#page-top" >FIVE QUIZ</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    
-                    
+                   
+                                        
                     <li>
-                        <a class="page-scroll" > Bem vindo,   ${usuarioLogado.nome}</a>
+                        <a class="page-scroll" > <b>Bem vindo,   ${usuarioLogado.nome}</b></a>
                     </li>
                     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                     <li>
                         <a class="page-scroll" href="logout"> Sair </a>
                     </li>
+                    
+                    
+           
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -77,8 +82,8 @@
             <div class="header-content-inner">
                 <h1 id="homeHeading">Five Quiz</h1>
                 <hr>
-                <p>Um quiz de programação onde você se diverte</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Jogar</a>
+                <p> Um quiz de programação onde você se diverte</p>
+                <a href="#about" class="btn btn-primary btn-xl page-scroll"> Jogar </a>
                             </div>
         </div>
     </header>
