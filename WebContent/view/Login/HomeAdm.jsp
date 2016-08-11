@@ -50,8 +50,8 @@
                 </button>
                 
                 
-                <a class="navbar-brand page-scroll" href="#page-top" href="#">Listar Usuario</a>
-                <a class="navbar-brand page-scroll" href="#page-top" href="#">Cadastrar Perguntas</a>
+                <a class="navbar-brand page-scroll" href="ExibirListarUsuario" >Listar Usuario</a>
+                <a class="navbar-brand page-scroll" href="ExibirCadastroPerguntas" >Cadastrar Perguntas</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

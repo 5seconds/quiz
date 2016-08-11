@@ -51,7 +51,7 @@ public class UsuarioController {
 				
 		return "Usuario/AlterarUsuario";
 		}
-	  @RequestMapping("/exibirAlterarUsuario")
+		@RequestMapping("/exibirAlterarUsuario")
 	    public String exibirAlterarUsuario(Model model, Usuario usuario) throws SQLException {
 
 		UsuarioDao dao = new UsuarioDao();

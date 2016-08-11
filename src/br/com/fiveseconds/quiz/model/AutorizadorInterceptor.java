@@ -26,7 +26,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 			}
 		
 		
-	response.sendRedirect("ExibirIndex");
+	response.sendRedirect("ExibirLogin");
 	return false;
 	}
 }

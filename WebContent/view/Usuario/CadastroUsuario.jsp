@@ -161,7 +161,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
 									<input type="text" class="form-control" name="nome" id="nome"  placeholder="Digite seu nome"
-									required="required"autofocus="" pattern='^[ 0-9a-zA-Z\b]+$'/>
+									required="required"autofocus=""/>
 								</div>
 							</div>
 						</div>
