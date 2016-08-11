@@ -81,6 +81,27 @@ public class UsuarioDao {
 		}
 
 	}
+	public Usuario buscarPorEmail(String email) {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Usuario WHERE email = ?");
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+
+			Usuario usuario = null;
+			if (rs.next()) {
+				usuario = montarObjeto(rs);
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return usuario;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
 
 	public void alterar(Usuario usuario) {
 
