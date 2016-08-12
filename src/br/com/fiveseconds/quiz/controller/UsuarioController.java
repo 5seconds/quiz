@@ -108,7 +108,7 @@ public class UsuarioController {
 		
 		UsuarioDao dao = new UsuarioDao();
 	dao.remover(usuario);
-	model.addAttribute("msg", "Produto removido com sucesso");
+	model.addAttribute("msg", "Usuario removido com sucesso");
 	dao.fecharConexao();
 
 	

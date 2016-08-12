@@ -1,9 +1,11 @@
 package br.com.fiveseconds.quiz.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.fiveseconds.quiz.model.Pergunta;
+import br.com.fiveseconds.quiz.model.Usuario;
 
 public class PerguntaDao {
 
@@ -33,7 +35,17 @@ public class PerguntaDao {
 		}
 	}
 
+	private Pergunta montarObjeto(ResultSet rs) throws SQLException {
 
+		Pergunta pergunta = new Pergunta();
+
+		pergunta.setId(rs.getInt("id"));
+		pergunta.setNome(rs.getString("nome"));
+		pergunta.setEmail(rs.getString("email"));
+		pergunta.setSenha(rs.getString("senha"));
+		int id = rs.getInt("tipoUsuarioFk");
+		return pergunta;
+	}
 	public void fecharConexao() throws SQLException{
 		
 		connection.close();

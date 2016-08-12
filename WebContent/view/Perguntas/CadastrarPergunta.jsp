@@ -172,11 +172,18 @@
 					</div>
 
 					<label for="" class="cols-sm-2 control-label">Disciplina</label> 
-					<select		class="btn btn-primary btn-lg btn-block login-button">
-						<option>Mustard</option>
-						<option>Ketchup</option>
-						<option>Relish</option>
-					</select> </br>
+					<select name="categoriaProduto" class="btn btn-primary btn-lg btn-block login-button">
+
+						<option value=""> Selecione </option>
+						<c:forEach items="${listaDisciplina}" var="obj">
+						<option value="${obj.id}"> ${obj.nome} </option>
+						</c:forEach>
+					</select>
+				 </br>
+					
+				
+					
+					
 
 					<div class="radio">
 						<label> <input type="radio" name="optionsRadios"id="optionsRadios1" value="option1" required="required"autofocus="" >&nbsp; 2 Respostas
@@ -197,19 +204,25 @@
 					</div>
 
 
-					</br> </br> <label class="radio-inline"> 
-					<input type="radio"	name="inlineRadioOptions" id="inlineRadio1" value="option1">
-						Basíco
+					</br> </br> 
+					
+					<label for="" class="cols-sm-2 control-label"> Nível </label> 
+					<select name="categoriaProduto" class="btn btn-primary btn-lg btn-block login-button">
+					
 
-					</label> <label class="radio-inline">
-					 <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-						Médio
-
-					</label> <label class="radio-inline"> 
-					<input type="radio"	name="inlineRadioOptions" id="inlineRadio3" value="option3">
-						Expert
-
-					</label> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 1</label>
+						<option value=""> Selecione </option>
+						<c:forEach items="${listaNivel}" var="obj">
+						<option value="${obj.id}"> ${obj.nome} </option>
+						</c:forEach>
+					</select>
+						
+					
+					
+					
+					 </br> </br>
+					 
+					 
+					  <label for="" class="cols-sm-2 control-label">Resposta 1</label>
 
 					</br>
 

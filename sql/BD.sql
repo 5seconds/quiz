@@ -8,7 +8,7 @@ nome varchar(50) not null
 insert into TipoUsuario (nome) values ("Usuario Normal");
 insert into TipoUsuario (nome) values ("Usuario ADM");
 
-select * from Usuario;
+select * from TipoUsuario;
 
 
 create table Usuario(
@@ -24,7 +24,7 @@ foreign key (tipoUsuarioFK) references TipoUsuario(id)
 
 insert into Usuario (nome,email,senha,tipoUsuarioFk) values ("Administrador", "administrador@adm.com","adm123",2);
 
-
+select * from Usuario;
 
 create table Disciplina(
 
@@ -33,6 +33,9 @@ nome varchar(100) not null
 
 );
 
+insert into Disciplina (nome) values ("Engenharia de Software");
+insert into Disciplina (nome) values ("Desenvolvimento Web");
+insert into Disciplina (nome) values ("Lógica de Programação");
 
 
 create table Nivel(
@@ -41,6 +44,12 @@ id int primary key auto_increment,
 nome varchar(100) not null
 
 );
+
+
+insert into Nivel (nome) values ("Básico");
+insert into Nivel (nome) values ("Médio");
+insert into Nivel (nome) values ("Expert");
+
 
 
 create table Perguntas(
