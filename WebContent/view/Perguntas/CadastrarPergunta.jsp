@@ -118,23 +118,20 @@
 				<span class="sr-only">Toggle navigation</span> Menu <i
 					class="fa fa-bars"></i>
 			</button>
-			 <a class="navbar-brand page-scroll" href="ExibirListarUsuario" >Listar Usuario</a>
-                <a class="navbar-brand page-scroll" href="ExibirCadastroPerguntas" >Cadastrar Perguntas</a>
+			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar
+				Usuario</a> <a class="navbar-brand page-scroll"
+				href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				                      
-                    <li>
-                        <a class="page-scroll" > <b>Bem vindo,   ${usuarioLogado.nome}</b></a>
-                    </li>
-                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                    <li>
-                        <a class="page-scroll" href="logout"> Sair </a>
-                    </li>
-                    
+
+				<li><a class="page-scroll"> <b>Bem vindo,
+							${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+				<li><a class="page-scroll" href="logout"> Sair </a></li>
+
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -157,72 +154,69 @@
 
 				<div class="mensagemCadastro">${mensagem}</div>
 
-				<form class="form-horizontal" method="post"	action="CadastrarPerguntas" id="Form1">
+				<form class="form-horizontal" method="post"
+					action="CadastrarPerguntas" id="Form1">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Pergunta</label>
 						<div class="cols-sm-10">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-comment" aria-hidden="true"></i></span>
-									
-					 <input	type="text" class="form-control" name="descricao" id=""	placeholder="Digite sua Pergunta" required="required"autofocus="" />
+									class="glyphicon glyphicon-comment" aria-hidden="true"></i></span> <input
+									type="text" class="form-control" name="descricao" id=""
+									placeholder="Digite sua Pergunta" required="required"
+									autofocus="" />
 							</div>
 						</div>
 					</div>
 
-					<label for="" class="cols-sm-2 control-label">Disciplina</label> 
-					<select name="categoriaProduto" class="btn btn-primary btn-lg btn-block login-button">
+					<label for="" class="cols-sm-2 control-label">Disciplina</label> <select
+						name="categoriaProduto"
+						class="btn btn-primary btn-lg btn-block login-button">
 
-						<option value=""> Selecione </option>
+						<option value="">Selecione</option>
 						<c:forEach items="${listaDisciplina}" var="obj">
-						<option value="${obj.id}"> ${obj.nome} </option>
+							<option value="${obj.id}">${obj.nome}</option>
 						</c:forEach>
-					</select>
-				 </br>
-					
-				
-					
-					
+					</select> </br>
+
+
+
+
 
 					<div class="radio">
-						<label> <input type="radio" name="optionsRadios"id="optionsRadios1" value="option1" required="required"autofocus="" >&nbsp; 2 Respostas
+						<label> <input type="radio" name="optionsRadios"
+							id="optionsRadios1" value="option1" required="required"
+							autofocus="">&nbsp; 2 Respostas
 						</label>
 					</div>
 
 					<div class="radio">
-						<label> 
-						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" required="required"autofocus="" >&nbsp; 3 Respostas
+						<label> <input type="radio" name="optionsRadios"
+							id="optionsRadios2" value="option2" required="required"
+							autofocus="">&nbsp; 3 Respostas
 						</label>
 					</div>
 
 
 					<div class="radio">
-						<label> 
-						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option3" required="required"autofocus="" >&nbsp; 4 Respostas
+						<label> <input type="radio" name="optionsRadios"
+							id="optionsRadios2" value="option3" required="required"
+							autofocus="">&nbsp; 4 Respostas
 						</label>
 					</div>
 
 
-					</br> </br> 
-					
-					<label for="" class="cols-sm-2 control-label"> Nível </label> 
-					<select name="categoriaProduto" class="btn btn-primary btn-lg btn-block login-button">
-					
+					</br> </br> <label for="" class="cols-sm-2 control-label"> Nível </label> <select
+						name="categoriaProduto"
+						class="btn btn-primary btn-lg btn-block login-button">
 
-						<option value=""> Selecione </option>
+
+						<option value="">Selecione</option>
 						<c:forEach items="${listaNivel}" var="obj">
-						<option value="${obj.id}"> ${obj.nome} </option>
+							<option value="${obj.id}">${obj.nome}</option>
 						</c:forEach>
-					</select>
-						
-					
-					
-					
-					 </br> </br>
-					 
-					 
-					  <label for="" class="cols-sm-2 control-label">Resposta 1</label>
+					</select> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 1</label>
 
 					</br>
 
@@ -230,8 +224,9 @@
 					<div class="input-group">
 						<span class="input-group-addon"> <input type="radio"
 							name="optionsRadios" id="optionsRadios2" value="option1">
-						</span> 
-						<input type="text" placeholder="Digite sua Resposta" 	required="required"autofocus="" class="form-control" aria-label="...">
+						</span> <input type="text" placeholder="Digite sua Resposta"
+							required="required" autofocus="" class="form-control"
+							aria-label="...">
 					</div>
 
 
@@ -243,8 +238,9 @@
 					<div class="input-group">
 						<span class="input-group-addon"> <input type="radio"
 							name="optionsRadios" id="optionsRadios2" value="option2">
-						</span> 
-						<input type="text" placeholder="Digite sua Resposta"required="required"autofocus=""	class="form-control" aria-label="...">
+						</span> <input type="text" placeholder="Digite sua Resposta"
+							required="required" autofocus="" class="form-control"
+							aria-label="...">
 					</div>
 
 					</label> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 3</label>
@@ -255,8 +251,9 @@
 					<div class="input-group">
 						<span class="input-group-addon"> <input type="radio"
 							name="optionsRadios" id="optionsRadios2" value="option3">
-						</span> 
-						<input type="text" placeholder="Digite sua Resposta"required="required"autofocus=""	class="form-control" aria-label="...">
+						</span> <input type="text" placeholder="Digite sua Resposta"
+							required="required" autofocus="" class="form-control"
+							aria-label="...">
 					</div>
 
 					</label> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 4</label>
@@ -265,10 +262,11 @@
 
 
 					<div class="input-group">
-						<span class="input-group-addon">
-						 <input type="radio" name="optionsRadios" id="optionsRadios2" value="option4">
-						</span> 
-						<input type="text" placeholder="Digite sua Resposta"required="required"autofocus=""	class="form-control" aria-label="...">
+						<span class="input-group-addon"> <input type="radio"
+							name="optionsRadios" id="optionsRadios2" value="option4">
+						</span> <input type="text" placeholder="Digite sua Resposta"
+							required="required" autofocus="" class="form-control"
+							aria-label="...">
 					</div>
 
 

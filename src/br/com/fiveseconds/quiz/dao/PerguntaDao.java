@@ -40,10 +40,9 @@ public class PerguntaDao {
 		Pergunta pergunta = new Pergunta();
 
 		pergunta.setId(rs.getInt("id"));
-		pergunta.setNome(rs.getString("nome"));
-		pergunta.setEmail(rs.getString("email"));
-		pergunta.setSenha(rs.getString("senha"));
-		int id = rs.getInt("tipoUsuarioFk");
+		pergunta.setDescricao(rs.getString("descricao"));
+		pergunta.setIdNivelFK(rs.getInt("email"));
+		pergunta.setIdDisciplinaFK(rs.getInt("idDisciplinaFK"));
 		return pergunta;
 	}
 	public void fecharConexao() throws SQLException{
