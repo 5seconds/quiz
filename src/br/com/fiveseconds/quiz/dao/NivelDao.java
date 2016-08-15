@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiveseconds.quiz.model.Nivel;
+import br.com.fiveseconds.quiz.model.Pergunta;
 
 public class NivelDao {
 
@@ -46,6 +47,29 @@ public class NivelDao {
 				throw new RuntimeException(e);
 			}
 	}
+	
+	public Nivel buscarPorId(int id) {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Nivel WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			Nivel nivel = null;
+			if (rs.next()) {
+				nivel = montarObjeto(rs);
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return nivel;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+	
 	
 	
 	private Nivel montarObjeto(ResultSet rs) throws SQLException {

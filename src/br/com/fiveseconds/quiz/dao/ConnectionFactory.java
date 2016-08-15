@@ -9,7 +9,7 @@ public class ConnectionFactory {
 public Connection getConnection() throws SQLException {
 String nomeBanco = "projeto";
 String usuario = "root";
-String senha = "1234";
+String senha = "@luno1fpe";
 try {
 Class.forName("com.mysql.jdbc.Driver");
 } catch (ClassNotFoundException e) {

@@ -1,4 +1,4 @@
-package br.com.fiveseconds.quiz.teste;
+package br.com.fiveseconds.quiz.test;
 
 import java.sql.SQLException;
 

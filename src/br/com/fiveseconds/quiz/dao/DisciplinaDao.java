@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.fiveseconds.quiz.model.Disciplina;
+import br.com.fiveseconds.quiz.model.Pergunta;
 
 
 public class DisciplinaDao {
@@ -44,6 +45,29 @@ public class DisciplinaDao {
 				throw new RuntimeException(e);
 			}
 	}
+	
+	public Disciplina buscarPorId(int id) {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Disciplina WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			Disciplina idDisciplinaFK = null;
+			if (rs.next()) {
+				idDisciplinaFK = montarObjeto(rs);
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return idDisciplinaFK;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+	
 	
 	
 	private Disciplina montarObjeto(ResultSet rs) throws SQLException {
