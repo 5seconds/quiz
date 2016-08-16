@@ -64,11 +64,6 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 	
-	@Override
-	public String toString() {
-		return "Id = " +id+ ", nome = " +nome+ ", email = " +email+ ", senha = " +senha;
-	}
-	
 	
 	
 }

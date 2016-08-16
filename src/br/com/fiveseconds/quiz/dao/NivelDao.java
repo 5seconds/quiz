@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fiveseconds.quiz.model.Disciplina;
 import br.com.fiveseconds.quiz.model.Nivel;
-import br.com.fiveseconds.quiz.model.Pergunta;
 
 public class NivelDao {
 
@@ -48,6 +48,8 @@ public class NivelDao {
 			}
 	}
 	
+	
+	
 	public Nivel buscarPorId(int id) {
 
 		try {
@@ -64,11 +66,13 @@ public class NivelDao {
 			stmt.close();
 		
 			return nivel;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		   }
 		}
-
-	}
+	
+	
 	
 	
 	

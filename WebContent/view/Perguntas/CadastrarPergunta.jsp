@@ -52,48 +52,38 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#Form1').validate({
+		$('#meuForm').validate({
 
 			rules : {
-				nome : {
+				descricao : {
 					required : true,
-					minlength : 5
+					minlength : 10
 
 				},
-				email : {
-					required : true,
-					email : true
+				disciplina : {
+					required : true
+					
 				},
-				senha : {
-					required : true,
-					rangelength : [ 5, 10 ]
-
-				},
-				confsenha : {
-					required : true,
-					equalTo : "#senha"
+				nivel : {
+					required : true
+					
 
 				}
 
 			},
 			messages : {
-				nome : {
+				descricao : {
 					required : "Este campo é obrigatório",
-					minlength : "O nome deve ter no minimo 5 caracteres"
+					minlength : "A Pergunta deve conter no minimo 10 caracteres"
 
 				},
-				email : {
+				disciplina : {
 					required : "Este campo é obrigatório",
-					email : "Informe um email válido"
+					
 				},
-				senha : {
+				nivel : {
 					required : "Este campo é obrigatório",
-					rangelength : "Sua senha deve ter 5 a 10 caracteres"
-
-				},
-				confsenha : {
-					required : "Esté Campo é obrigatório",
-					equalTo : "As senhas diferem, verifique"
+					
 
 				}
 
@@ -154,126 +144,95 @@
 
 				<div class="mensagemCadastro">${mensagem}</div>
 
-				<form class="form-horizontal" method="post"
-					action="CadastrarPerguntas" id="Form1">
+				<form class="form-horizontal" method="post" action="CadastrarPerguntas" id="meuForm">
 
 					<div class="form-group">
 						<label for="name" class="cols-sm-2 control-label">Pergunta</label>
-						<div class="cols-sm-10">
 							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-comment" aria-hidden="true"></i></span> <input
-									type="text" class="form-control" name="descricao" id=""
-									placeholder="Digite sua Pergunta" required="required"
-									autofocus="" />
+								<span class="input-group-addon">
+								<i class="glyphicon glyphicon-comment" aria-hidden="true"></i>
+								</span> 
+								<input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite sua Pergunta"/>
 							</div>
-						</div>
+						
 					</div>
 
+					
+
 					<label for="" class="cols-sm-2 control-label">Disciplina</label> <select
-						name="categoriaProduto"
+						name="disciplina" id="disciplina"
 						class="btn btn-primary btn-lg btn-block login-button">
 
 						<option value="">Selecione</option>
 						<c:forEach items="${listaDisciplina}" var="obj">
 							<option value="${obj.id}">${obj.nome}</option>
 						</c:forEach>
-					</select> </br>
-
-
-
-
-
-					<div class="radio">
-						<label> <input type="radio" name="optionsRadios"
-							id="optionsRadios1" value="option1" required="required"
-							autofocus="">&nbsp; 2 Respostas
-						</label>
-					</div>
-
-					<div class="radio">
-						<label> <input type="radio" name="optionsRadios"
-							id="optionsRadios2" value="option2" required="required"
-							autofocus="">&nbsp; 3 Respostas
-						</label>
-					</div>
-
-
-					<div class="radio">
-						<label> <input type="radio" name="optionsRadios"
-							id="optionsRadios2" value="option3" required="required"
-							autofocus="">&nbsp; 4 Respostas
-						</label>
-					</div>
-
-
-					</br> </br> <label for="" class="cols-sm-2 control-label"> Nível </label> <select
-						name="categoriaProduto"
+					</select> </br> <label for="" class="cols-sm-2 control-label">Nivel De
+						Pergunta</label> <select name="nivel" id="nivel"
 						class="btn btn-primary btn-lg btn-block login-button">
-
 
 						<option value="">Selecione</option>
 						<c:forEach items="${listaNivel}" var="obj">
 							<option value="${obj.id}">${obj.nome}</option>
 						</c:forEach>
-					</select> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 1</label>
+					</select> </br>
+					
+					
+					</br> 
+					
+					 <label for="" class="cols-sm-2 control-label">Resposta 1</label>
 
-					</br>
-
-
+					
 					<div class="input-group">
-						<span class="input-group-addon"> <input type="radio"
-							name="optionsRadios" id="optionsRadios2" value="option1">
-						</span> <input type="text" placeholder="Digite sua Resposta"
-							required="required" autofocus="" class="form-control"
-							aria-label="...">
+						<span class="input-group-addon"> 
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
+						</span> 
+						<input type="text" name="" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
 
 
-					</label> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 2</label>
+					 </br> 
+					 
+					 <label for="" class="cols-sm-2 control-label">Resposta 2</label>
 
-					</br>
-
-
+					
 					<div class="input-group">
-						<span class="input-group-addon"> <input type="radio"
-							name="optionsRadios" id="optionsRadios2" value="option2">
-						</span> <input type="text" placeholder="Digite sua Resposta"
-							required="required" autofocus="" class="form-control"
-							aria-label="...">
+						<span class="input-group-addon"> 
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
+						</span> 
+						<input type="text" name="" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
 
-					</label> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 3</label>
+					 </br> 
+					 
+					<label for="" class="cols-sm-2 control-label">Resposta 3</label>
 
-					</br>
-
-
+				
 					<div class="input-group">
-						<span class="input-group-addon"> <input type="radio"
-							name="optionsRadios" id="optionsRadios2" value="option3">
-						</span> <input type="text" placeholder="Digite sua Resposta"
-							required="required" autofocus="" class="form-control"
-							aria-label="...">
+						<span class="input-group-addon"> 
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
+						</span> 
+						<input type="text" name="" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
 
-					</label> </br> </br> <label for="" class="cols-sm-2 control-label">Resposta 4</label>
+					 </br>
+					 
+					  <label for="" class="cols-sm-2 control-label">Resposta 4</label>
 
-					</br>
-
-
+					
 					<div class="input-group">
-						<span class="input-group-addon"> <input type="radio"
-							name="optionsRadios" id="optionsRadios2" value="option4">
-						</span> <input type="text" placeholder="Digite sua Resposta"
-							required="required" autofocus="" class="form-control"
-							aria-label="...">
+						<span class="input-group-addon"> 
+						<input type="radio" name="optionsRadios" id="optionsRadios2" value="option1">
+						</span> 
+						<input type="text" name="" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
 
 
 
-
-					</br> </br>
-
+                            </br> </br>
+					
+					
+					
 					<div class="form-group ">
 						<button type="submit"
 							class="btn btn-primary btn-lg btn-block login-button">Cadastrar</button>

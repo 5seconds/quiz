@@ -4,6 +4,7 @@ public class Disciplina {
 
 	private int id;
 	private String nome;
+	
 	public int getId() {
 		return id;
 	}
@@ -16,10 +17,5 @@ public class Disciplina {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Override
-	public String toString() {
-		return "id = " + id + ", nome = " + nome;
-	}
-	
 	
 }

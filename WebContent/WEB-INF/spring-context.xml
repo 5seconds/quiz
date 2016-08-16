@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
   <context:component-scan base-package="br.com.fiveseconds.quiz" />
-  <mvc:annotation-driven />
+  <mvc:annotation-driven conversion-service="conversionService" />
  
 
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,6 +25,17 @@
 	<mvc:interceptors>
 		<bean class="br.com.fiveseconds.quiz.model.AutorizadorInterceptor" />
 	</mvc:interceptors>  
+	
+	
+	<bean id="conversionService"
+class="org.springframework.context.support.ConversionServiceFactoryBean">
+<property name="converters">
+<list>
+<bean class="br.com.fiveseconds.quiz.controller.DisciplinaConverter" />
+<bean class="br.com.fiveseconds.quiz.controller.NivelConverter" />
+</list>
+</property>
+</bean>
 	
 	
 

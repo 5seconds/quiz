@@ -22,11 +22,13 @@ public class PerguntaDao {
 
 	public void salvar(Pergunta pergunta) {
 		try {
-			String sql = "INSERT INTO Pergunta (descricao, idNivelFK, idDisciplinaFK) VALUES (?,?,?)";
+			String sql = "INSERT INTO Perguntas (descricao,idDisciplinaFK,idNivelFK) VALUES (?,?,?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, pergunta.getDescricao());
-			stmt.setInt(2, pergunta.getIdNivelFK());
-			stmt.setInt(3, pergunta.getIdDisciplinaFK());
+			stmt.setInt(2, pergunta.getDisciplina().getId());
+			stmt.setInt(3, pergunta.getNivel().getId());
+			
+
 			stmt.execute();
 			
 
@@ -34,44 +36,29 @@ public class PerguntaDao {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public Pergunta buscarPorId(int id) {
-
-		try {
-			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Perguntas WHERE id = ?");
-			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
-
-			Pergunta pergunta = null;
-			if (rs.next()) {
-				pergunta = montarObjeto(rs);
-			}
-
-			rs.close();
-			stmt.close();
-		
-			return pergunta;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-
-	}
-	
 
 	private Pergunta montarObjeto(ResultSet rs) throws SQLException {
 
 		Pergunta pergunta = new Pergunta();
-
+		
 		pergunta.setId(rs.getInt("id"));
 		pergunta.setDescricao(rs.getString("descricao"));
-		pergunta.setIdNivelFK(rs.getInt("idNivelFK"));
-		pergunta.setIdDisciplinaFK(rs.getInt("idDisciplinaFK"));
+		
+		int idDisciplina = rs.getInt("idDisciplinaFK");
+		DisciplinaDao dis = new DisciplinaDao();
+		pergunta.setDisciplina(dis.buscarPorId(idDisciplina));
+		
+		int idNivel = rs.getInt("idNivelFK");
+		NivelDao niv = new NivelDao();
+		pergunta.setNivel(niv.buscarPorId(idNivel));
+		
 		return pergunta;
+		
 	}
+	
 	public void fecharConexao() throws SQLException{
 		
 		connection.close();
 	}
-	
 	
 }

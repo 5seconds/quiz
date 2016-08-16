@@ -6,9 +6,25 @@ public class Pergunta {
 	
 	private String descricao;
 	
-	private int idNivelFK;
+	private Nivel nivel;
 	
-	private int idDisciplinaFK;
+	public Nivel getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+
+	private Disciplina disciplina;
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
 
 	public int getId() {
 		return id;
@@ -26,21 +42,9 @@ public class Pergunta {
 		this.descricao = descricao;
 	}
 
-	public int getIdNivelFK() {
-		return idNivelFK;
-	}
+	
 
-	public void setIdNivelFK(int idNivelFK) {
-		this.idNivelFK = idNivelFK;
-	}
-
-	public int getIdDisciplinaFK() {
-		return idDisciplinaFK;
-	}
-
-	public void setIdDisciplinaFK(int idDisciplinaFK) {
-		this.idDisciplinaFK = idDisciplinaFK;
-	}
+	
 	
 	
 
