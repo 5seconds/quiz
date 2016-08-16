@@ -1,5 +1,7 @@
 package br.com.fiveseconds.quiz.model;
 
+import java.util.ArrayList;
+
 public class Pergunta {
 
 	private int id;
@@ -8,15 +10,9 @@ public class Pergunta {
 	
 	private Nivel nivel;
 	
-	public Nivel getNivel() {
-		return nivel;
-	}
-
-	public void setNivel(Nivel nivel) {
-		this.nivel = nivel;
-	}
-
 	private Disciplina disciplina;
+	
+	private ArrayList<Alternativas> alternativas;
 
 	public Disciplina getDisciplina() {
 		return disciplina;
@@ -42,7 +38,21 @@ public class Pergunta {
 		this.descricao = descricao;
 	}
 
-	
+	public Nivel getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+
+	public ArrayList<Alternativas> getAlternativas() {
+	    return alternativas;
+	}
+
+	public void setAlternativas(ArrayList<Alternativas> alternativas) {
+	    this.alternativas = alternativas;
+	}
 
 	
 	
