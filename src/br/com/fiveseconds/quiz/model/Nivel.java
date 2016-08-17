@@ -19,7 +19,7 @@ public class Nivel {
 	}
 	@Override
 	public String toString() {
-		return "Nivel [id=" + id + ", nome=" + nome + "]";
+		return "id = " + id + ", nome = " + nome ;
 	}
 	
 

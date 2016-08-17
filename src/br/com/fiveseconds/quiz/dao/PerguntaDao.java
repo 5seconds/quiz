@@ -36,6 +36,28 @@ public class PerguntaDao {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public Pergunta buscarPorId(int id) {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Perguntas WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			Pergunta pergunta = null;
+			if (rs.next()) {
+				pergunta = montarObjeto(rs);
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return pergunta;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
 	
 	public Pergunta buscarPorPergunta(String descricao) {
 
@@ -58,6 +80,9 @@ public class PerguntaDao {
 		}
 
 	}
+	
+	
+	
 
 	private Pergunta montarObjeto(ResultSet rs) throws SQLException {
 

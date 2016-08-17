@@ -17,5 +17,10 @@ public class Disciplina {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	@Override
+	public String toString() {
+		return "Disciplina [id=" + id + ", nome=" + nome + "]";
+	}
+	
 	
 }
