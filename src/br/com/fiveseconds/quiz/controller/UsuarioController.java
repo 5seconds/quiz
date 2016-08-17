@@ -86,19 +86,16 @@ public class UsuarioController {
 		return "Usuario/ListarUsuario";
 		}
 	
-	//Joga para o DAO
-	@RequestMapping("listarUsuario")
-	public String listarUsuario(Model model) throws SQLException {
+
+	@RequestMapping("/listarUsuario")
+	public String listarProduto(Model model) {
 		
 	UsuarioDao dao = new UsuarioDao();
-	List<Usuario> listaUsuario = dao.listar();
-	model.addAttribute("listaUsuario", listaUsuario);
-	dao.fecharConexao();
-
+	List<Usuario> ListarUsuario = dao.listar();
+	model.addAttribute("ListarUsuario", ListarUsuario);
 	
 	return "Usuario/ListarUsuario";
 	}
-	
 	
 	
 	
