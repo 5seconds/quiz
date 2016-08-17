@@ -17,6 +17,10 @@ public class Nivel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	@Override
+	public String toString() {
+		return "Nivel [id=" + id + ", nome=" + nome + "]";
+	}
 	
 
 }
