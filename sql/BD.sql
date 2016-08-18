@@ -64,8 +64,6 @@ foreign key (idDisciplinaFK) references Disciplina(id)
 
 );
 
-
-
 create table Alternativa(
 
 id int primary key auto_increment,

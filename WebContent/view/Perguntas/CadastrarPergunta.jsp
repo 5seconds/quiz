@@ -193,7 +193,8 @@
 					
 					<div class="input-group">
 						<span class="input-group-addon"> 
-						<input type="radio" name="optionsRadios1" id="optionsRadios1" value="correto">
+						
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="1">
 						</span> 
 						<input type="text" name="resposta1" id="resposta1" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
@@ -206,7 +207,8 @@
 					
 					<div class="input-group">
 						<span class="input-group-addon"> 
-						<input type="radio" name="optionsRadios2" id="optionsRadios2" value="correto">
+						
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="2">
 						</span> 
 						<input type="text" name="resposta2" id="resposta2" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
@@ -218,7 +220,9 @@
 				
 					<div class="input-group">
 						<span class="input-group-addon"> 
-						<input type="radio" name="optionsRadios3" id="optionsRadios3" value="3">
+						
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="3">
+						
 						</span> 
 						<input type="text" name="resposta3" id="resposta3" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
@@ -230,7 +234,8 @@
 					
 					<div class="input-group">
 						<span class="input-group-addon"> 
-						<input type="radio" name="optionsRadios4" id="optionsRadios4" value="4">
+						
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="4">
 						</span> 
 						<input type="text" name="resposta4" id="resposta4" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>

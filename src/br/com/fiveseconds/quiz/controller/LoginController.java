@@ -42,7 +42,7 @@ public class LoginController {
 		public String logout(HttpSession session) {
 		
 		session.invalidate();
-		return "PaginaPrincipal/index";
+		return "Login/login";
 	}
 	
 }

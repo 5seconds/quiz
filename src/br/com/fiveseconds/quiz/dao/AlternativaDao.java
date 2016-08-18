@@ -1,9 +1,12 @@
 package br.com.fiveseconds.quiz.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Pergunta;
+import br.com.fiveseconds.quiz.model.Usuario;
 
 public class AlternativaDao {
 
@@ -36,24 +39,43 @@ public class AlternativaDao {
 		}
 	}
 	
-	public void consultar(Pergunta pergunta) {
+	
+	
+	public Alternativas buscarPorId(int id) {
+
 		try {
-			String sql = "SELEC MAX(id) FROM Perguntas";
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setString(1, pergunta.getDescricao());
-			stmt.setInt(2, pergunta.getDisciplina().getId());
-			stmt.setInt(3, pergunta.getNivel().getId());
-			
+			PreparedStatement stmt = connection.prepareStatement("SELEC MAX(id) FROM Perguntas WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 
-			stmt.execute();
-			
+			Alternativas alternativas= null;
+			if (rs.next()) {
+				alternativas = montarObjeto(rs);
+			}
 
+			rs.close();
+			stmt.close();
+		
+			return alternativas;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+
 	}
 	
-	
+		
+
+	private Alternativas montarObjeto(ResultSet rs) throws SQLException {
+
+		Alternativas alternativas = new Alternativas();
+
+		alternativas.setId(rs.getInt("id"));
+		alternativas.setDescricao(rs.getString("descricao"));
+		alternativas.setAlterCorreta(rs.getString("alternativa"));
+		
+		return alternativas;
+	}
 	
 	
 	

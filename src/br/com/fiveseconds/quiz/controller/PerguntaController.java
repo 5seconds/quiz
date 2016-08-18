@@ -44,6 +44,7 @@ public class PerguntaController {
 		return "Perguntas/CadastrarPergunta";
 		}
 	
+		
 		@RequestMapping("CadastrarPerguntas")
 		public String CadastrarPerguntas(Pergunta pergunta , Model model, HttpServletResponse response,HttpServletRequest request) throws SQLException {
 			
@@ -56,7 +57,8 @@ public class PerguntaController {
 			for(int x=1;x<=4;x++){
 			    Alternativas alternativa = new Alternativas();
 				alternativa.setDescricao(request.getParameter("resposta"+x));
-				if(request.getParameter("optionsRadios"+x) != null){
+				
+				if(request.getParameter("optionsRadios") == Integer.toString(x)) {
 				    alternativa.setAlterCorreta("1");
 				}else{
 				    alternativa.setAlterCorreta("0");
@@ -70,8 +72,7 @@ public class PerguntaController {
 			NivelDao dao2 = new NivelDao();
 			List<Nivel> listaNivel = dao2.listar();
 			model.addAttribute("listaNivel", listaNivel);
-			
-			
+					
 			
 		PerguntaDao dao = new PerguntaDao();
 		dao.salvar(pergunta);
