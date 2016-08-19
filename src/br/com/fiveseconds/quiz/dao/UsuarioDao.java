@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.fiveseconds.quiz.model.Usuario;
 
+
 public class UsuarioDao {
 
 	private Connection connection;
@@ -41,7 +42,7 @@ public class UsuarioDao {
 
 		try {
 			List<Usuario> listaUsuario= new ArrayList<Usuario>();
-			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Usuario");
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Usuario ORDER BY nome;");
 
 			ResultSet rs = stmt.executeQuery();
 
@@ -51,6 +52,7 @@ public class UsuarioDao {
 
 			rs.close();
 			stmt.close();
+			connection.close();
 			
 
 			return listaUsuario;
@@ -59,6 +61,11 @@ public class UsuarioDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	 
+
+
+
 
 	public Usuario buscarPorId(int id) {
 

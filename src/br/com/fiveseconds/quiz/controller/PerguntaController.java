@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.fiveseconds.quiz.dao.AlternativaDao;
 import br.com.fiveseconds.quiz.dao.DisciplinaDao;
 import br.com.fiveseconds.quiz.dao.NivelDao;
 import br.com.fiveseconds.quiz.dao.PerguntaDao;
@@ -55,12 +56,17 @@ public class PerguntaController {
 			
 			
 			for(int x=1;x<=4;x++){
+			   String alte = request.getParameter("optionsRadios");
 			    Alternativas alternativa = new Alternativas();
-				alternativa.setDescricao(request.getParameter("resposta"+x));
 				
-				if(request.getParameter("optionsRadios") == Integer.toString(x)) {
+			    alternativa.setDescricao(request.getParameter("resposta"+x));
+				
+				if(request.getParameter("optionsRadios").equals(String.valueOf(x))) {
+				    
 				    alternativa.setAlterCorreta("1");
+				    
 				}else{
+				    
 				    alternativa.setAlterCorreta("0");
 				}
 				
@@ -76,7 +82,17 @@ public class PerguntaController {
 			
 		PerguntaDao dao = new PerguntaDao();
 		dao.salvar(pergunta);
+		int idPergunta = dao.buscarUltimoId();
 		dao.fecharConexao();
+		pergunta.setId(idPergunta);
+		
+		AlternativaDao daoAlter = new AlternativaDao();
+		
+		for(Alternativas alternativa : pergunta.getAlternativas()){
+		    daoAlter.salvar(alternativa,idPergunta);
+		}
+		
+		
 		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
 		return "Perguntas/CadastrarPergunta";
 		}

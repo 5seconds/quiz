@@ -46,6 +46,24 @@ public class UsuarioController {
 	}
 
 
+	
+	@RequestMapping("/ExibirListarUsuario")
+	public String ExibirListarUsuario(Model model) {
+				
+	return "Usuario/ListarUsuario";
+	}
+	
+
+	@RequestMapping("/listarUsuario")
+	public String listarUsuario(Model model) {
+		
+	UsuarioDao dao = new UsuarioDao();
+	List<Usuario> listarUsuario = dao.listar();
+	model.addAttribute("listarUsuario", listarUsuario);
+	
+	return "Usuario/ListarUsuario";
+	}
+
 		@RequestMapping("/ExibirAlterarUsuario")
 		public String ExibirAlterarUsuario(Model model) {
 				
@@ -79,23 +97,6 @@ public class UsuarioController {
 	    }
 	
 	    
-	  //Exibi na tela  
-	@RequestMapping("/ExibirListarUsuario")
-	public String ExibirListarUsuario(Model model) {
-				
-		return "Usuario/ListarUsuario";
-		}
-	
-
-	@RequestMapping("/listarUsuario")
-	public String listarProduto(Model model) {
-		
-	UsuarioDao dao = new UsuarioDao();
-	List<Usuario> ListarUsuario = dao.listar();
-	model.addAttribute("ListarUsuario", ListarUsuario);
-	
-	return "Usuario/ListarUsuario";
-	}
 	
 	
 	

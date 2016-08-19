@@ -36,6 +36,29 @@ public class PerguntaDao {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public int buscarUltimoId() {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT MAX(id) FROM Perguntas ");
+			ResultSet rs = stmt.executeQuery();
+			
+			int id = 0	;
+			while (rs.next()) {
+				id = rs.getInt("id");
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return id;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 
 	public Pergunta buscarPorId(int id) {
 
@@ -102,6 +125,8 @@ public class PerguntaDao {
 		return pergunta;
 		
 	}
+	
+		
 	
 	public void fecharConexao() throws SQLException{
 		
