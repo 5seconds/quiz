@@ -21,7 +21,7 @@ public class AlternativaDaoTest {
 		
 		
 		AlternativaDao alternativaDao = new AlternativaDao();
-		alternativaDao.salvar(alternativas);
+		alternativaDao.salvar(alternativas, 0);
 		
 		
 		

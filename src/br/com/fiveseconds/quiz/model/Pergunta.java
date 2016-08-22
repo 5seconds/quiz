@@ -2,14 +2,25 @@ package br.com.fiveseconds.quiz.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Perguntas")
 public class Pergunta {
 
+	@Id
 	private int id;
 	
+	@Column
 	private String descricao;
 	
+	@Column (name ="idNivelFK")
 	private Nivel nivel;
 	
+	@Column (name ="idDisciplinaFK")
 	private Disciplina disciplina;
 	
 	private ArrayList<Alternativas> alternativas;
