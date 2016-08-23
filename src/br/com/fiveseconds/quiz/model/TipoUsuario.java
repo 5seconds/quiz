@@ -3,6 +3,7 @@ package br.com.fiveseconds.quiz.model;
 public class TipoUsuario {
 
 	private int id;
+	
 	private String nome;
 	
 	public int getId() {
