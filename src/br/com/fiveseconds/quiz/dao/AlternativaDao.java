@@ -29,7 +29,7 @@ public class AlternativaDao {
 			
 			stmt.setString(1, alternativa.getDescricao());
 			stmt.setString(2, alternativa.getAlterCorreta());
-			stmt.setInt(3, alternativa.getIdPerguntaFK());
+			stmt.setInt(3, idPergunta);
 			
 
 			stmt.execute();

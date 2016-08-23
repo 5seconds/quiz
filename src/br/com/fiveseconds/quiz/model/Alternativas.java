@@ -18,7 +18,7 @@ public class Alternativas {
 	@Column
     private String alterCorreta;
     
-	@Column
+	
     private int idPerguntaFK;
 
     public int getId() {

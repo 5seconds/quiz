@@ -40,7 +40,7 @@ public class PerguntaDao {
 	public int buscarUltimoId() {
 
 		try {
-			PreparedStatement stmt = connection.prepareStatement("SELECT MAX(id) FROM Perguntas ");
+			PreparedStatement stmt = connection.prepareStatement("SELECT MAX(id) id FROM Perguntas ");
 			ResultSet rs = stmt.executeQuery();
 			
 			int id = 0	;

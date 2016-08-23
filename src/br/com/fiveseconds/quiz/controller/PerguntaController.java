@@ -82,17 +82,18 @@ public class PerguntaController {
 			
 		PerguntaDao dao = new PerguntaDao();
 		dao.salvar(pergunta);
+		
 		int idPergunta = dao.buscarUltimoId();
 		dao.fecharConexao();
-		pergunta.setId(idPergunta);
 		
+		pergunta.setId(idPergunta);
 		AlternativaDao daoAlter = new AlternativaDao();
 		
 		for(Alternativas alternativa : pergunta.getAlternativas()){
 		    daoAlter.salvar(alternativa,idPergunta);
 		}
 		
-		
+		daoAlter.fecharConexao();
 		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
 		return "Perguntas/CadastrarPergunta";
 		}
