@@ -3,6 +3,8 @@ package br.com.fiveseconds.quiz.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +20,8 @@ public class Alternativas {
 	@Column
     private String alterCorreta;
     
-	
+	@ManyToOne
+	@JoinColumn(name = "idPerguntaFK")
     private int idPerguntaFK;
 
     public int getId() {

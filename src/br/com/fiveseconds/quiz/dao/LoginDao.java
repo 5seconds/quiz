@@ -3,6 +3,7 @@ package br.com.fiveseconds.quiz.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 
 import com.mysql.jdbc.Connection;
@@ -55,6 +56,11 @@ public class LoginDao {
 		usuario.setEmail(rs.getString("email"));
 		usuario.setSenha(rs.getString("senha"));
 		int id = rs.getInt("tipoUsuarioFk");
+		
+		
+		TipoUsuarioDao dao = new TipoUsuarioDao();
+		TipoUsuario tipoUsuario = dao.buscarPorId(id);
+		usuario.setTipoUsuario(tipoUsuario);
 		return usuario;
 	}
 

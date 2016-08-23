@@ -24,7 +24,7 @@ public class AlternativaDao {
 
 	public void salvar(Alternativas alternativa, int idPergunta) {
 		try {
-			String sql = "INSERT INTO Alternativa(descricao,alterCoreta,idPerguntaFK) VALUES (?,?,?)";
+			String sql = "INSERT INTO Alternativa(descricao,alterCorreta,idPerguntaFK) VALUES (?,?,?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			
 			stmt.setString(1, alternativa.getDescricao());

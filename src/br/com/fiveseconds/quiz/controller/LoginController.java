@@ -12,37 +12,47 @@ import br.com.fiveseconds.quiz.dao.LoginDao;
 import br.com.fiveseconds.quiz.model.Usuario;
 @Controller
 public class LoginController {
-	
-	
+
+
 	@RequestMapping("/ExibirLogin")
 	public String ExibirLogin() {
-		
-	return "Login/login";
+
+		return "Login/login";
 	}
-		
-	
+
+
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model
-	model) throws SQLException {
-	
+			model) throws SQLException {
+
+
 		LoginDao dao = new LoginDao();
-	Usuario usuarioLogado = dao.buscarUsuario(usuario);
-	
-	if (usuarioLogado != null) {
-	session.setAttribute("usuarioLogado", usuarioLogado);
-	return "Login/HomeAdm";
-	}
-	dao.fecharConexao();
-	model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
-	return "Login/login";
+		Usuario usuarioLogado = dao.buscarUsuario(usuario);
+		dao.fecharConexao();
+
+		if (usuarioLogado != null) {
+			session.setAttribute("usuarioLogado", usuarioLogado);
+
+			if(usuarioLogado.getTipoUsuario().getId() == 2){
+				return "Login/HomeAdm";
+			}
+			else{
+				return "Login/Home";
+			}
+
+		}else{
+			model.addAttribute("msg", "Não foi encontrado um usuário com o login e senha informados.");
+			return "Login/login";
+		}
+
 	}
 
 	@RequestMapping("logout")
 
-		public String logout(HttpSession session) {
-		
+	public String logout(HttpSession session) {
+
 		session.invalidate();
 		return "Login/login";
 	}
-	
+
 }

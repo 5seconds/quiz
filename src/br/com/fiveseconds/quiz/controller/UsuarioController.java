@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fiveseconds.quiz.dao.UsuarioDao;
+import br.com.fiveseconds.quiz.dao.UsuarioHibernateDao;
 import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 
@@ -57,7 +58,7 @@ public class UsuarioController {
 	@RequestMapping("/listarUsuario")
 	public String listarUsuario(Model model) {
 		
-	UsuarioDao dao = new UsuarioDao();
+	UsuarioHibernateDao dao = new UsuarioHibernateDao();
 	List<Usuario> listarUsuario = dao.listar();
 	model.addAttribute("listarUsuario", listarUsuario);
 	

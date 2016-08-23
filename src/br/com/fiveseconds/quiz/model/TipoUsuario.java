@@ -1,9 +1,18 @@
 package br.com.fiveseconds.quiz.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TipoUsuario")
 public class TipoUsuario {
 
+	@Id
 	private int id;
 	
+	@Column
 	private String nome;
 	
 	public int getId() {
