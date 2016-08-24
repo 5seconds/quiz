@@ -20,7 +20,7 @@ public class LoginDaoTest {
 		
 		Usuario usuario = new Usuario();
 		usuario.setSenha("adm123");
-		usuario.setEmail("adiministrador@adm.com");
+		usuario.setEmail("administrador@adm.com");
 			
 		Usuario usuarioLogin = loginDao.buscarUsuario(usuario);
 		
