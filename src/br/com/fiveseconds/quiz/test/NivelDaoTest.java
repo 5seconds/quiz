@@ -1,5 +1,6 @@
 package br.com.fiveseconds.quiz.test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -12,11 +13,13 @@ import br.com.fiveseconds.quiz.model.Nivel;
 public class NivelDaoTest {
 	
 	@Test
-	public void Blistar() {
+	public void Blistar() throws SQLException {
 		NivelDao dao = new NivelDao();
 		List<Nivel> niveis = dao.listar();
 
 		System.out.println(niveis);
+		
+		dao.fecharConexao();
 
 	}
 }

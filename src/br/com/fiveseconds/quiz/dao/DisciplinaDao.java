@@ -67,6 +67,7 @@ public class DisciplinaDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		   }
+	
 		}
 	
 	
@@ -79,6 +80,9 @@ public class DisciplinaDao {
 		return disciplina;
 	}
 
-	
+	public void fecharConexao() throws SQLException{
+		
+		connection.close();
+	}
 	
 }

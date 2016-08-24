@@ -84,4 +84,9 @@ public class NivelDao {
 		nivel.setNome(rs.getString("nome"));
 		return nivel ;
 	}
+	
+	public void fecharConexao() throws SQLException{
+		
+		connection.close();
+	}
 }
