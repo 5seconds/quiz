@@ -127,9 +127,7 @@
                     <li>
                         <a class="page-scroll" href="ExibirCadastrarUsuario">Cadastre-se</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Quem Somos</a>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

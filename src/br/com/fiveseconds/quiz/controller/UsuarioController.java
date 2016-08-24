@@ -30,6 +30,7 @@ public class UsuarioController {
 			
 	return "Usuario/CadastroUsuario";
 	}
+	
 	//Feito!
 	@RequestMapping("CadastrarUsuario")
 	public String CadastrarUsuario(@Valid Usuario usuario , Model model) throws SQLException {
@@ -70,6 +71,7 @@ public class UsuarioController {
 				
 		return "Usuario/AlterarUsuario";
 		}
+		
 		@RequestMapping("/exibirAlterarUsuario")
 	    public String exibirAlterarUsuario(Model model, Usuario usuario) throws SQLException {
 

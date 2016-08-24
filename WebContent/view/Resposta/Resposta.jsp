@@ -43,7 +43,8 @@
   overflow: hidden;
   margin-left:300px;
   margin-right: 300px; 
-  color: black;
+  color: white;
+  font-size: 25px;
 }
 
 .funkyradio div:hover {

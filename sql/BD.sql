@@ -45,7 +45,7 @@ create table Alternativa(
 
 id int primary key auto_increment,
 descricao varchar(500) not null,
-alterCoreta varchar(200) not null,
+alterCorreta varchar(200) not null,
 idPerguntaFK int,
 
 foreign	key (idPerguntaFK) references Perguntas(id)
