@@ -76,20 +76,20 @@ public class UsuarioHibernateDao extends HibernateDao {
 		Query query = null;
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
-		
+
 		if (!nome.equals("")) {
-		query = manager.createQuery("SELECT p FROM Usuario p WHERE p.nome LIKE :paramNome ORDER BY p.nome");
-		query.setParameter( 0, "%" + nome + "%");
-		
+			query = manager.createQuery("SELECT p FROM Usuario p WHERE p.nome LIKE :paramNome ORDER BY p.nome");
+			query.setParameter( 0, "%" + nome + "%");
+
 		}  else {
-		query = manager.createQuery("SELECT p FROM Usuario p ORDER BY p.nome");
+			query = manager.createQuery("SELECT p FROM Usuario p ORDER BY p.nome");
 		}
-		
+
 		lista = query.getResultList();
 		manager.close();
 		factory.close();
 		return lista;
-		}
+	}
 
 	@Override
 	public Class getClassEntidade() {

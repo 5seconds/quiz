@@ -12,7 +12,7 @@ create table Usuario(
 id int primary key auto_increment,
 nome varchar(100) not null,
 email varchar(50) not null unique,
-senha varchar(15) not null,
+senha varchar(100) not null,
 tipoUsuarioFk int,
 
 foreign key (tipoUsuarioFK) references TipoUsuario(id)
