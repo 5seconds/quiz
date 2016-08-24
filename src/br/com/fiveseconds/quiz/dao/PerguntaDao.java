@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import br.com.fiveseconds.quiz.model.Pergunta;
 import br.com.fiveseconds.quiz.model.Usuario;
 
-public class PerguntaDao {
+public class PerguntaDao extends HibernateDao {
 
+	public Class getClassEntidade() {
+		return Usuario.class;
+		}
 	
 	private com.mysql.jdbc.Connection connection;
 

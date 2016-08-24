@@ -8,9 +8,11 @@ import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Pergunta;
 import br.com.fiveseconds.quiz.model.Usuario;
 
-public class AlternativaDao {
+public class AlternativaDao extends HibernateDao {
 
-    
+	public Class getClassEntidade() {
+		return Usuario.class;
+		}
 
 	private com.mysql.jdbc.Connection connection;
 

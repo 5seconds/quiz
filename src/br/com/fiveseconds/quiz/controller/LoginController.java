@@ -1,5 +1,7 @@
 package br.com.fiveseconds.quiz.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fiveseconds.quiz.dao.LoginDao;
 import br.com.fiveseconds.quiz.model.Usuario;
+import br.com.fiveseconds.quiz.util.Criptografia;
 @Controller
 public class LoginController {
 
@@ -23,10 +26,11 @@ public class LoginController {
 
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Usuario usuario, HttpSession session, Model
-			model) throws SQLException {
+			model) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
 
 		LoginDao dao = new LoginDao();
+		usuario.setSenha(Criptografia.sha1(usuario.getSenha()));
 		Usuario usuarioLogado = dao.buscarUsuario(usuario);
 		dao.fecharConexao();
 

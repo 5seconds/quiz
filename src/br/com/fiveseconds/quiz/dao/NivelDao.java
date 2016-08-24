@@ -9,10 +9,13 @@ import java.util.List;
 
 import br.com.fiveseconds.quiz.model.Disciplina;
 import br.com.fiveseconds.quiz.model.Nivel;
+import br.com.fiveseconds.quiz.model.Usuario;
 
-public class NivelDao {
+public class NivelDao extends HibernateDao {
 
-	
+	public Class getClassEntidade() {
+		return Usuario.class;
+		}
 
 	private Connection connection;
 

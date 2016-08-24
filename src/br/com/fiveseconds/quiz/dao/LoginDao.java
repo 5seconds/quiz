@@ -9,8 +9,11 @@ import br.com.fiveseconds.quiz.model.Usuario;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-public class LoginDao {
+public class LoginDao extends HibernateDao {
 
+	public Class getClassEntidade() {
+		return Usuario.class;
+		}
 	
 	private Connection connection;
 

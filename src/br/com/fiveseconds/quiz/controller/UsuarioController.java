@@ -1,5 +1,7 @@
 package br.com.fiveseconds.quiz.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import br.com.fiveseconds.quiz.dao.UsuarioDao;
 import br.com.fiveseconds.quiz.dao.UsuarioHibernateDao;
 import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
+import br.com.fiveseconds.quiz.util.Criptografia;
 
 @Controller
 public class UsuarioController {
@@ -33,13 +36,14 @@ public class UsuarioController {
 	
 	//Feito!
 	@RequestMapping("CadastrarUsuario")
-	public String CadastrarUsuario(@Valid Usuario usuario , Model model) throws SQLException {
+	public String CadastrarUsuario(@Valid Usuario usuario , Model model) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
 		
 		
 	UsuarioDao dao = new UsuarioDao();
 	TipoUsuario tipoUsuario = new TipoUsuario();
 	tipoUsuario.setId(1);
 	usuario.setTipoUsuario(tipoUsuario);
+	usuario.setSenha(Criptografia.sha1(usuario.getSenha()));
 	
 	dao.salvar(usuario);
 	dao.fecharConexao();
