@@ -35,6 +35,8 @@ public class LoginDao extends HibernateDao {
 		stmt.setString(2, usuario.getSenha());
 		ResultSet rs = stmt.executeQuery();
 		
+	
+		
 		if (rs.next()) {
 		usuarioConsultado = montarObjeto(rs);
 		}

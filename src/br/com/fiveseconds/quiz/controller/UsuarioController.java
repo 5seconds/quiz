@@ -45,6 +45,7 @@ public class UsuarioController {
 	usuario.setTipoUsuario(tipoUsuario);
 	usuario.setSenha(Criptografia.sha1(usuario.getSenha()));
 	
+
 	dao.salvar(usuario);
 	dao.fecharConexao();
 	model.addAttribute("mensagem", "Cadastro Realizado com Sucesso");

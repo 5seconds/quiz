@@ -52,6 +52,10 @@ foreign	key (idPerguntaFK) references Perguntas(id)
 );
 
 
+select p.descricao AS " Pergunta ", a.alterCorreta AS "Correta",  a.descricao  AS "Respostas", p.idDisciplinaFK "Disciplina", p.idNivelFK AS "Nivel "  from Alternativa a, Perguntas p where p.id = a.idPerguntaFk;
+
+
+
 -------------------------------- INSERT ------------------------------------------------------------------
 insert into TipoUsuario (nome) values ("Usuario Normal");
 insert into TipoUsuario (nome) values ("Usuario ADM");
