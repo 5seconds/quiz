@@ -19,66 +19,68 @@ import br.com.fiveseconds.quiz.util.Criptografia;
 
 @Controller
 public class UsuarioController {
-	
-	//Feito!
+
+	// Feito!
 	@RequestMapping("/ExibirIndex")
 	public String ExibirIndex() {
-		
-	return "PaginaPrincipal/index";
+
+		return "PaginaPrincipal/index";
 	}
-	
-	//Feito!
+
+	// Feito!
 	@RequestMapping("/ExibirCadastrarUsuario")
 	public String ExibirCadastrarUsuario(Model model) {
-			
-	return "Usuario/CadastroUsuario";
+
+		return "Usuario/CadastroUsuario";
 	}
-	
-	//Feito!
+
+	// Feito!
 	@RequestMapping("CadastrarUsuario")
-	public String CadastrarUsuario(@Valid Usuario usuario , Model model) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
-		
-		
-	UsuarioDao dao = new UsuarioDao();
-	TipoUsuario tipoUsuario = new TipoUsuario();
-	tipoUsuario.setId(1);
-	usuario.setTipoUsuario(tipoUsuario);
-	usuario.setSenha(Criptografia.sha1(usuario.getSenha()));
-	
+	public String CadastrarUsuario(@Valid Usuario usuario, Model model)
+			throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
-	dao.salvar(usuario);
-	dao.fecharConexao();
-	model.addAttribute("mensagem", "Cadastro Realizado com Sucesso");
-	return "Usuario/CadastroUsuario";
+		UsuarioDao dao = new UsuarioDao();
+		TipoUsuario tipoUsuario = new TipoUsuario();
+		tipoUsuario.setId(1);
+		usuario.setTipoUsuario(tipoUsuario);
+		usuario.setSenha(Criptografia.sha1(usuario.getSenha()));
+
+		dao.salvar(usuario);
+		dao.fecharConexao();
+		model.addAttribute("mensagem", "Cadastro Realizado com Sucesso");
+		return "Usuario/CadastroUsuario";
 	}
 
-
-	
 	@RequestMapping("/ExibirListarUsuario")
 	public String ExibirListarUsuario(Model model) {
-				
-	return "Usuario/ListarUsuario";
+
+		UsuarioHibernateDao dao = new UsuarioHibernateDao();
+		List<Usuario> listarUsuario = dao.listar();
+		model.addAttribute("listarUsuario", listarUsuario);
+
+		
+		
+		return "Usuario/ListarUsuario";
 	}
-	
 
 	@RequestMapping("/listarUsuario")
 	public String listarUsuario(Model model) {
-		
-	UsuarioHibernateDao dao = new UsuarioHibernateDao();
-	List<Usuario> listarUsuario = dao.listar();
-	model.addAttribute("listarUsuario", listarUsuario);
-	
-	return "Usuario/ListarUsuario";
+
+		UsuarioHibernateDao dao = new UsuarioHibernateDao();
+		List<Usuario> listarUsuario = dao.listar();
+		model.addAttribute("listarUsuario", listarUsuario);
+
+		return "Usuario/ListarUsuario";
 	}
 
-		@RequestMapping("/ExibirAlterarUsuario")
-		public String ExibirAlterarUsuario(Model model) {
-				
+	@RequestMapping("/ExibirAlterarUsuario")
+	public String ExibirAlterarUsuario(Model model) {
+
 		return "Usuario/AlterarUsuario";
-		}
-		
-		@RequestMapping("/exibirAlterarUsuario")
-	    public String exibirAlterarUsuario(Model model, Usuario usuario) throws SQLException {
+	}
+
+	@RequestMapping("/exibirAlterarUsuario")
+	public String exibirAlterarUsuario(Model model, Usuario usuario) throws SQLException {
 
 		UsuarioDao dao = new UsuarioDao();
 		usuario = dao.buscarPorId(usuario.getId());
@@ -86,42 +88,30 @@ public class UsuarioController {
 		dao.fecharConexao();
 
 		return "Usuario/ListarUsuario";
-	    }
-	  
-	  
-	  
-	  
-	    
-	    @RequestMapping("alterarUsuario")
-	    public String alterarProduto(Usuario usuario1, Model model) throws SQLException {
+	}
 
-	    UsuarioDao dao = new UsuarioDao();
+	@RequestMapping("alterarUsuario")
+	public String alterarProduto(Usuario usuario1, Model model) throws SQLException {
+
+		UsuarioDao dao = new UsuarioDao();
 		dao.alterar(usuario1);
 		model.addAttribute("usuario1", usuario1);
 		model.addAttribute("mensagem", "Usuario Alterado com Sucesso");
 		dao.fecharConexao();
 
 		return "Usuario/AlterarUsuario";
-	    }
-	
-	    
-	
-	
-	
-	//Feito !
-		@RequestMapping("removerUsuario")
-	public String removerUsuario(Usuario usuario, Model model) throws SQLException {
-		
-		UsuarioDao dao = new UsuarioDao();
-	dao.remover(usuario);
-	model.addAttribute("msg", "Usuario removido com sucesso");
-	dao.fecharConexao();
-
-	
-	return "forward:listarUsuario";
 	}
-	
-	
 
-	
+	// Feito !
+	@RequestMapping("removerUsuario")
+	public String removerUsuario(Usuario usuario, Model model) throws SQLException {
+
+		UsuarioDao dao = new UsuarioDao();
+		dao.remover(usuario);
+		model.addAttribute("msg", "Usuario removido com sucesso");
+		dao.fecharConexao();
+
+		return "forward:listarUsuario";
+	}
+
 }

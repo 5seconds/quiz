@@ -11,10 +11,6 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class UsuarioHibernateDao extends HibernateDao {
 
-
-
-	private static final String PERSISTENCE_UNIT = "game";
-
 	public void salvar(Usuario usuario) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 		EntityManager manager = factory.createEntityManager();
@@ -25,7 +21,6 @@ public class UsuarioHibernateDao extends HibernateDao {
 		factory.close();
 
 	}
-
 
 	public void alterar(Usuario usuario) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
@@ -48,7 +43,6 @@ public class UsuarioHibernateDao extends HibernateDao {
 		manager.close();
 		factory.close();
 	}
-
 
 	public List<Usuario> listar() {
 		List<Usuario> lista = null;
@@ -79,9 +73,9 @@ public class UsuarioHibernateDao extends HibernateDao {
 
 		if (!nome.equals("")) {
 			query = manager.createQuery("SELECT p FROM Usuario p WHERE p.nome LIKE :paramNome ORDER BY p.nome");
-			query.setParameter( 0, "%" + nome + "%");
+			query.setParameter(0, "%" + nome + "%");
 
-		}  else {
+		} else {
 			query = manager.createQuery("SELECT p FROM Usuario p ORDER BY p.nome");
 		}
 
@@ -96,6 +90,5 @@ public class UsuarioHibernateDao extends HibernateDao {
 
 		return Usuario.class;
 	}
-
 
 }

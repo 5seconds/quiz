@@ -10,52 +10,50 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Alternativa")
 public class Alternativas {
-    
+
 	@Id
-    private int id;
-    
+	private int id;
+
 	@Column
-    private String descricao;
-    
+	private String descricao;
+
 	@Column
-    private String alterCorreta;
-    
+	private String alterCorreta;
+
 	@ManyToOne
 	@JoinColumn(name = "idPerguntaFK")
-    private int idPerguntaFK;
+	private Pergunta pergunta;
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public String getAlterCorreta() {
-        return alterCorreta;
-    }
+	public String getAlterCorreta() {
+		return alterCorreta;
+	}
 
-    public void setAlterCorreta(String alterCorreta) {
-        this.alterCorreta = alterCorreta;
-    }
+	public void setAlterCorreta(String alterCorreta) {
+		this.alterCorreta = alterCorreta;
+	}
 
-    public int getIdPerguntaFK() {
-        return idPerguntaFK;
-    }
+	public Pergunta getPergunta() {
+		return pergunta;
+	}
 
-    public void setIdPerguntaFK(int idPerguntaFK) {
-        this.idPerguntaFK = idPerguntaFK;
-    }
-    
-    
+	public void setPergunta(Pergunta pergunta) {
+		this.pergunta = pergunta;
+	}
 
 }

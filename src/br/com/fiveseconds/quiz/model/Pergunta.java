@@ -19,7 +19,8 @@ public class Pergunta {
 	@Column
 	private String descricao;
 	
-	@Column (name ="idNivelFK")
+	@ManyToOne
+	@JoinColumn(name = "idNivelFK")
 	private Nivel nivel;
 	
 	@ManyToOne

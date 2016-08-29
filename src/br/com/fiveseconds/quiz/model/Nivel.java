@@ -14,6 +14,7 @@ public class Nivel {
 	
 	@Column
 	private String nome;
+	
 	public int getId() {
 		return id;
 	}

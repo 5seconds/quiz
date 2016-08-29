@@ -2,6 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html lang="pt">
 
 <head>
@@ -25,7 +29,6 @@
 			<td> ID </td>
 			<td> NOME </td>
 			<td> EMAIL </td>
-			<td> SENHA </td>
 			<td> AÇÕES </td>
 		</tr>
 	
@@ -34,7 +37,6 @@
 	    	<td> ${usuario.id} </td>
 	    	<td> ${usuario.nome} </td>
 	    	<td> ${usuario.email} </td>
-	    	<td> ${usuario.senha} </td>
 	    	<td>
 	    		<a href='#?id=${usuario.id}'>Editar</a> &nbsp;
 	    		<a href='#?id=${usuario.id}'>Remover</a>
