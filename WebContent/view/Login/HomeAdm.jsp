@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Pagina Inicial do Usuario</title>
+<title>Página Inicial do Usuário</title>
 
 
 <!-- Bootstrap Core CSS -->
@@ -54,7 +54,7 @@
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			        	
-                	<a class="navbar-brand page-scroll" href="#page-top">Five Quiz</a>
+              <a class="navbar-brand page-scroll">Five Quiz</a>
               <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
 			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuario</a>
 				

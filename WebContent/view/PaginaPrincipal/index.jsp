@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bem Vindo Five Quiz !</title>
+    <title>Bem Vindo Five Quiz!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="view/bootstrap/css/bootstrap.min.css" rel="stylesheet">

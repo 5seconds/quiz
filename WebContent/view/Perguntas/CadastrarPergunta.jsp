@@ -16,7 +16,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Cadastro Perguntas !</title>
+<title> Cadastro Perguntas</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="view/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -104,7 +104,7 @@
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			        	
-                	<a class="navbar-brand page-scroll" href="#page-top">Five Quiz</a>
+                	<a class="navbar-brand page-scroll">Five Quiz</a>
               <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
 			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuario</a>
 				

@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastre-se !</title>
+    <title>Cadastre-se!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="view/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -112,7 +112,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               
-                <a class="navbar-brand page-scroll" href="#page-top">Five Quiz</a>
+                <a class="navbar-brand page-scroll">Five Quiz</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
