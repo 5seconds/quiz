@@ -26,6 +26,18 @@ public class UsuarioController {
 
 		return "PaginaPrincipal/index";
 	}
+	
+	@RequestMapping("/ExibirHome")
+	public String ExibirHome() {
+
+		return "Login/Home";
+	}
+	
+	@RequestMapping("/ExibirHomeAdm")
+	public String ExibirHomeAdm() {
+
+		return "Login/HomeAdm";
+	}
 
 	// Feito!
 	@RequestMapping("/ExibirCadastrarUsuario")
