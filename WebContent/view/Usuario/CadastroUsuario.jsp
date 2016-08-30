@@ -55,7 +55,8 @@
                        },
                         email:{
                           required:true,
-                          email:true
+                          email:true,
+                         remote:"view/Usuario/verificarEmail.jsp"
                        },
                         senha:{
                           required:true,
@@ -78,7 +79,8 @@
                        },
                         email:{
                           required:"Este campo é obrigatório",
-                          email:"Informe um email válido"
+                          email:"Informe um email válido",
+                          remote:"Email já cadastrado"
                        },
                         senha:{
                           required:"Este campo é obrigatório",
