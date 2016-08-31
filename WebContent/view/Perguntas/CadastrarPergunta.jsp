@@ -68,7 +68,30 @@
 					required : true
 					
 
-				}
+				},
+				resposta1 : {
+					required : true,
+					minlength:5
+
+				},
+				resposta2 : {
+					required : true,
+					minlength:5
+					
+
+				},
+				resposta3 : {
+					required : true,
+					minlength:5
+					
+
+				},
+				resposta4 : {
+					required : true,
+					minlength:5
+					
+
+				}				
 
 			},
 			messages : {
@@ -85,8 +108,24 @@
 					required : "Este campo é obrigatório",
 					
 
+				},
+				resposta1 : {
+					required : "Este campo é obrigatório",
+					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+				},
+				resposta2 : {
+					required : "Este campo é obrigatório",
+					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+				},
+				resposta3 : {
+					required : "Este campo é obrigatório",
+					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+					
+				},
+				resposta4 : {
+					required : "Este campo é obrigatório",
+					minlength : "A Pergunta deve conter no minimo 5 caracteres"
 				}
-
 			}
 
 		});
@@ -122,8 +161,7 @@
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
+	</div> </nav>
 
 	<header>
 
@@ -149,7 +187,7 @@
 								<span class="input-group-addon">
 								<i class="glyphicon glyphicon-comment" aria-hidden="true"></i>
 								</span> 
-								<input type="text" class="form-control" name="descricao" id="descricao" placeholder="Digite sua Pergunta"/>
+								<input type="text" class="form-control" name="descricao" id="descricao" autofocus="" placeholder="Digite sua Pergunta"/>
 							</div>
 						
 					</div>
@@ -193,7 +231,7 @@
 						
 						<input type="radio" name="optionsRadios" id="optionsRadios" value="1">
 						</span> 
-						<input type="text" name="resposta1" id="resposta1" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
+						<input type="text" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
 
 

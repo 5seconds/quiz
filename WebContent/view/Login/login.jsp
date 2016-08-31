@@ -102,7 +102,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail"required="required"autofocus=""/>
+									<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail" required="required" autofocus=""/>
 								</div>
 							</div>
 						</div>

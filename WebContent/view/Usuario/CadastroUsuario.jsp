@@ -74,7 +74,7 @@
                 messages:{
                          nome:{
                         required:"Este campo é obrigatório",
-                        minlength:"O nome deve ter no minimo 5 caracteres"
+                        minlength:"O nome deve conter no mínimo 5 caracteres"
 
                        },
                         email:{
@@ -89,7 +89,7 @@
                        },
                        confsenha:{
                            required:"Esté Campo é obrigatório",
-                           equalTo: "As senhas diferem, verifique"
+                           equalTo: "As senhas estão diferentes!  "
 
                        }
                         
@@ -153,12 +153,15 @@
 					<form class="form-horizontal" method="post" action="CadastrarUsuario" id="Form1">
 						
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Nome</label>
+							<label for="name" class="cols-sm-2 control-label"> Nome 
+							
+							</label>
+							
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="nome" id="nome"  placeholder="Digite seu nome"
-									required="required"autofocus=""/>
+									
+									<input type="text" class="form-control" name="nome" id="nome" maxlength="40" placeholder="Digite seu nome" autofocus=""/>
 								</div>
 							</div>
 						</div>
@@ -168,8 +171,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail"
-									required="required"autofocus=""/>
+									
+									<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail"  autofocus=""/>
 								</div>
 							</div>
 						</div>
@@ -181,8 +184,8 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="senha" id="senha"  placeholder="Digite sua senha"
-									required="required"autofocus=""/>
+									
+									<input type="password" class="form-control" name="senha" id="senha"  placeholder="Digite sua senha" autofocus=""/>
 								</div>
 							</div>
 						</div>
@@ -192,17 +195,17 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confsenha" id="confsenha"  placeholder="Confirme sua senha"
-									required="required"autofocus=""/>
+									
+									<input type="password" class="form-control" name="confsenha" id="confsenha"  placeholder="Confirme sua senha" autofocus=""/>
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group ">
-							<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Cadastrar</button>
+							<button type="submit" class="btn btn-primary btn-lg btn-block login-button"> Cadastrar </button>
 						</div>
 						<div class="login-register">
-				            <a href="ExibirLogin">Login</a>
+				            <a href="ExibirLogin" style="font-size: 17px;"><b> Login </b></a>
 				         </div>
 					</form>
 				</div>
