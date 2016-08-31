@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.fiveseconds.quiz.dao.UsuarioDao;
-import br.com.fiveseconds.quiz.dao.UsuarioHibernateDao;
+
 import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 import br.com.fiveseconds.quiz.util.Criptografia;
@@ -20,14 +20,14 @@ import br.com.fiveseconds.quiz.util.Criptografia;
 @Controller
 public class UsuarioController {
 
-	// Feito!
+	
 	@RequestMapping("/ExibirIndex")
 	public String ExibirIndex() {
 
 		return "PaginaPrincipal/index";
 	}
 
-	// Feito!
+	
 	@RequestMapping("/ExibirCadastrarUsuario")
 	public String ExibirCadastrarUsuario(Model model) {
 
@@ -46,7 +46,7 @@ public class UsuarioController {
 		return "Login/HomeAdm";
 	}
 
-	// Feito!
+	
 	@RequestMapping("CadastrarUsuario")
 	public String CadastrarUsuario(@Valid Usuario usuario, Model model)
 			throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -66,7 +66,7 @@ public class UsuarioController {
 	@RequestMapping("/ExibirListarUsuario")
 	public String ExibirListarUsuario(Model model) {
 
-		UsuarioHibernateDao dao = new UsuarioHibernateDao();
+		UsuarioDao dao = new UsuarioDao();
 		List<Usuario> listarUsuario = dao.listar();
 		model.addAttribute("listarUsuario", listarUsuario);
 
@@ -80,7 +80,7 @@ public class UsuarioController {
 	@RequestMapping("/PesquisarUsuario")
 	public String pesquisarUsuario(Model model) {
 		
-	UsuarioHibernateDao dao = new UsuarioHibernateDao();
+	UsuarioDao dao = new UsuarioDao();
 	List<Usuario> listarUsuario = dao.listar();
 	model.addAttribute("listarUsuario", listarUsuario);
 	

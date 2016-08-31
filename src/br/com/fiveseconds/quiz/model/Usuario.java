@@ -10,31 +10,23 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
-@Table(name = "Usuario")
+
 public class Usuario {
 
-	@Id
+
 	private int id;
 	
-	@NotEmpty(message="O Nome deve ser preenchido")
-	@Size(min = 5, max = 50, message="O Nome deve deve ter um tamanho de 5 a 50 caracteres")
-	@Column
+
 	private String nome;
 	
-	@NotEmpty(message="O Email deve ser preenchido")
-	@Size(min = 5, max = 50, message="O Email deve deve ter um tamanho de 5 a 50 caracteres")
-	@Column
+	
 	private String email;
 	
 	
-	@NotEmpty(message="A Senha deve ser preenchido")
-	@Size(min = 5, max = 50, message="A Senha deve deve ter um tamanho de 5 a 10 caracteres")
-	@Column
+	
 	private String senha;
 	
-	@ManyToOne
-	@JoinColumn(name = "tipoUsuarioFK")
+
 	private TipoUsuario tipoUsuario;
 	
 	private String confirmeSenha;

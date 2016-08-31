@@ -9,22 +9,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Perguntas")
+
 public class Pergunta {
 
-	@Id
+	
 	private int id;
 	
-	@Column
+
 	private String descricao;
 	
-	@ManyToOne
-	@JoinColumn(name = "idNivelFK")
+
 	private Nivel nivel;
 	
-	@ManyToOne
-	@JoinColumn(name = "idDisciplinaFK")
+
 	private Disciplina disciplina;
 	
 	private ArrayList<Alternativas> alternativas;

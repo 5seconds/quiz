@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Usuario;
 
-public class AlternativaDao extends HibernateDao {
+public class AlternativaDao {
 
 
 	public Class getClassEntidade() {

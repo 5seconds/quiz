@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 
-public class TipoUsuarioDao extends HibernateDao {
+public class TipoUsuarioDao {
 	
 	public Class getClassEntidade() {
 		return Usuario.class;

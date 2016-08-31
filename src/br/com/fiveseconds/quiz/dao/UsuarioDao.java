@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.fiveseconds.quiz.model.Usuario;
 
 
-public class UsuarioDao extends HibernateDao {
+public class UsuarioDao {
 
 	public Class getClassEntidade() {
 		return Usuario.class;

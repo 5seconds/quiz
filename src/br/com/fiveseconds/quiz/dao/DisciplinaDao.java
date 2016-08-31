@@ -10,7 +10,7 @@ import br.com.fiveseconds.quiz.model.Disciplina;
 import br.com.fiveseconds.quiz.model.Usuario;
 
 
-public class DisciplinaDao extends HibernateDao {
+public class DisciplinaDao  {
 
 	public Class getClassEntidade() {
 		return Usuario.class;

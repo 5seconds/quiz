@@ -10,7 +10,7 @@ import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Pergunta;
 import br.com.fiveseconds.quiz.model.Usuario;
 
-public class PerguntaDao extends HibernateDao {
+public class PerguntaDao  {
 
 	public Class getClassEntidade() {
 		return Usuario.class;

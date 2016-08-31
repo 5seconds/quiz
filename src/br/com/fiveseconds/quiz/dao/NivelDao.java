@@ -11,7 +11,7 @@ import br.com.fiveseconds.quiz.model.Disciplina;
 import br.com.fiveseconds.quiz.model.Nivel;
 import br.com.fiveseconds.quiz.model.Usuario;
 
-public class NivelDao extends HibernateDao {
+public class NivelDao  {
 
 	public Class getClassEntidade() {
 		return Usuario.class;

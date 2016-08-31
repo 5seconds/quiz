@@ -7,21 +7,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Alternativa")
+
 public class Alternativas {
 
-	@Id
+	
 	private int id;
 
-	@Column
+	
 	private String descricao;
 
-	@Column
+	
 	private String alterCorreta;
 
-	@ManyToOne
-	@JoinColumn(name = "idPerguntaFK")
+
 	private int idPerguntaFK;
 
 	public int getId() {
