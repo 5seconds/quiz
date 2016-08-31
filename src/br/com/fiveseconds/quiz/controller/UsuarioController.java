@@ -26,6 +26,13 @@ public class UsuarioController {
 
 		return "PaginaPrincipal/index";
 	}
+
+	// Feito!
+	@RequestMapping("/ExibirCadastrarUsuario")
+	public String ExibirCadastrarUsuario(Model model) {
+
+		return "Usuario/CadastroUsuario";
+	}
 	
 	@RequestMapping("/ExibirHome")
 	public String ExibirHome() {
@@ -37,13 +44,6 @@ public class UsuarioController {
 	public String ExibirHomeAdm() {
 
 		return "Login/HomeAdm";
-	}
-
-	// Feito!
-	@RequestMapping("/ExibirCadastrarUsuario")
-	public String ExibirCadastrarUsuario(Model model) {
-
-		return "Usuario/CadastroUsuario";
 	}
 
 	// Feito!
@@ -75,55 +75,47 @@ public class UsuarioController {
 		return "Usuario/ListarUsuario";
 	}
 
-	@RequestMapping("/listarUsuario")
-	public String listarUsuario(Model model) {
 
-		UsuarioHibernateDao dao = new UsuarioHibernateDao();
-		List<Usuario> listarUsuario = dao.listar();
-		model.addAttribute("listarUsuario", listarUsuario);
 
-		return "Usuario/ListarUsuario";
-	}
-
-	@RequestMapping("/ExibirAlterarUsuario")
-	public String ExibirAlterarUsuario(Model model) {
-
-		return "Usuario/AlterarUsuario";
-	}
-
-	@RequestMapping("/exibirAlterarUsuario")
-	public String exibirAlterarUsuario(Model model, Usuario usuario) throws SQLException {
-
-		UsuarioDao dao = new UsuarioDao();
-		usuario = dao.buscarPorId(usuario.getId());
-		model.addAttribute("usuario", usuario);
-		dao.fecharConexao();
-
-		return "Usuario/ListarUsuario";
-	}
-
-	@RequestMapping("alterarUsuario")
-	public String alterarProduto(Usuario usuario1, Model model) throws SQLException {
-
-		UsuarioDao dao = new UsuarioDao();
-		dao.alterar(usuario1);
-		model.addAttribute("usuario1", usuario1);
-		model.addAttribute("mensagem", "Usuario Alterado com Sucesso");
-		dao.fecharConexao();
-
-		return "Usuario/AlterarUsuario";
-	}
-
-	// Feito !
-	@RequestMapping("removerUsuario")
-	public String removerUsuario(Usuario usuario, Model model) throws SQLException {
+	@RequestMapping("/PesquisarUsuario")
+	public String pesquisarUsuario(Model model) {
+		
+	UsuarioHibernateDao dao = new UsuarioHibernateDao();
+	List<Usuario> listarUsuario = dao.listar();
+	model.addAttribute("listarUsuario", listarUsuario);
+	
+	return "Usuario/ListarUsuario";
+	
+}
+	 @RequestMapping("removerUsuario")
+	    public String removerUsuario(Usuario usuario, Model model) {
 
 		UsuarioDao dao = new UsuarioDao();
 		dao.remover(usuario);
-		model.addAttribute("msg", "Usuario removido com sucesso");
-		dao.fecharConexao();
+		model.addAttribute("msg", "Usuário Removido com Sucesso !");
+		
 
-		return "forward:listarUsuario";
+		return "Usuario/ListarUsuario";
 	}
 
+	 @RequestMapping("alterarUsuario")
+	    public String alterarUsuario(Usuario usuario, Model model) {
+
+		UsuarioDao dao = new UsuarioDao();
+		dao.alterar(usuario);
+		model.addAttribute("msg", "Usuário alterado com sucesso !");
+
+		return "Usuario/ListarUsuario";
+	}
+	 
+	 @RequestMapping("exibirAlterarUsuario")
+	    public String exibirAlterarUsuario(Usuario usuario, Model model) {
+
+		UsuarioDao dao = new UsuarioDao();
+		Usuario usuarioPreenchido = dao.buscarPorId(usuario.getId());
+		model.addAttribute("usuario", usuarioPreenchido);
+
+		return "usuario/AlterarUsuario";
+	}
+	 
 }

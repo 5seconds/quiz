@@ -3,7 +3,10 @@ package br.com.fiveseconds.quiz.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Pergunta;
 import br.com.fiveseconds.quiz.model.Usuario;
 
@@ -109,6 +112,57 @@ public class PerguntaDao extends HibernateDao {
 	
 	
 	
+	public List<Pergunta> listar() {
+
+		try {
+			List<Pergunta> listaPergunta= new ArrayList<Pergunta>();
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Perguntas");
+
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				listaPergunta.add(montarObjeto(rs));
+			}
+
+			rs.close();
+			stmt.close();
+			connection.close();
+			
+
+			return listaPergunta;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+	
+	public int buscarOrdem() {
+
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT MAX(ordem) ordem FROM Perguntas ");
+			ResultSet rs = stmt.executeQuery();
+			
+			int ordem = 0	;
+			while (rs.next()) {
+				ordem = rs.getInt("ordem");
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return ordem;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+	
+	
+	
+	
 
 	private Pergunta montarObjeto(ResultSet rs) throws SQLException {
 
@@ -124,6 +178,14 @@ public class PerguntaDao extends HibernateDao {
 		int idNivel = rs.getInt("idNivelFK");
 		NivelDao niv = new NivelDao();
 		pergunta.setNivel(niv.buscarPorId(idNivel));
+		
+		
+		AlternativaDao dao = new AlternativaDao();
+		ArrayList<Alternativas> lista = dao.listarPergunta(pergunta.getId());
+		pergunta.setAlternativas(lista);
+		
+		
+		
 		
 		return pergunta;
 		
