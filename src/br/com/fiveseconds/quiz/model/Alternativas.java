@@ -22,38 +22,41 @@ public class Alternativas {
 
 	@ManyToOne
 	@JoinColumn(name = "idPerguntaFK")
-	private Pergunta pergunta;
+	private int idPerguntaFK;
 
 	public int getId() {
-		return id;
+	    return id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+	    this.id = id;
 	}
 
 	public String getDescricao() {
-		return descricao;
+	    return descricao;
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	    this.descricao = descricao;
 	}
 
 	public String getAlterCorreta() {
-		return alterCorreta;
+	    return alterCorreta;
 	}
 
 	public void setAlterCorreta(String alterCorreta) {
-		this.alterCorreta = alterCorreta;
+	    this.alterCorreta = alterCorreta;
 	}
 
-	public Pergunta getPergunta() {
-		return pergunta;
+	public int getIdPerguntaFK() {
+	    return idPerguntaFK;
 	}
 
-	public void setPergunta(Pergunta pergunta) {
-		this.pergunta = pergunta;
+	public void setIdPerguntaFK(int idPerguntaFK) {
+	    this.idPerguntaFK = idPerguntaFK;
 	}
+
+	
+
 
 }

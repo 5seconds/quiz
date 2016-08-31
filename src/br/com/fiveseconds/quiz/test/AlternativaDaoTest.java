@@ -19,7 +19,7 @@ public class AlternativaDaoTest {
 		Alternativas alternativas = new Alternativas();
 		alternativas.setDescricao("a");
 		alternativas.setAlterCorreta("b");
-		alternativas.setPergunta(pergunta);
+		alternativas.setIdPerguntaFK(2);
 		
 		
 		AlternativaDao alternativaDao = new AlternativaDao();
