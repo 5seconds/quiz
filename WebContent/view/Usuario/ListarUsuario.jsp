@@ -59,11 +59,35 @@
 <script type="text/javascript" src="view/js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="view/bootstrap/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#nome").keyup(function() {
+			var texto = $('#nome').val();
+			var email = $('#email').val();
+			$.post("PesquisarUsuario", {'nome' : texto, 'email' : email},
+					function(dados) {
+					$('#tabelaListarUsuario').html(dados);
+					});
+		});
+
+		$("#email").change(function() {
+			var texto = $('#nome').val();
+			var email = $('#email').val();
+			$.post("PesquisarUsuario", {'nome' : texto, 'email' : email},
+					function(dados) {
+					$('#tabelaListarUsuario').html(dados);
+					});
+
+		});
+	});
+</script>
+
+
 </head>
 <header>
 <body>
 
-	
+
 
 
 
@@ -88,81 +112,69 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid --> </nav>
+	<!-- /.container-fluid --> </nav>Descrição
 	<br>
 	<br>
 	<br>
 
 	<div class="panel-heading">
-	
-	
-	
-	
+
 		<div class="panel-title text-center">
 			<h1 class="title">Pesquisar Usuário</h1>
 			<hr />
 		</div>
-
 	</div>
 	
-	<div>
-		<form action="PesquisarUsuario">
-		
-		
-		<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label"> Nome 
-							
-							</label>
-							
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-									
-			<input type="text" class="form-control" name="nome" id="nome"  value="${usuario.nome}" maxlength="40" placeholder="Digite seu nome" autofocus=""/>
-								</div>
-							</div>
-			</div>
+	
+	
+      						Nome:
+				   				<input type="text"  id="nome" name="nome">
+				 		
+								Email:
+				   				<input type="text"  id="email" name="email">
+				 			
+	
 
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">E-mail</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
-									
-		<input type="email" class="form-control" name="email" id="email"  placeholder="Digite seu E-mail"  autofocus="" value="${usuario.email}"/>
-								</div>
-							</div>
-						</div>
+
+	
+	
+	<p>
+	<table> 
+		<tr>
+		  	<td> Listagem de <strong> Usuarios </strong></td>
 			
-			<p>
-				<input type="reset" value="Limpar"> &nbsp; &nbsp;
-				 <input type="submit" value="Pesquisar">
-				 
-				 
-			</p>
-		</form>
-	</div>
+	</table>
+	</p>
 	
-	<table border='1' style='width: 100%;'>
-		<tr style='background-color: #E6E6E6; font-weight: bold;'>
-			<td>ID</td>
-			<td>NOME</td>
-			<td>EMAIL</td>
-			<td>AÇÕES</td>
-		</tr>
+	
+
+	<table id="tabelaListarUsuario" border='1' style='width: 100%;'>
+		<thead>
+			<tr >
+				<th style='background-color: #E6E6E6; font-weight: bold;'> ID</th>
+				<th style='background-color: #E6E6E6; font-weight: bold;'>NOME</th>
+				<th style='background-color: #E6E6E6; font-weight: bold;'>EMAIL</th>
+				<th style='background-color: #E6E6E6; font-weight: bold;'>AÇÕES</th>
+			</tr>
+		</thead>
 
 		<c:forEach var="usuario" items="${listarUsuario}">
 			<tr>
 				<td>${usuario.id}</td>
 				<td>${usuario.nome}</td>
 				<td>${usuario.email}</td>
-				<td><a href='exibirAlterarUsuarioid?=${usuario.id}'
-					class="btn btn-warning" role="button">Alterar</a> &nbsp; <a
-					href='removerUsuario?id=${usuario.id}' class="btn btn-danger"
-					role="button">Remover</a></td>
+				<td>	
+					<a href='exibirAlterarUsuario?id?=${usuario.id}'	class="btn btn-warning" role="button"> Alterar </a> &nbsp; 
+					<a href='removerUsuario?id=${usuario.id}' class="btn btn-danger" role="button"> Remover </a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
+	
+	
+	
+	
+	
 </header>
 
 </body>

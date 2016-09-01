@@ -13,30 +13,29 @@
   <context:component-scan base-package="br.com.fiveseconds.quiz" />
   <mvc:annotation-driven conversion-service="conversionService" />
  
-
+ <mvc:default-servlet-handler/>
+ 
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     <property name="prefix" value="/view/"/>
     <property name="suffix" value=".jsp"/>
   </bean>
   
-  <mvc:default-servlet-handler/>
+  <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		
+		<property name="converters">
+	
+	
+			<list>
+					<bean class="br.com.fiveseconds.quiz.controller.DisciplinaConverter" />
+					<bean class="br.com.fiveseconds.quiz.controller.NivelConverter" />
+			</list>
+			
+		</property>
+	</bean>
+	
+ 	<mvc:interceptors>
 
-
-	<mvc:interceptors>
 		<bean class="br.com.fiveseconds.quiz.model.AutorizadorInterceptor" />
-	</mvc:interceptors>  
-	
-	
-	<bean id="conversionService"
-class="org.springframework.context.support.ConversionServiceFactoryBean">
-<property name="converters">
-<list>
-<bean class="br.com.fiveseconds.quiz.controller.DisciplinaConverter" />
-<bean class="br.com.fiveseconds.quiz.controller.NivelConverter" />
-</list>
-</property>
-</bean>
-	
-	
 
+	</mvc:interceptors>  
 </beans>

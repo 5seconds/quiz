@@ -3,17 +3,18 @@ package br.com.fiveseconds.quiz.controller;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.fiveseconds.quiz.dao.UsuarioDao;
-
 import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 import br.com.fiveseconds.quiz.util.Criptografia;
@@ -79,20 +80,49 @@ public class UsuarioController {
 
 
 	@RequestMapping("/PesquisarUsuario")
-	public String pesquisarUsuario(Usuario usuario, Model model) {
+	public @ResponseBody String pesquisarUsuario(@RequestParam String nome, @RequestParam String email, HttpServletResponse response) {
 		
 	UsuarioDao dao = new UsuarioDao();
-	List<Usuario> listarUsuariodao = dao.listar();
-	model.addAttribute("listarUsuariodao", listarUsuariodao);
+	List<Usuario> listarUsuario = dao.pesquisar(nome, email);
+
+	StringBuilder st = new StringBuilder();
+
+	st.append("<tr>");
+	st.append("<td> ID </td>");
+	st.append("<td> NOME  </td>");
+	st.append("<td> EMAIL  </td>");
+	st.append("<td> AÇÕES  </td>");
+	st.append("</tr>");
+
 	
-	UsuarioDao  dao2 = new  UsuarioDao();
-	List<Usuario> listarUsuario = dao2.pesquisar(usuario);
-	model.addAttribute("listarUsuario", listarUsuario);
+	for (Usuario usuario: listarUsuario) {
+	st.append("<tr>");
+	st.append("<td> " + usuario.getId() + " </td>");
+	st.append("<td> " + usuario.getNome() + " </td>");
+	st.append("<td> " + usuario.getEmail() + " </td>");
+	st.append("<td>");
+	st.append("<a href='exibirAlterarProduto?id=" + usuario.getId() + "'>Editar</a> &nbsp;");
+	st.append("<a href='removerProduto?id=" + usuario.getId() + "'>Remover</a>");
+	st.append("</td>");
+	st.append("</tr>");
+	}
+	response.setStatus(200);
+	return st.toString();
 	
-	
-	return "Usuario/ListarUsuario";
 	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 @RequestMapping("removerUsuario")
 	    public String removerUsuario(Usuario usuario, Model model) {
 
@@ -121,7 +151,7 @@ public class UsuarioController {
 		Usuario usuarioPreenchido = dao.buscarPorId(usuario.getId());
 		model.addAttribute("usuario", usuarioPreenchido);
 
-		return "usuario/AlterarUsuario";
+		return "Usuario/AlterarUsuario";
 	}
 	 
 }

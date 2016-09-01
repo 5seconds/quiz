@@ -153,28 +153,29 @@ public class UsuarioDao {
 
 	
 
-	public List<Usuario> pesquisar(Usuario usuario) {
+	public List<Usuario> pesquisar(String nome, String email) {
 		
 		try {
 			List<Usuario> listaUsuario = new ArrayList<Usuario>();
+			
 			PreparedStatement stmt = null;
 		
 			
 			
-			if (!usuario.getNome().equals("") && usuario.getEmail().equals("")) {
+			if (!nome.equals("") && email.equals("")) {
 			stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE ? ORDER BY nome");
-			stmt.setString(1, "%" + usuario.getNome() + "%");
+			stmt.setString(1, "%" + nome + "%");
 			} 
 			
-			else if (usuario.getNome().equals("") && !usuario.getEmail().equals("") ) {
+			else if (nome.equals("") && !email.equals("") ) {
 			stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE email = ? ORDER BY nome ");
-			stmt.setString(1, usuario.getEmail());
+			stmt.setString(1, email);
 			} 
 			
-			else if (!usuario.getNome().equals("") && !usuario.getEmail().equals("")) {
+			else if (!nome.equals("") && !email.equals("")) {
 			stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE ? AND email	= ? ORDER BY nome");
-			stmt.setString(1, "%" + usuario.getNome() + "%");
-			stmt.setString(2, usuario.getEmail());
+			stmt.setString(1, "%" + nome + "%");
+			stmt.setString(2, email);
 			} 
 			else {
 			stmt = this.connection.prepareStatement("SELECT * FROM Usuario ORDER BY nome ");
