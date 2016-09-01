@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiveseconds.quiz.model.Alternativas;
+import br.com.fiveseconds.quiz.model.Pergunta;
 import br.com.fiveseconds.quiz.model.Usuario;
 
 public class AlternativaDao {
@@ -123,4 +124,6 @@ public class AlternativaDao {
 		
 		connection.close();
 	}
+
+	
 }

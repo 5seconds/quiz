@@ -1,7 +1,5 @@
 package br.com.fiveseconds.quiz.test;
 
-import java.sql.SQLException;
-
 import org.junit.Test;
 
 import br.com.fiveseconds.quiz.dao.AlternativaDao;
@@ -12,21 +10,18 @@ import br.com.fiveseconds.quiz.model.Pergunta;
 public class AlternativaDaoTest {
 	
 	@Test
-	public void buscarPorId() throws SQLException{
+	public void buscarPorId(){
 		PerguntaDao perguntaDao = new PerguntaDao();
 		Pergunta pergunta = perguntaDao.buscarPorId(1);
 		
 		Alternativas alternativas = new Alternativas();
 		alternativas.setDescricao("a");
 		alternativas.setAlterCorreta("b");
-		alternativas.setIdPerguntaFK(2);
+		alternativas.setIdPerguntaFK(pergunta.getId());
 		
 		
 		AlternativaDao alternativaDao = new AlternativaDao();
-		alternativaDao.salvar(alternativas, pergunta.getId());
-		
-		AlternativaDao dao = new AlternativaDao();
-		dao.fecharConexao();
+			
 	}
 	
 }

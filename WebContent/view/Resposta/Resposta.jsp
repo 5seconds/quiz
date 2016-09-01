@@ -44,85 +44,18 @@
 	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-<style type="text/css">
-.funkyradio div {
-	clear: both;
-	overflow: hidden;
-	margin-left: 300px;
-	margin-right: 300px;
-	color: white;
-	font-size: 25px;
-}
 
-.funkyradio div:hover {
-	color: #ccc;
-}
 
-.funkyradio label {
-	width: 100%;
-	border-radius: 3px;
-	border: 1px solid #D1D3D4;
-	font-weight: normal;
-}
+<script type="text/javascript">
+	$(document).ready(function() {
 
-.funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty
-	{
-	display: none;
-}
+		$("#categoriaProduto").change(function() {
+			var texto = $('#descricao').val();
+			var idCategoria = $('#categoriaProduto').val();
 
-.funkyradio input[type="radio"]:empty ~ label, .funkyradio input[type="checkbox"]:empty 
-	 ~ label {
-	position: relative;
-	line-height: 2.5em;
-	text-indent: 3.25em;
-	margin-top: 2em;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.funkyradio input[type="radio"]:empty ~ label:before, .funkyradio input[type="checkbox"]:empty 
-	 ~ label:before {
-	position: absolute;
-	display: block;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	content: '';
-	width: 2.5em;
-	background: #D1D3D4;
-	border-radius: 3px 0 0 3px;
-}
-
-.funkyradio input[type="radio"]:checked ~ label:before, .funkyradio input[type="checkbox"]:checked 
-	 ~ label:before {
-	content: '\2714';
-	text-indent: .9em;
-	color: #fff;
-	background-color: #ccc;
-}
-
-.funkyradio-primary input[type="radio"]:checked ~ label:before,
-	.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
-	color: #fff;
-	background-color: #337ab7;
-}
-
-.funkyradio-success input[type="radio"]:checked ~ label:before,
-	.funkyradio-success input[type="checkbox"]:checked ~ label:before {
-	color: #fff;
-	background-color: #5cb85c;
-}
-
-.funkyradio-danger input[type="radio"]:checked ~ label:before,
-	.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
-	color: #fff;
-	background-color: #d9534f;
-}
-</style>
-
+		});
+	});
+</script>
 
 
 </head>
@@ -159,6 +92,31 @@
 	<br>
 
 
+	<form action="pesquisarPergunta">
+
+		<select name="nivel" id="nivel"
+			class="btn btn-primary  login-button">
+
+			<option value="">Selecione</option>
+			<c:forEach items="${listaNivel}" var="obj">
+				<option value="${obj.id}">${obj.nome}</option>
+			</c:forEach>
+		</select>
+		
+		<br> <br>
+
+		<div class="form-group ">
+						<button type="submit"
+							class="btn btn-primary login-button">Pesquisar</button>
+					</div>
+
+
+	</form>
+
+
+
+	</br>
+	</br>
 
 
 
