@@ -3,6 +3,7 @@ package br.com.fiveseconds.quiz.controller;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -78,11 +79,16 @@ public class UsuarioController {
 
 
 	@RequestMapping("/PesquisarUsuario")
-	public String pesquisarUsuario(Model model) {
+	public String pesquisarUsuario(Usuario usuario, Model model) {
 		
 	UsuarioDao dao = new UsuarioDao();
-	List<Usuario> listarUsuario = dao.listar();
+	List<Usuario> listarUsuariodao = dao.listar();
+	model.addAttribute("listarUsuariodao", listarUsuariodao);
+	
+	UsuarioDao  dao2 = new  UsuarioDao();
+	List<Usuario> listarUsuario = dao2.pesquisar(usuario);
 	model.addAttribute("listarUsuario", listarUsuario);
+	
 	
 	return "Usuario/ListarUsuario";
 	
