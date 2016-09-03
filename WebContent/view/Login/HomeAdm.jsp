@@ -59,6 +59,7 @@
 			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuario</a>
 				
 			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
+			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->

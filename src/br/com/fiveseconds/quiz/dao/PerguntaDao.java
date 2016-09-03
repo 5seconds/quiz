@@ -12,9 +12,6 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class PerguntaDao  {
 
-	public Class getClassEntidade() {
-		return Usuario.class;
-		}
 	
 	private com.mysql.jdbc.Connection connection;
 
@@ -185,6 +182,55 @@ public class PerguntaDao  {
 		}
 		}
 	
+	public List<Pergunta> pesquisar(String pergunta) {
+
+		try {
+			List<Pergunta> listaPergunta = new ArrayList<Pergunta>();
+
+			PreparedStatement stmt = null;
+
+
+			
+			
+			if (!pergunta.equals("") ) {
+				stmt = this.connection.prepareStatement("select *from Perguntas WHERE descricao LIKE ? ORDER BY descricao");
+				stmt.setString(1, "%" + pergunta + "%");
+			}else{
+				stmt = this.connection.prepareStatement("select *from Perguntas ORDER BY descricao");
+				stmt.setString(1, "%" + pergunta + "%");
+			}
+			
+
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				listaPergunta.add(montarObjeto(rs));
+			}
+			rs.close();
+			stmt.close();
+
+			connection.close();
+			return listaPergunta;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		
+	}
+	
+	
+	public void remover(Pergunta pergunta) {
+
+		try {
+			String sql = "DELETE FROM Perguntas WHERE id = ?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, pergunta.getId());
+			stmt.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 	
 
@@ -215,6 +261,26 @@ public class PerguntaDao  {
 		
 	}
 	
+	/*
+	public void alterar(Pergunta pergunta) {
+
+		String sql = "UPDATE Pergunt SET descricao = ? , email = ? , senha = ? WHERE id = ?";
+
+		try {
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, usuario.getNome());
+			stmt.setString(2, usuario.getEmail());
+			stmt.setString(3, usuario.getSenha());
+			stmt.setInt(4, usuario.getId());
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	*/
 		
 	
 	public void fecharConexao() throws SQLException{

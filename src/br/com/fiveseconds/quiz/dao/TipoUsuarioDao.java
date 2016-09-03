@@ -15,9 +15,7 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class TipoUsuarioDao {
 	
-	public Class getClassEntidade() {
-		return Usuario.class;
-		}
+	
 	
 	private Connection connection;
 

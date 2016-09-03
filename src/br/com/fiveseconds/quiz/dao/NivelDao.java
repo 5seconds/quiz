@@ -13,9 +13,7 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class NivelDao  {
 
-	public Class getClassEntidade() {
-		return Usuario.class;
-		}
+	
 
 	private Connection connection;
 

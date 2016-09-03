@@ -13,9 +13,7 @@ import br.com.fiveseconds.quiz.model.Usuario;
 public class AlternativaDao {
 
 
-	public Class getClassEntidade() {
-		return Usuario.class;
-		}
+	
 
 	private com.mysql.jdbc.Connection connection;
 

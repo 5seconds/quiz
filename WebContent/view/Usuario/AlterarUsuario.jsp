@@ -44,61 +44,61 @@
       <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script> 
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script> 
       <script type="text/javascript">
+      
       $(document).ready(function(){
-            $('#Form1').validate({
+          $('#Form1').validate({
 
-                rules:{
-                       nome:{
+              rules:{
+                     nome:{
+                      required:true,
+                      minlength:5
+
+                     },
+                      email:{
                         required:true,
-                        minlength:5
+                        email:true,
+                       remote:"view/Usuario/verificarEmail.jsp"
+                     },
+                      senha:{
+                        required:true,
+                        rangelength:[5,10]
 
-                       },
-                        email:{
-                          required:true,
-                          email:true,
-                         remote:"view/Usuario/verificarEmail.jsp"
-                       },
-                        senha:{
-                          required:true,
-                          rangelength:[5,10]
+                     },
+                     confsenha:{
+                         required:true,
+                         equalTo: "#senha"
 
-                       },
-                       confsenha:{
-                           required:true,
-                           equalTo: "#senha"
+                     }
+                     
 
-                       }
-                       
+              },
+              messages:{
+                       nome:{
+                      required:"Este campo é obrigatório",
+                      minlength:"O nome deve conter no mínimo 5 caracteres"
 
-                },
-                messages:{
-                         nome:{
+                     },
+                      email:{
                         required:"Este campo é obrigatório",
-                        minlength:"O nome deve conter no mínimo 5 caracteres"
+                        email:"Informe um email válido",
+                        remote:"Email já cadastrado"
+                     },
+                      senha:{
+                        required:"Este campo é obrigatório",
+                        rangelength:"Sua senha deve ter 5 a 10 caracteres"
 
-                       },
-                        email:{
-                          required:"Este campo é obrigatório",
-                          email:"Informe um email válido",
-                          remote:"Email já cadastrado"
-                       },
-                        senha:{
-                          required:"Este campo é obrigatório",
-                          rangelength:"Sua senha deve ter 5 a 10 caracteres"
+                     },
+                     confsenha:{
+                         required:"Esté Campo é obrigatório",
+                         equalTo: "As senhas estão diferentes!  "
 
-                       },
-                       confsenha:{
-                           required:"Esté Campo é obrigatório",
-                           equalTo: "As senhas estão diferentes!  "
+                     }
+                      
 
-                       }
-                        
+              }
 
-                }
-
-            });
-    });
-
+          });
+  });
 </script>
       
       
@@ -150,7 +150,7 @@
 				
 				<div class="mensagemCadastro"> ${mensagem} </div>
 				
-					<form class="form-horizontal" method="post" action="alterarUsuario" id="Form1">
+					<form class="form-horizontal" method="post" action="alterarUsuario" >
 						
 						<input type="hidden" name="id" value="${usuario.id}">
 						
@@ -161,7 +161,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
 									
-									<input type="text" class="form-control" name="nome" id="nome" maxlength="40" autofocus="" value="${usuario.nome}" />
+									<input type="text" class="form-control" name="nome" id="nome"  autofocus="" value="${usuario.nome}" />
 								</div>
 							</div>
 						</div>
@@ -180,7 +180,7 @@
 						
 
 						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Senha</label>
+							<label for="senha" class="cols-sm-2 control-label">Senha</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
@@ -190,18 +190,10 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirme sua senha</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
-									
-									<input type="password" class="form-control" name="confsenha" id="confsenha" autofocus=""/>
-								</div>
-							</div>
-						</div>
+						
 
 						<div class="form-group ">
+						    <a href="ExibirListarUsuario" class="btn btn-primary btn-lg btn-block login-button" role="button">Voltar</a>
 							<button type="submit" class="btn btn-primary btn-lg btn-block login-button"> Alterar </button>
 							<button type="reset" class="btn btn-primary btn-lg btn-block login-button"> Limpar </button>
 						</div>

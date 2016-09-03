@@ -16,7 +16,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Listar Usuário</title>
+<title>Listar Perguntas</title>
 
 
 <style type="text/css">
@@ -63,21 +63,14 @@
 
 	$(document).ready(function() {
 		
-		$("#nome").keyup(function() {
-			var texto = $('#nome').val();
-			var email = $('#email').val();
-			$.post("PesquisarUsuario", {'nome' : texto, 'email' : email}, function(dados) {
-				$('#tabelaListarUsuario').html(dados);
+		$("#pergunta").keyup(function() {
+			var texto = $('#pergunta').val();
+			
+			$.post("PesquisarPergunta", {'pergunta' : texto, }, function(dados) {
+				$('#tabelaListarPergunta').html(dados);
 			});
 		});
 
-		$("#email").keyup(function() {
-			var texto = $('#nome').val();
-			var email = $('#email').val();
-			$.post("PesquisarUsuario", {'nome' : texto, 'email' : email}, function(dados) {
-				$('#tabelaListarUsuario').html(dados);
-			});
-		});
 	});
 </script>
 </head>
@@ -123,15 +116,15 @@
 	<div class="panel-heading">
 
 		<div class="panel-title text-center">
-			<h1 class="title">Pesquisar Usuário</h1>
+			<h1 class="title">Pesquisar Perguntas</h1>
 			<hr />
 		</div>
 	</div>
 	
 	
 	<div  style='color: black; font-weight: bold;'>
-    	Nome: <input type="text"  id="nome" name="nome">
-		Email: <input type="email"  id="email" name="email">
+    	Pergunta: <input type="text"  id="pergunta" name="pegunta">
+    
 	</div>
 
 
@@ -141,24 +134,26 @@
 	
 <center>
 
-	<table id="tabelaListarUsuario" border='1' style='width: 80%; text-align: center'>
+	<table id="tabelaListarPergunta" border='1' style='width: 80%; text-align: center'>
 		<thead>
 			<tr >
 				<th > ID</th>
-				<th >NOME</th>
-				<th >EMAIL</th>
-				<th >AÇÕES</th>
+				<th >PERGUNTA</th>
+				<th >NÍVEL</th>
+				<th >DISCIPLINA </th>
+				<th > AÇÕES </th>
 			</tr>
 		</thead>
 
-		<c:forEach var="usuario" items="${listarUsuario}">
+		<c:forEach var="p" items="${listarPergunta}">
 			<tr>
-				<td>${usuario.id}</td>
-				<td>${usuario.nome}</td>
-				<td>${usuario.email}</td>
+				<td>${p.id}</td>
+				<td>${p.descricao}</td>
+				<td>${p.nivel}</td>
+				<td>${p.disciplina}</td>
 				<td>	
-					<a href='exibirAlterarUsuario?id=${usuario.id}'	class="btn btn-info" role="button"> Alterar </a> &nbsp; 
-					<a href='removerUsuario?id=${usuario.id}' class="btn btn-danger" role="button"> Remover </a>
+					<a href='exibirAlterarPergunta?id=${p.id}'	class="btn btn-info" role="button"> Alterar </a> &nbsp; 
+					<a href='removerPergunta?id=${p.id}' class="btn btn-danger" role="button"> Remover </a>
 				</td>
 			</tr>
 		</c:forEach>

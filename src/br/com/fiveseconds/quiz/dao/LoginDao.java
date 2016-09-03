@@ -11,9 +11,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 public class LoginDao  {
 
-	public Class getClassEntidade() {
-		return Usuario.class;
-		}
+	
 	
 	private Connection connection;
 

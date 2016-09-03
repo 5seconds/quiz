@@ -11,10 +11,6 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class UsuarioDao {
 
-	public Class getClassEntidade() {
-		return Usuario.class;
-	}
-
 	private Connection connection;
 
 	public UsuarioDao() {
@@ -151,53 +147,47 @@ public class UsuarioDao {
 		return usuario;
 	}
 
-	
-
 	public List<Usuario> pesquisar(String nome, String email) {
-		
+
 		try {
 			List<Usuario> listaUsuario = new ArrayList<Usuario>();
-			
+
 			PreparedStatement stmt = null;
-		
-			
-			
+
 			if (!nome.equals("") && email.equals("")) {
-			stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE ? ORDER BY nome");
-			stmt.setString(1, "%" + nome + "%");
-			} 
-			
-			else if (nome.equals("") && !email.equals("") ) {
-			stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE email = ? ORDER BY nome ");
-			stmt.setString(1, email);
-			} 
-			
-			else if (!nome.equals("") && !email.equals("")) {
-			stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE ? AND email	= ? ORDER BY nome");
-			stmt.setString(1, "%" + nome + "%");
-			stmt.setString(2, email);
-			} 
-			else {
-			stmt = this.connection.prepareStatement("SELECT * FROM Usuario ORDER BY nome ");
+				stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE ? ORDER BY nome");
+				stmt.setString(1, "%" + nome + "%");
 			}
-		
-			
+
+			else if (nome.equals("") && !email.equals("")) {
+				stmt = this.connection.prepareStatement("SELECT * FROM Usuario WHERE email like ? ORDER BY nome ");
+				stmt.setString(1, "%" + email + "%");
+			}
+
+			else if (!nome.equals("") && !email.equals("")) {
+				stmt = this.connection
+						.prepareStatement("SELECT * FROM Usuario WHERE nome LIKE ? AND email like ? ORDER BY nome");
+				stmt.setString(1, "%" + nome + "%");
+				stmt.setString(2, "%" + email + "%");
+			} else {
+				stmt = this.connection.prepareStatement("SELECT * FROM Usuario ORDER BY nome ");
+			}
+
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-			listaUsuario.add(montarObjeto(rs));
+				listaUsuario.add(montarObjeto(rs));
 			}
 			rs.close();
 			stmt.close();
 
 			connection.close();
 			return listaUsuario;
-			
-			} catch (SQLException e) {
+
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
-			}
+		}
 	}
-	
-	
+
 	public void fecharConexao() throws SQLException {
 
 		connection.close();

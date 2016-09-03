@@ -22,33 +22,33 @@ import br.com.fiveseconds.quiz.util.Criptografia;
 @Controller
 public class UsuarioController {
 
-	
 	@RequestMapping("/ExibirIndex")
 	public String ExibirIndex() {
 
 		return "PaginaPrincipal/index";
 	}
 
-	
 	@RequestMapping("/ExibirCadastrarUsuario")
 	public String ExibirCadastrarUsuario(Model model) {
 
 		return "Usuario/CadastroUsuario";
 	}
+
 	
+	
+
 	@RequestMapping("/ExibirHome")
 	public String ExibirHome() {
 
 		return "Login/Home";
 	}
-	
+
 	@RequestMapping("/ExibirHomeAdm")
 	public String ExibirHomeAdm() {
 
 		return "Login/HomeAdm";
 	}
 
-	
 	@RequestMapping("CadastrarUsuario")
 	public String CadastrarUsuario(@Valid Usuario usuario, Model model)
 			throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -72,80 +72,71 @@ public class UsuarioController {
 		List<Usuario> listarUsuario = dao.listar();
 		model.addAttribute("listarUsuario", listarUsuario);
 
-		
-		
 		return "Usuario/ListarUsuario";
 	}
 
-
-
 	@RequestMapping("/PesquisarUsuario")
-	public @ResponseBody String pesquisarUsuario(@RequestParam String nome, @RequestParam String email, HttpServletResponse response) {
+	public @ResponseBody String pesquisarUsuario(@RequestParam String nome, @RequestParam String email,
+			HttpServletResponse response) {
+
+		UsuarioDao dao = new UsuarioDao();
+		List<Usuario> listarUsuario = dao.pesquisar(nome, email);
+
+		StringBuilder st = new StringBuilder();
+		st.append("<center>");
+		st.append("<table border='1' style='width: 80%; text-align: center'>");
+		st.append("<thead>");
+		st.append("<tr>");
+		st.append("<th> ID </th>");
+		st.append("<th> NOME  </th>");
+		st.append("<th> EMAIL  </th>");
+		st.append("<th> AÇÕES  </th>");
+		st.append("</tr>");
+		st.append("<thead>");
 		
-	UsuarioDao dao = new UsuarioDao();
-	List<Usuario> listarUsuario = dao.pesquisar(nome, email);
+		for (Usuario usuario : listarUsuario) {
+			st.append("<tr>");
+			st.append("<td> " + usuario.getId() + " </td>");
+			st.append("<td> " + usuario.getNome() + " </td>");
+			st.append("<td> " + usuario.getEmail() + " </td>");
+			st.append("<td>");
+			st.append("<a href='exibirAlterarUsuario?id="+ usuario.getId() +"' class='btn btn-info' role='button' > Alterar </a> &nbsp;");
+			st.append("<a href='removerUsuario?id=" + usuario.getId() + "' class='btn btn-danger' role='button'> Remover </a>");
+			st.append("</td>");
+			st.append("</tr>");
+			
+		}
+		st.append("</table>");
+		st.append("</center>");
+		
+		
+		response.setStatus(200);
+		return st.toString();
 
-	StringBuilder st = new StringBuilder();
-
-	st.append("<tr>");
-	st.append("<td> ID </td>");
-	st.append("<td> NOME  </td>");
-	st.append("<td> EMAIL  </td>");
-	st.append("<td> AÇÕES  </td>");
-	st.append("</tr>");
-
-	
-	for (Usuario usuario: listarUsuario) {
-	st.append("<tr>");
-	st.append("<td> " + usuario.getId() + " </td>");
-	st.append("<td> " + usuario.getNome() + " </td>");
-	st.append("<td> " + usuario.getEmail() + " </td>");
-	st.append("<td>");
-	st.append("<a href='exibirAlterarProduto?id=" + usuario.getId() + "'>Editar</a> &nbsp;");
-	st.append("<a href='removerProduto?id=" + usuario.getId() + "'>Remover</a>");
-	st.append("</td>");
-	st.append("</tr>");
 	}
-	response.setStatus(200);
-	return st.toString();
-	
-	
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 @RequestMapping("removerUsuario")
-	    public String removerUsuario(Usuario usuario, Model model) {
+
+	@RequestMapping("removerUsuario")
+	public String removerUsuario(Usuario usuario, Model model) {
 
 		UsuarioDao dao = new UsuarioDao();
 		dao.remover(usuario);
-		model.addAttribute("msg", "Usuário Removido com Sucesso !");
-		
+		model.addAttribute("msg", "Usuário Removido");
 
-		return "Usuario/ListarUsuario";
+		return "forward:ExibirListarUsuario";
 	}
 
-	 @RequestMapping("alterarUsuario")
-	    public String alterarUsuario(Usuario usuario, Model model) {
+	@RequestMapping("alterarUsuario")
+	public String alterarUsuario(Usuario usuario, Model model) {
 
 		UsuarioDao dao = new UsuarioDao();
 		dao.alterar(usuario);
 		model.addAttribute("msg", "Usuário alterado com sucesso !");
 
-		return "Usuario/ListarUsuario";
+		return "forward:ExibirListarUsuario";
 	}
-	 
-	 @RequestMapping("exibirAlterarUsuario")
-	    public String exibirAlterarUsuario(Usuario usuario, Model model) {
+
+	@RequestMapping("exibirAlterarUsuario")
+	public String exibirAlterarUsuario(Usuario usuario, Model model) {
 
 		UsuarioDao dao = new UsuarioDao();
 		Usuario usuarioPreenchido = dao.buscarPorId(usuario.getId());
@@ -153,5 +144,5 @@ public class UsuarioController {
 
 		return "Usuario/AlterarUsuario";
 	}
-	 
+
 }

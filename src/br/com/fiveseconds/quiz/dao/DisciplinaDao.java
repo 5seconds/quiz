@@ -12,9 +12,7 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class DisciplinaDao  {
 
-	public Class getClassEntidade() {
-		return Usuario.class;
-		}
+	
 	
 	private Connection connection;
 
