@@ -23,6 +23,27 @@
 .pagina {
 	margin: 0px;
 }
+
+.linha{
+
+text-align: center; 
+font-size: 20px;
+color: yellow;
+font-size: 20px;
+}
+
+.linha2{
+
+text-align: center; 
+font-size: 22px;
+color: white;
+font-size: 22px;
+
+}
+.tabela { 
+
+border: 1px solid #000; 
+border-collapse: collapse; }
 </style>
 
 
@@ -127,13 +148,15 @@
 			<hr />
 		</div>
 	</div>
-	
+	<br><br>
+	<center>
 	
 	<div  style='color: black; font-weight: bold;'>
-    	Nome: <input type="text"  id="nome" name="nome">
-		Email: <input type="email"  id="email" name="email">
+    	 <input type="text"  id="nome" name="nome" autofocus="" placeholder="Digite o nome">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="email"  id="email" name="email" autofocus="" placeholder="Digite o email">
 	</div>
-
+</center>
 
 	
 	
@@ -141,23 +164,22 @@
 	
 <center>
 
-	<table id="tabelaListarUsuario" border='1' style='width: 80%; text-align: center'>
+	<table class="tabela" id="tabelaListarUsuario" border='0' style='  width: 60%; text-align: center'>
 		<thead>
 			<tr >
-				<th > ID</th>
-				<th >NOME</th>
-				<th >EMAIL</th>
-				<th >AÇÕES</th>
+				<th class="linha"> ID</th>
+				<th class="linha" >NOME</th>
+				<th  class="linha">EMAIL</th>
+				<th  class="linha">AÇÕES</th>
 			</tr>
 		</thead>
-
 		<c:forEach var="usuario" items="${listarUsuario}">
-			<tr>
-				<td>${usuario.id}</td>
-				<td>${usuario.nome}</td>
-				<td>${usuario.email}</td>
-				<td>	
-					<a href='exibirAlterarUsuario?id=${usuario.id}'	class="btn btn-info" role="button"> Alterar </a> &nbsp; 
+			<tr >
+				
+				<td class="linha2">${usuario.id}</td>
+				<td class="linha2">${usuario.nome}</td>
+				<td class="linha2">${usuario.email}</td>
+				<td class='linha2'>	
 					<a href='removerUsuario?id=${usuario.id}' class="btn btn-danger" role="button"> Remover </a>
 				</td>
 			</tr>

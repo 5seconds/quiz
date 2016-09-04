@@ -75,8 +75,6 @@ public class NivelDao  {
 	
 	
 	
-	
-	
 	private Nivel montarObjeto(ResultSet rs) throws SQLException {
 
 		Nivel nivel = new Nivel();
@@ -90,4 +88,5 @@ public class NivelDao  {
 		
 		connection.close();
 	}
+	
 }

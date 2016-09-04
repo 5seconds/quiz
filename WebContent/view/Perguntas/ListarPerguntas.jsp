@@ -18,14 +18,32 @@
 
 <title>Listar Perguntas</title>
 
-
 <style type="text/css">
 .pagina {
 	margin: 0px;
 }
+
+.linha{
+
+text-align: center; 
+font-size: 20px;
+color: yellow;
+font-size: 20px;
+}
+
+.linha2{
+
+text-align: center; 
+font-size: 22px;
+color: white;
+font-size: 20px;
+
+}
+.tabela { 
+
+border: 1px solid #000; 
+border-collapse: collapse; }
 </style>
-
-
 
 
 
@@ -58,21 +76,18 @@
 
 <script type="text/javascript" src="view/js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="view/bootstrap/js/bootstrap.min.js"></script>
-
 <script type="text/javascript">
-
-	$(document).ready(function() {
+$(document).ready(function() {
 		
-		$("#pergunta").keyup(function() {
-			var texto = $('#pergunta').val();
-			
-			$.post("PesquisarPergunta", {'pergunta' : texto, }, function(dados) {
+		$("#descricao").keyup(function() {
+			var texto = $('#descricao').val();
+			$.post("PesquisarPergunta", {'descricao' : texto, }, function(dados) {
 				$('#tabelaListarPergunta').html(dados);
 			});
 		});
-
 	});
 </script>
+
 </head>
 
 <body id="page-top">
@@ -122,38 +137,40 @@
 	</div>
 	
 	
-	<div  style='color: black; font-weight: bold;'>
-    	Pergunta: <input type="text"  id="pergunta" name="pegunta">
-    
-	</div>
-
-
 	
 	
-	<br><br><br>
+	<br><br>
 	
 <center>
 
-	<table id="tabelaListarPergunta" border='1' style='width: 80%; text-align: center'>
+
+	<div  style='color: black; font-weight: bold;'>
+    <input type="text"  id="nome" name="nome" autofocus="" placeholder="Digite a pergunta">
+  
+	</div>
+	<br><br><br>
+
+
+	<table  class="tabela" id="tabelaListarPergunta" border='1' style='width: 80%; text-align: center'>
 		<thead>
 			<tr >
-				<th > ID</th>
-				<th >PERGUNTA</th>
-				<th >NÍVEL</th>
-				<th >DISCIPLINA </th>
-				<th > AÇÕES </th>
+				<th class="linha" > ID</th>
+				<th class="linha" >PERGUNTA</th>
+				<th  class="linha">NÍVEL</th>
+				<th class="linha">DISCIPLINA </th>
+				<th class="linha"> AÇÕES </th>
 			</tr>
 		</thead>
 
-		<c:forEach var="p" items="${listarPergunta}">
+		<c:forEach var="pergunta" items="${listarTESTE}">
 			<tr>
-				<td>${p.id}</td>
-				<td>${p.descricao}</td>
-				<td>${p.nivel}</td>
-				<td>${p.disciplina}</td>
-				<td>	
-					<a href='exibirAlterarPergunta?id=${p.id}'	class="btn btn-info" role="button"> Alterar </a> &nbsp; 
-					<a href='removerPergunta?id=${p.id}' class="btn btn-danger" role="button"> Remover </a>
+				<td class="linha2"> ${pergunta.id}</td>
+				<td class="linha2">${pergunta.descricao}</td>
+				<td class="linha2">${pergunta.nivel}</td>
+				<td class="linha2">${pergunta.disciplina}</td>
+				<td class="linha2">	
+					<a href='#?id=${pergunta.id}'	class="btn btn-info" role="button"> Alterar </a> &nbsp; 
+					<a href='removerPergunta?id=${pergunta.id}' class="btn btn-danger" role="button"> Remover </a>
 				</td>
 			</tr>
 		</c:forEach>

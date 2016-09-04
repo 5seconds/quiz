@@ -84,23 +84,22 @@ public class UsuarioController {
 
 		StringBuilder st = new StringBuilder();
 		st.append("<center>");
-		st.append("<table border='1' style='width: 80%; text-align: center'>");
+		st.append("<table class='tabela' border='0' style='width: 80%; text-align: center'>");
 		st.append("<thead>");
 		st.append("<tr>");
-		st.append("<th> ID </th>");
-		st.append("<th> NOME  </th>");
-		st.append("<th> EMAIL  </th>");
-		st.append("<th> AÇÕES  </th>");
+		st.append("<th class='linha'> ID </th>");
+		st.append("<th class='linha' > NOME  </th>");
+		st.append("<th class='linha'> EMAIL  </th>");
+		st.append("<th class='linha'> AÇÕES  </th>");
 		st.append("</tr>");
 		st.append("<thead>");
 		
 		for (Usuario usuario : listarUsuario) {
 			st.append("<tr>");
-			st.append("<td> " + usuario.getId() + " </td>");
-			st.append("<td> " + usuario.getNome() + " </td>");
-			st.append("<td> " + usuario.getEmail() + " </td>");
-			st.append("<td>");
-			st.append("<a href='exibirAlterarUsuario?id="+ usuario.getId() +"' class='btn btn-info' role='button' > Alterar </a> &nbsp;");
+			st.append("<td class='linha2'> " + usuario.getId() + " </td>");
+			st.append("<td class='linha2'> " + usuario.getNome() + " </td>");
+			st.append("<td class='linha2'> " + usuario.getEmail() + " </td>");
+			st.append("<td class='linha2'>");
 			st.append("<a href='removerUsuario?id=" + usuario.getId() + "' class='btn btn-danger' role='button'> Remover </a>");
 			st.append("</td>");
 			st.append("</tr>");

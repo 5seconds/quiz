@@ -135,6 +135,7 @@ public class PerguntaDao  {
 	
 	
 	
+	
 	public int buscarOrdem() {
 
 		try {
@@ -162,6 +163,8 @@ public class PerguntaDao  {
 		List<Pergunta> listaPergunta = new ArrayList<Pergunta>();
 		PreparedStatement stmt = null;
 		
+		
+		
 	    if (pergunta.getNivel() != null) {
 		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idNivelFK = ? ORDER BY descricao");
 		stmt.setInt(1, pergunta.getNivel().getId());
@@ -182,7 +185,7 @@ public class PerguntaDao  {
 		}
 		}
 	
-	public List<Pergunta> pesquisar(String pergunta) {
+	public List<Pergunta> pesquisarPergunta(String descricao) {
 
 		try {
 			List<Pergunta> listaPergunta = new ArrayList<Pergunta>();
@@ -191,13 +194,12 @@ public class PerguntaDao  {
 
 
 			
-			
-			if (!pergunta.equals("") ) {
-				stmt = this.connection.prepareStatement("select *from Perguntas WHERE descricao LIKE ? ORDER BY descricao");
-				stmt.setString(1, "%" + pergunta + "%");
-			}else{
-				stmt = this.connection.prepareStatement("select *from Perguntas ORDER BY descricao");
-				stmt.setString(1, "%" + pergunta + "%");
+			if (!descricao.equals("") ) {
+				stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE descricao LIKE ? ORDER BY descricao");
+				stmt.setString(1, "%" + descricao + "%");
+			}
+			else{
+				stmt = this.connection.prepareStatement("SELECT * FROM Perguntas ORDER BY descricao");
 			}
 			
 
@@ -222,7 +224,7 @@ public class PerguntaDao  {
 	public void remover(Pergunta pergunta) {
 
 		try {
-			String sql = "DELETE FROM Perguntas WHERE id = ?";
+			String sql = "DELETE FROM Perguntas WHERE id = ? ";
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, pergunta.getId());
 			stmt.execute();
@@ -260,11 +262,10 @@ public class PerguntaDao  {
 		return pergunta;
 		
 	}
-	
 	/*
-	public void alterar(Pergunta pergunta) {
+	public void alterar(Usuario usuario) {
 
-		String sql = "UPDATE Pergunt SET descricao = ? , email = ? , senha = ? WHERE id = ?";
+		String sql = "UPDATE Perguntas SET descricao = ? , email = ? , senha = ? WHERE id = ?";
 
 		try {
 
@@ -280,8 +281,7 @@ public class PerguntaDao  {
 			throw new RuntimeException(e);
 		}
 	}
-	*/
-		
+	*/	
 	
 	public void fecharConexao() throws SQLException{
 		
