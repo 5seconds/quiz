@@ -115,23 +115,23 @@ text-align: justify;
 	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
-		
-		
 		<div class="navbar-header">
-                
-                	 <a class="navbar-brand page-scroll">  Five Quiz  </a>
-                	
-                	&nbsp;&nbsp;&nbsp;
-                	<a class="navbar-brand page-scroll" href="ExibirHome">Página Inicial</a>
-         </div>
-		
+			        	
+              <a class="navbar-brand page-scroll">Five Quiz</a>
+              <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
+			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuario</a>
+				
+			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
+			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
+		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 
-				<li><a class="page-scroll"> <b>Bem vindo,&nbsp; ${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+				<li><a class="page-scroll"> <b>Bem vindo,&nbsp;
+							${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 				<li><a class="page-scroll" href="logout"> Sair </a></li>
 
 			</ul>
@@ -139,9 +139,6 @@ text-align: justify;
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-
-
-
 
 	<header> 
 	
@@ -154,7 +151,7 @@ text-align: justify;
 	<br>
 	<br>
 
-	<form action="pesquisarPergunta">
+	<form action="pesquisarPerguntaADM">
 		<h3 style="text-transform: uppercase;"> Escolha o Nível</h3>
 		<select name="nivel" id="nivel" class="btn btn-primary  login-button">
 			<option value="">Selecione</option>

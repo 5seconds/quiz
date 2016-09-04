@@ -87,7 +87,7 @@
 			<h1 id="homeHeading">Five Quiz</h1>
 			<hr>
 			<p>Um quiz de programação onde você se diverte</p>
-			<a href="ExibirJogo" class="btn btn-primary btn-xl page-scroll">
+			<a href="ExibirJogoADM" class="btn btn-primary btn-xl page-scroll">
 				Jogar </a>
 		</div>
 	</div>
