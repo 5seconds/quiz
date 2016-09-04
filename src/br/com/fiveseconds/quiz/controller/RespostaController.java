@@ -21,58 +21,60 @@ public class RespostaController {
 	
 
 	
-	@RequestMapping("/ExibirJogo")
+    @RequestMapping("/ExibirJogo")
 	public String ExibirJogo(Model model) {
-		
-		
+
 		PerguntaDao dao = new PerguntaDao();
 		List<Pergunta> listaPergunta = dao.listar();
 		model.addAttribute("listaPergunta", listaPergunta);
-		
-		
+
 		NivelDao dao2 = new NivelDao();
 		List<Nivel> listaNivel = dao2.listar();
 		model.addAttribute("listaNivel", listaNivel);
-	
-		
-		
-	return "Resposta/Resposta";
+
+		DisciplinaDao dao3 = new DisciplinaDao();
+		List<Disciplina> listaDiciplina = dao3.listar();
+		model.addAttribute("listaDiciplina", listaDiciplina);
+
+		return "Resposta/Resposta";
 	}
-	
-	@RequestMapping("responder")
-	public String responder(Model model,@RequestParam("radio") int id) {
-		
+    @RequestMapping("responder")
+	public String responder(Model model, @RequestParam("idPergunta") int idPergunta,
+			@RequestParam("idResposta") int idResposta) {
+
 		AlternativaDao dao = new AlternativaDao();
-		if(dao.ConsultarRespostaCorreta(id)){
-			model.addAttribute("msg","Alternativa Correta");
-		}else{
-			model.addAttribute("msg","Alternativa incorreta");
+		if (dao.verificaRespostaCorreta(idPergunta, idResposta)) {
+			model.addAttribute("msg", "Alternativa Correta");
+		} else {
+			model.addAttribute("msg", "Alternativa incorreta");
 		}
 		
-		
-	
-		
-		
-	return "Resposta/Resposta";
-	}
-	
+		model.addAttribute("idPergunta", idPergunta);
+		model.addAttribute("idResposta", idResposta);
 
-	@RequestMapping("/pesquisarPergunta")
-	public String pesquisarProduto(Pergunta pergunta, Model model) {
-		
-	// Código para popular o combo de categoria de produto
-		
-		
-	NivelDao dao = new NivelDao();
-	List<Nivel> listaNivel = dao.listar();
-	model.addAttribute("listaNivel", listaNivel);
-	
-	PerguntaDao dao2 = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao2.pesquisar(pergunta);
-	model.addAttribute("listaPergunta", listaPergunta);
-	
-	return "Resposta/Resposta";
+		return "forward:pesquisarPergunta";
 	}
+    @RequestMapping("/pesquisarPergunta")
+	public String pesquisarPergunta(Pergunta pergunta, Model model) {
+
+		// Código para popular o combo de categoria de produto
+
+		NivelDao dao = new NivelDao();
+		List<Nivel> listaNivel = dao.listar();
+		model.addAttribute("listaNivel", listaNivel);
+
+		DisciplinaDao dao2 = new DisciplinaDao();
+		List<Disciplina> listaDiciplina = dao2.listar();
+		model.addAttribute("listaDiciplina", listaDiciplina);
+
+		PerguntaDao dao3 = new PerguntaDao();
+		List<Pergunta> listaPergunta = dao3.pesquisar(pergunta);
+		model.addAttribute("listaPergunta", listaPergunta);
+		model.addAttribute("pergunta", pergunta);
+
+		return "Resposta/Resposta";
+	}
+
 	
 
 }

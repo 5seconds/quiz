@@ -45,17 +45,67 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 
-
 <script type="text/javascript">
+
 	$(document).ready(function() {
-
-		$("#categoriaProduto").change(function() {
-			var texto = $('#descricao').val();
-			var idCategoria = $('#categoriaProduto').val();
-
+		
+		$("#nivel").keyup(function() {
+			var nivel = $('#nivel').val();
+			var disciplina = $('#disciplina').val();
+			
+			$('#idNivel').val(nivel);
+			$('#idDisciplina').val(disciplina);
+		});
+		
+		$("#disciplina").change(function() {
+			var nivel = $('#nivel').val();
+			var disciplina = $('#disciplina').val();
+			
+			$('#idNivel').val(nivel);
+			$('#idDisciplina').val(disciplina);
 		});
 	});
+	
+	function marcarResposta(idPergunta, idResposta) {
+		
+		document.getElementById("idPergunta").value = idPergunta;
+		document.getElementById("idResposta").value = idResposta;
+	}
+	
 </script>
+
+
+<style type="text/css">
+
+.mensagemResposta{
+
+
+font-family: sans-serif;
+font-style: bold;
+font-size: 15px;
+text-align: right;
+color: orange;
+padding-left: 30px;
+
+}
+
+.divPergunta{
+font-family: sans-serif;
+font-style: italic;
+
+}
+
+.divResposta{
+font-family: sans-serif;
+font-style: italic;
+padding-right: 300px;
+padding-left: 500px;
+text-align: justify;
+
+}
+
+
+</style>
 
 
 </head>
@@ -72,8 +122,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 
-				<li><a class="page-scroll"> <b>Bem vindo,
-							${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+				<li><a class="page-scroll"> <b>Bem vindo, ${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 				<li><a class="page-scroll" href="logout"> Sair </a></li>
 
 			</ul>
@@ -82,7 +131,8 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<header> <br>
+	<header> 
+	
 	<br>
 	<br>
 	<br>
@@ -90,81 +140,76 @@
 	<br>
 	<br>
 	<br>
-
+	<br>
 
 	<form action="pesquisarPergunta">
-
-		<select name="nivel" id="nivel"
-			class="btn btn-primary  login-button">
-
+		<h3 style="text-transform: uppercase;"> Escolha o Nível</h3>
+		<select name="nivel" id="nivel" class="btn btn-primary  login-button">
 			<option value="">Selecione</option>
 			<c:forEach items="${listaNivel}" var="obj">
-				<option value="${obj.id}">${obj.nome}</option>
+				<option value="${obj.id}" <c:if test="${obj.id eq pergunta.nivel.id}">selected="selected"</c:if>>${obj.nome}</option>
 			</c:forEach>
-		</select>
+		</select> 
+		
+		<br> <br>
+		
+		<h3 style="text-transform: uppercase;">Escolha o Disciplina</h3>
+		<select name="disciplina" id="disciplina" class="btn btn-primary  login-button">
+			<option value="">Selecione</option>
+			<c:forEach items="${listaDiciplina}" var="obj">
+				<option value="${obj.id}" <c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}</option>
+			</c:forEach>
+		</select> 
 		
 		<br> <br>
 
 		<div class="form-group ">
-						<button type="submit"
-							class="btn btn-primary login-button">Pesquisar</button>
-					</div>
-
-
+			<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
+		</div>
 	</form>
 
+	<br />
+	<br />
 
-
-	</br>
-	</br>
-
-
-
-	<form class="form-horizontal" method="post" action="responder"
-		id="Form1">
-
-
+	<form class="form-horizontal" method="post" action="responder" id="Form1">
+	
+		<input type="hidden" name="nivel" id="idNivel" value="${pergunta.nivel.id}">
+		<input type="hidden" name="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
+		<input type="hidden" id="idPergunta" name="idPergunta" value="">
+		<input type="hidden" id="idResposta" name="idResposta" value="">
+	
 		<c:forEach var="pergunta" items="${listaPergunta}">
-
-
-			<div class="form">${pergunta.descricao}</div>
-
+			
+			<div class="divPergunta"><h3 style="text-transform: uppercase;"> ${pergunta.descricao} </h3> </div>
 			<div class="form-group">
-
+			<br/>
+			
 
 				<c:forEach var="resposta" items="${pergunta.alternativas}">
-
-					<div class="radio">
-						<label><input type="radio" name="radio"
-							value="${resposta.id}">${resposta.descricao}</label>
+					<div class="divResposta">
+						<input type="radio" id="radioResposta" name="radioResposta" value="${resposta.id}" onclick="javascript:marcarResposta(${pergunta.id}, ${resposta.id})"><span style="text-transform: uppercase;"> ${resposta.descricao} </span>
+						<c:if test="${idPergunta eq pergunta.id and idResposta eq resposta.id}">
+							<span class="mensagemResposta"> ${msg} </span>
+						</c:if>
 					</div>
-					<div class="mensagemCadastro">${msg}</div>
-
-
 				</c:forEach>
 			</div>
-			<br>
-			<br>
-			<button type="submit" class="btn btn-primary btn-xl page-scroll">Responder
-			</button>
 
 			<br>
 			<br>
-
+			<button type="submit" class="btn btn-primary btn-xl page-scroll">Responder</button>
+			<br>
+			<br>
 		</c:forEach>
-
-
-
-
-
-
 	</form>
 
-	</br>
-	</br>
-	</br>
-	</br>
-
+	<br />
+	<br />
+	<br />
+	<br />
+	
+	
+		
 
 	</header>
 

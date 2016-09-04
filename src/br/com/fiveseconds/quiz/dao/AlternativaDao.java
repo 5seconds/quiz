@@ -25,29 +25,29 @@ public class AlternativaDao {
 		}
 	}
 
+
 	public void salvar(Alternativas alternativa, int idPergunta) {
 		try {
 			String sql = "INSERT INTO Alternativa(descricao,alterCorreta,idPerguntaFK) VALUES (?,?,?)";
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			
+
 			stmt.setString(1, alternativa.getDescricao());
 			stmt.setString(2, alternativa.getAlterCorreta());
 			stmt.setInt(3, idPergunta);
-			
 
 			stmt.execute();
-			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public ArrayList<Alternativas> listarPergunta(int idPergunta) {
 
 		try {
 			ArrayList<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
-			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Alternativa WHERE idPerguntaFK = ?");
+			PreparedStatement stmt = this.connection
+					.prepareStatement("SELECT * FROM Alternativa WHERE idPerguntaFK = ?");
 			stmt.setInt(1, idPergunta);
 			ResultSet rs = stmt.executeQuery();
 
@@ -58,7 +58,6 @@ public class AlternativaDao {
 			rs.close();
 			stmt.close();
 			connection.close();
-			
 
 			return listaAlternativa;
 
@@ -66,44 +65,38 @@ public class AlternativaDao {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
-	public boolean ConsultarRespostaCorreta(int id) {
+
+	public boolean verificaRespostaCorreta(int idPergunta, int idResposta) {
 
 		try {
 			List<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
-			PreparedStatement stmt = this.connection.prepareStatement("SELECT alterCorreta From Alternativa where id = ? ");
-			stmt.setInt(1,id);
+			PreparedStatement stmt = this.connection
+					.prepareStatement("SELECT alterCorreta From Alternativa where id = ? and idPerguntaFK = ? ");
+			stmt.setInt(1, idResposta);
+			stmt.setInt(2, idPergunta);
+			
 			ResultSet rs = stmt.executeQuery();
-			int resposta=0;
+			
+			int resposta = 0;
 			if (rs.next()) {
-				 resposta = rs.getInt("alterCorreta");
-				
-			}
+				resposta = rs.getInt("alterCorreta");
 
+			}
 			rs.close();
 			stmt.close();
 			connection.close();
-			
-			
-			if(resposta == 1){
+
+			if (resposta == 1) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
-			
-			
-
-		
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
-	
-	
+
 	private Alternativas montarObjeto(ResultSet rs) throws SQLException {
 
 		Alternativas alternativa = new Alternativas();
@@ -112,16 +105,12 @@ public class AlternativaDao {
 		alternativa.setDescricao(rs.getString("descricao"));
 		alternativa.setAlterCorreta(rs.getString("alterCorreta"));
 		alternativa.setIdPerguntaFK(rs.getInt("idPerguntaFK"));
-		
+
 		return alternativa;
 	}
-	
-		
-	
-	public void fecharConexao() throws SQLException{
-		
+
+	public void fecharConexao() throws SQLException {
+
 		connection.close();
 	}
-
-	
 }
