@@ -148,7 +148,7 @@
 	            </div> 
 				<div class="main-login main-center">
 				
-				<div class="mensagemCadastro"> ${mensagem} </div>
+				<div class="mensagemCadastro" style="font-size: 20px; color: yellow; "> ${mensagem} </div>
 				
 					<form class="form-horizontal" method="post" action="CadastrarUsuario" id="Form1">
 						

@@ -72,6 +72,24 @@ public class RespostaController {
 
 	return "forward:pesquisarPergunta";
     }
+    
+    @RequestMapping("responderADM")
+    public String responderADM(Model model,
+	    @RequestParam("idPergunta") int idPergunta,
+	    @RequestParam("idResposta") int idResposta) {
+
+	AlternativaDao dao = new AlternativaDao();
+	if (dao.verificaRespostaCorreta(idPergunta, idResposta)) {
+	    model.addAttribute("msg", "Alternativa Correta");
+	} else {
+	    model.addAttribute("msg", "Alternativa incorreta");
+	}
+
+	model.addAttribute("idPergunta", idPergunta);
+	model.addAttribute("idResposta", idResposta);
+
+	return "forward:pesquisarPerguntaADM";
+    }
 
     @RequestMapping("/pesquisarPergunta")
     public String pesquisarPergunta(Pergunta pergunta, Model model) {

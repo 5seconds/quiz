@@ -91,7 +91,11 @@
 					minlength:5
 					
 
-				}				
+				},
+				optionsRadios : {
+					required : true,
+					
+				}
 
 			},
 			messages : {
@@ -125,6 +129,11 @@
 				resposta4 : {
 					required : "Este campo é obrigatório",
 					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+				},
+
+				optionsRadios : {
+					required : "Este campo é obrigatório",
+					
 				}
 			}
 
@@ -175,7 +184,7 @@
 			</div>
 			<div class="main-login main-center">
 
-				<div class="mensagemCadastro">${mensagem}</div>
+				<div class="mensagemCadastro" style="font-size: 20px; color: yellow; ">${mensagem}</div>
 
 				<form class="form-horizontal" method="post" action="CadastrarPerguntas" id="meuForm">
 
@@ -227,7 +236,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"> 
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="1">
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="1" >
 						</span> 
 						<input type="text" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
@@ -241,7 +250,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"> 
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="2">
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="2" >
 						</span> 
 						<input type="text" name="resposta2" id="resposta2" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
 					</div>
@@ -254,7 +263,7 @@
 					<div class="input-group">
 						<span class="input-group-addon"> 
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="3">
+						<input type="radio" name="optionsRadios" id="optionsRadios" value="3" >
 						
 						</span> 
 						<input type="text" name="resposta3" id="resposta3" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
