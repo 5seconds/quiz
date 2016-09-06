@@ -15,17 +15,17 @@ import br.com.fiveseconds.quiz.model.Usuario;
 public class LoginDaoTest {
 	
 	@Test
-	public void buscarPorUsuario() throws SQLException {
+	public void login() throws SQLException {
 		LoginDao loginDao = new LoginDao();
 		
 		Usuario usuario = new Usuario();
-		usuario.setSenha("adm123");
+		usuario.setSenha("12345");
 		usuario.setEmail("administrador@adm.com");
-			
-		Usuario usuarioLogin = loginDao.buscarUsuario(usuario);
 		
+		Usuario usuarioLogin = loginDao.buscarPorEmail(usuario);
+	
 		Assert.assertEquals(usuario.getEmail(), usuarioLogin.getEmail());
-		Assert.assertEquals(usuario.getSenha(), usuarioLogin.getSenha());
+	
 		
 		loginDao.fecharConexao();
 		
