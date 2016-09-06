@@ -76,35 +76,32 @@
 
 
 <style type="text/css">
-
-.mensagemResposta{
-
-
-font-family: sans-serif;
-font-style: bold;
-font-size: 15px;
-text-align: right;
-color: orange;
-padding-left: 30px;
-
+.mensagemResposta {
+	font-family: sans-serif;
+	font-style: bold;
+	font-size: 15px;
+	text-align: right;
+	color: orange;
+	padding-left: 30px;
 }
 
-.divPergunta{
-font-family: sans-serif;
-font-style: italic;
-
+.divPergunta {
+	font-family: sans-serif;
+	font-style: italic;
 }
 
-.divResposta{
-font-family: sans-serif;
-font-style: italic;
-padding-right: 300px;
-padding-left: 500px;
-text-align: justify;
+.divResposta {
+	font-family: sans-serif;
+	font-style: italic;
+	padding-right: 300px;
+	padding-left: 500px;
+	text-align: justify;
+}
+.nivel{
+font-size: 20px;
+color: yellow;
 
 }
-
-
 </style>
 
 
@@ -143,9 +140,9 @@ text-align: justify;
 
 
 
-	<header> 
-	
-	<br>
+
+	<header>
+	 <br>
 	<br>
 	<br>
 	<br>
@@ -155,52 +152,70 @@ text-align: justify;
 	<br>
 
 	<form action="pesquisarPergunta">
-		<h3 style="text-transform: uppercase;"> Escolha o Nível</h3>
-		<select name="nivel" id="nivel" class="btn btn-primary  login-button">
-			<option value="">Selecione</option>
-			<c:forEach items="${listaNivel}" var="obj">
-				<option value="${obj.id}" <c:if test="${obj.id eq pergunta.nivel.id}">selected="selected"</c:if>>${obj.nome}</option>
-			</c:forEach>
-		</select> 
-		
-		<br> <br>
-		
-		<h3 style="text-transform: uppercase;">Escolha o Disciplina</h3>
-		<select name="disciplina" id="disciplina" class="btn btn-primary  login-button">
-			<option value="">Selecione</option>
-			<c:forEach items="${listaDiciplina}" var="obj">
-				<option value="${obj.id}" <c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}</option>
-			</c:forEach>
-		</select> 
-		
-		<br> <br>
+		<center>
 
-		<div class="form-group ">
-			<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
-		</div>
+			 <span class="nivel"> Nível >> </span>
+				<select name="nivel" id="nivel" class="btn btn-primary  login-button">
+					<option value="">Selecione
+					</option>
+					
+						<c:forEach items="${listaNivel}" var="obj">
+					
+					<option value="${obj.id}"
+						<c:if test="${obj.id eq pergunta.nivel.id}">selected="selected"</c:if>>${obj.nome}
+					
+					</option>
+				</c:forEach>
+			</select>
+				&nbsp;				&nbsp;				&nbsp;				&nbsp;				&nbsp;				&nbsp;
+			<span class="nivel"> Disciplina >>
+			 </span>				
+				<select name="disciplina" id="disciplina" class="btn btn-primary  login-button">
+				
+				<option value="">Selecione			 </option>
+				
+						<c:forEach items="${listaDiciplina}" var="obj">
+				
+					<option value="${obj.id}"
+						<c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}
+					</option>
+				
+				</c:forEach>
+			</select>
+<br><br><br>
+			<div class="form-group ">
+				<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
+			</div>
+
+		</center>
 	</form>
 
-	<br />
-	<br />
+<br><br><br>
+	<form class="form-horizontal" method="post" action="responderADM" id="Form1">
 
-	<form class="form-horizontal" method="post" action="responder" id="Form1">
-	
-		<input type="hidden" name="nivel" id="idNivel" value="${pergunta.nivel.id}">
-		<input type="hidden" name="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
+		<input type="hidden" name="nivel" id="idNivel"
+			value="${pergunta.nivel.id}"> <input type="hidden"
+			name="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
 		<input type="hidden" id="idPergunta" name="idPergunta" value="">
 		<input type="hidden" id="idResposta" name="idResposta" value="">
-	
+
 		<c:forEach var="pergunta" items="${listaPergunta}">
-			
-			<div class="divPergunta"><h3 style="text-transform: uppercase;"> ${pergunta.descricao} </h3> </div>
+
+			<div class="divPergunta">
+				<h3 style="text-transform: uppercase;">${pergunta.descricao}</h3>
+			</div>
 			<div class="form-group">
-			<br/>
-			
+				<br />
+
 
 				<c:forEach var="resposta" items="${pergunta.alternativas}">
 					<div class="divResposta">
-						<input type="radio" id="radioResposta" name="radioResposta" value="${resposta.id}" onclick="javascript:marcarResposta(${pergunta.id}, ${resposta.id})"><span style="text-transform: uppercase;"> ${resposta.descricao} </span>
-						<c:if test="${idPergunta eq pergunta.id and idResposta eq resposta.id}">
+						<input type="radio" id="radioResposta" name="radioResposta"	value="${resposta.id}"
+							onclick="javascript:marcarResposta(${pergunta.id}, ${resposta.id})" required="required	"><span
+							style="text-transform: uppercase;"> ${resposta.descricao}
+						</span>
+						<c:if
+							test="${idPergunta eq pergunta.id and idResposta eq resposta.id}">
 							<span class="mensagemResposta"> ${msg} </span>
 						</c:if>
 					</div>
@@ -219,9 +234,9 @@ text-align: justify;
 	<br />
 	<br />
 	<br />
-	
-	
-		
+
+
+
 
 	</header>
 

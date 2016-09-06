@@ -165,11 +165,20 @@ public class PerguntaDao  {
 		
 		
 		
-	    if (pergunta.getNivel() != null) {
+	    if (pergunta.getNivel() != null && pergunta.getDisciplina() == null) {
 		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idNivelFK = ? ORDER BY descricao");
 		stmt.setInt(1, pergunta.getNivel().getId());
 		}
-	       else {
+	    else if (pergunta.getNivel() == null && pergunta.getDisciplina() != null) {
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? ORDER BY descricao");
+		stmt.setInt(1, pergunta.getDisciplina().getId());
+		}
+	    else if (pergunta.getNivel() != null && pergunta.getDisciplina() != null) {
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? AND idNivelFK = ? ORDER BY descricao");
+		stmt.setInt(1, pergunta.getDisciplina().getId());
+		stmt.setInt(2, pergunta.getNivel().getId());
+		}
+	    else {
 		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas ORDER BY descricao");
 		}
 		ResultSet rs = stmt.executeQuery();
