@@ -194,10 +194,10 @@ public class PerguntaDao  {
 		}
 		}
 	
-	public List<Pergunta> pesquisarPergunta(String descricao) {
+	public List<Pergunta> AjaxPergunta(String descricao) {
 
 		try {
-			List<Pergunta> listaPergunta = new ArrayList<Pergunta>();
+			List<Pergunta> lista = new ArrayList<Pergunta>();
 
 			PreparedStatement stmt = null;
 
@@ -214,13 +214,13 @@ public class PerguntaDao  {
 
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				listaPergunta.add(montarObjeto(rs));
+			    lista.add(montarObjeto(rs));
 			}
 			rs.close();
 			stmt.close();
 
 			connection.close();
-			return listaPergunta;
+			return lista;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

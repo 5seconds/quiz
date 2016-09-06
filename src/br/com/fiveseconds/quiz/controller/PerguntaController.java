@@ -39,17 +39,7 @@ public class PerguntaController {
 	return "Perguntas/CadastrarPergunta";
     }
 
-    @RequestMapping("/ExibirListarPerguntas")
-    public String ExibirListarPerguntas(Model model) {
-
-	PerguntaDao dao = new PerguntaDao();
-	List<Pergunta> listarPergunta = dao.listar();
-	model.addAttribute("listarTESTE", listarPergunta);
-
-	return "Perguntas/ListarPerguntas";
-    }
-
-    @RequestMapping("CadastrarPerguntas")
+        @RequestMapping("CadastrarPerguntas")
     public String CadastrarPerguntas(Pergunta pergunta, Model model,
 	    HttpServletResponse response, HttpServletRequest request)
 	    throws SQLException {
@@ -101,92 +91,102 @@ public class PerguntaController {
 	return "Perguntas/CadastrarPergunta";
     }
 
+        
+        
+    @RequestMapping("/ExibirListarPerguntas")
+    public String ExibirListarPerguntas(Model model) {
+
+	PerguntaDao dao = new PerguntaDao();
+	List<Pergunta> listarPergunta = dao.listar();
+	model.addAttribute("LISTAR", listarPergunta);
+
+	return "Perguntas/ListarPerguntas";
+    }
     
-     @RequestMapping("/PesquisarPergunta") 
-     public @ResponseBody String   pesquisarPergunta( @RequestParam String descricao, HttpServletResponse response) {
-      
-	 
-	 PerguntaDao dao = new PerguntaDao(); List<Pergunta> listarPergunta =  dao.pesquisarPergunta(descricao);
-      
-      StringBuilder st = new StringBuilder(); 
-      st.append("<center>");
-      st.append("<table class='tabela' border='1' style='width: 80%; text-align: center'>");
-      st.append("<thead>");
-      st.append("<tr>"); 
-      st.append("<th class='linha'> ID </th>");
-      st.append("<th class='linha'> PERGUNTA  </th>");
-      st.append("<th class='linha'> NÍVEL  </th>");
-      st.append("<th class='linha'> DISCIPLINA  </th>");
-      st.append("<th class='linha'> AÇÔES  </th>");
-      st.append("</tr>");
-      st.append("<thead>");
-      
-      for (Pergunta p : listarPergunta) {
-	  st.append("<tr>"); 
-	  st.append("<td class='linha2'> " + p.getId() + " </td>"); 
-	  st.append("<td class='linha2'> " + p.getDescricao() + " </td>");
-	  st.append("<td class='linha2'> " + p.getNivel() + " </td>");
-      st.append("<td class='linha2'> " + p.getDisciplina() + " </td>");
-      st.append("<td class='linha2'>");
-      st.append("<a href='exibirAlterarPergunta?id=" + p.getId() +    "' class='btn btn-info' role='button' > Alterar </a> &nbsp;");
-      st.append("<a href='removerPergunta?id=" + p.getId() +  "' class='btn btn-danger' role='button'> Remover </a>");
-      st.append("</td>"); st.append("</tr>");
-     
-     }
-     st.append("</table>"); 
-     st.append("</center>");
-      
-      response.setStatus(200); return st.toString();
-      
-      }
-      
+    
+    @RequestMapping("/AjaxPergunta")
+    public @ResponseBody String AjaxPergunta(@RequestParam String descricao, HttpServletResponse response) {
 
-	@RequestMapping("removerPergunta")
-	public String removerPergunta(Pergunta pergunta, Model model) {
+	PerguntaDao dao = new PerguntaDao();
+	List<Pergunta> lista = dao.AjaxPergunta(descricao);
 
-		PerguntaDao dao = new PerguntaDao();
-		dao.remover(pergunta);
-		model.addAttribute("msg", "Pergunta Removida");
+	StringBuilder st = new StringBuilder();
+	st.append("<center>");
+	st.append("<table class='tabela' border='1' style='width: 100%; text-align: center'>");
+	st.append("<thead>");
+	st.append("<tr>");
+	st.append("<th class='linha'> ID </th>");
+	st.append("<th class='linha'> PERGUNTA  </th>");
+	st.append("<th class='linha'> NÍVEL  </th>");
+	st.append("<th class='linha'> DISCIPLINA  </th>");
+	st.append("<th class='linha'> AÇÔES  </th>");
+	st.append("</tr>");
+	st.append("<thead>");
 
-		return "forward:ExibirListarPerguntas";
+	for (Pergunta p : lista) {
+	    st.append("<tr>");
+	    st.append("<td class='linha2'> " + p.getId() + " </td>");
+	    st.append("<td class='linha2'> " + p.getDescricao() + " </td>");
+	    st.append("<td class='linha2'> " + p.getNivel() + " </td>");
+	    st.append("<td class='linha2'> " + p.getDisciplina() + " </td>");
+	    st.append("<td class='linha2'>");
+	    st.append("<a href='exibirAlterarPergunta?id="
+		    + p.getId()
+		    + "' class='btn btn-info' role='button' > Alterar </a> &nbsp;");
+	    st.append("<a href='removerPergunta?id=" + p.getId()
+		    + "' class='btn btn-danger' role='button'> Remover </a>");
+	    st.append("</td>");
+	    st.append("</tr>");
+
 	}
-     
-	
+	st.append("</table>");
+	st.append("</center>");
 
-	
-	 @RequestMapping("/ListarDisciplinaNivel")
-	    public String ListarDisciplinaNivel(Model model) {
+	response.setStatus(200);
+	return st.toString();
 
-		DisciplinaDao dao = new DisciplinaDao();
-		List<Disciplina> Disciplina = dao.listar();
-		model.addAttribute("Disciplina", Disciplina);
+    }
 
-		NivelDao dao2 = new NivelDao();
-		List<Nivel> Nivel = dao2.listar();
-		model.addAttribute("Nivel", Nivel);
+    @RequestMapping("removerPergunta")
+    public String removerPergunta(Pergunta pergunta, Model model) {
 
-		return "Perguntas/ListarPerguntas";
-	    }
-	
-     /*
-	@RequestMapping("alterarPergunta")
-	public String alterarPergunta(Pergunta pergunta, Model model) {
+	PerguntaDao dao = new PerguntaDao();
+	dao.remover(pergunta);
+	model.addAttribute("msg", "Pergunta Removida");
 
-		PerguntaDao dao = new PerguntaDao();
-		dao.alterar(pergunta);
-		model.addAttribute("msg", "Pergunta alterada com sucesso !");
+	return "forward:ExibirListarPerguntas";
+    }
 
-		return "forward:ExibirListarPerguntas";
-	}
+    @RequestMapping("/ListarDisciplinaNivel")
+    public String ListarDisciplinaNivel(Model model) {
 
-	@RequestMapping("exibirAlterarPergunta")
-	public String exibirAlterarPergunta(Pergunta pergunta, Model model) {
+	DisciplinaDao dao = new DisciplinaDao();
+	List<Disciplina> Disciplina = dao.listar();
+	model.addAttribute("Disciplina", Disciplina);
 
-		PerguntaDao dao = new PerguntaDao();
-		Pergunta perguntaPreenchido = dao.buscarPorId(pergunta.getId());
-		model.addAttribute("pergunta", perguntaPreenchido);
+	NivelDao dao2 = new NivelDao();
+	List<Nivel> Nivel = dao2.listar();
+	model.addAttribute("Nivel", Nivel);
 
-		return "Perguntas/AlterarPergunta";
-	}
-	*/
+	return "Perguntas/ListarPerguntas";
+    }
+
+    /*
+     * @RequestMapping("alterarPergunta") public String alterarPergunta(Pergunta
+     * pergunta, Model model) {
+     * 
+     * PerguntaDao dao = new PerguntaDao(); dao.alterar(pergunta);
+     * model.addAttribute("msg", "Pergunta alterada com sucesso !");
+     * 
+     * return "forward:ExibirListarPerguntas"; }
+     * 
+     * @RequestMapping("exibirAlterarPergunta") public String
+     * exibirAlterarPergunta(Pergunta pergunta, Model model) {
+     * 
+     * PerguntaDao dao = new PerguntaDao(); Pergunta perguntaPreenchido =
+     * dao.buscarPorId(pergunta.getId()); model.addAttribute("pergunta",
+     * perguntaPreenchido);
+     * 
+     * return "Perguntas/AlterarPergunta"; }
+     */
 }

@@ -81,7 +81,7 @@ $(document).ready(function() {
 		
 		$("#descricao").keyup(function() {
 			var texto = $('#descricao').val();
-			$.post("PesquisarPergunta", {'descricao' : texto, }, function(dados) {
+			$.post("AjaxPergunta", {'descricao' : texto, }, function(dados) {
 				$('#tabelaListarPergunta').html(dados);
 			});
 		});
@@ -145,13 +145,13 @@ $(document).ready(function() {
 
 
 	<div  style='color: black; font-weight: bold;'>
-    <input type="text"  id="nome" name="nome" autofocus="" placeholder="Digite a pergunta">
+    <input type="text"  id="descricao" name="descricao" autofocus="" placeholder="Digite a pergunta">
   
 	</div>
 	<br><br><br>
 
 
-	<table  class="tabela" id="tabelaListarPergunta" border='1' style='width: 80%; text-align: center'>
+	<table  class="tabela" id="tabelaListarPergunta" border='1' style='width: 100%; text-align: center'>
 		<thead>
 			<tr >
 				<th class="linha" > ID</th>
@@ -162,7 +162,7 @@ $(document).ready(function() {
 			</tr>
 		</thead>
 
-		<c:forEach var="pergunta" items="${listarTESTE}">
+		<c:forEach var="pergunta" items="${LISTAR}">
 			<tr>
 				<td class="linha2"> ${pergunta.id}</td>
 				<td class="linha2">${pergunta.descricao}</td>
