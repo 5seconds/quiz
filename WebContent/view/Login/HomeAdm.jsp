@@ -56,8 +56,8 @@
 			        	
               <a class="navbar-brand page-scroll">Five Quiz</a>
               <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
-			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuario</a>
-				
+			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuário</a>
+			<a class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar Usuário</a>
 			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
 			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
 		</div>

@@ -33,7 +33,12 @@ public class UsuarioController {
 
 		return "Usuario/CadastroUsuario";
 	}
+	
+	@RequestMapping("/ExibirCadastroUsuarioADM")
+	public String ExibirCadastrarUsuarioADM(Model model) {
 
+		return "Usuario/CadastroUsuarioADM";
+	}
 	
 	
 

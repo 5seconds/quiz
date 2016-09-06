@@ -113,14 +113,13 @@ color: yellow;
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-
-			<a class="navbar-brand page-scroll">Five Quiz</a> <a
-				class="navbar-brand page-scroll" href="ExibirHomeAdm">Página
-				Inicial</a> <a class="navbar-brand page-scroll"
-				href="ExibirListarUsuario">Listar Usuario</a> <a
-				class="navbar-brand page-scroll" href="ExibirCadastroPerguntas">Cadastrar
-				Perguntas</a> <a class="navbar-brand page-scroll"
-				href="ExibirListarPerguntas">Listar Perguntas</a>
+			        	
+              <a class="navbar-brand page-scroll">Five Quiz</a>
+              <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
+			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuário</a>
+			<a class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar Usuário</a>
+			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
+			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -137,6 +136,7 @@ color: yellow;
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
+
 
 	<header> <br>
 	<br>
