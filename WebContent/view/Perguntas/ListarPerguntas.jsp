@@ -170,7 +170,6 @@ $(document).ready(function() {
 				<td class="linha2">${pergunta.nivel}</td>
 				<td class="linha2">${pergunta.disciplina}</td>
 				<td class="linha2">	
-					<a href='#?id=${pergunta.id}'	class="btn btn-info" role="button"> Alterar </a> &nbsp; 
 					<a href='removerPergunta?id=${pergunta.id}' class="btn btn-danger" role="button"> Remover </a>
 				</td>
 			</tr>

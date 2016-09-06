@@ -71,24 +71,23 @@
 				},
 				resposta1 : {
 					required : true,
-					minlength:5
+					
 
 				},
 				resposta2 : {
 					required : true,
-					minlength:5
 					
 
 				},
 				resposta3 : {
 					required : true,
-					minlength:5
+					
 					
 
 				},
 				resposta4 : {
 					required : true,
-					minlength:5
+					
 					
 
 				},
@@ -115,20 +114,20 @@
 				},
 				resposta1 : {
 					required : "Este campo é obrigatório",
-					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+					
 				},
 				resposta2 : {
 					required : "Este campo é obrigatório",
-					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+					
 				},
 				resposta3 : {
 					required : "Este campo é obrigatório",
-					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+					
 					
 				},
 				resposta4 : {
 					required : "Este campo é obrigatório",
-					minlength : "A Pergunta deve conter no minimo 5 caracteres"
+					
 				},
 
 				optionsRadios : {

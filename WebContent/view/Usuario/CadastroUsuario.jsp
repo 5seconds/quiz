@@ -60,7 +60,7 @@
                        },
                         senha:{
                           required:true,
-                          rangelength:[5,10]
+                          rangelength:[5,20]
 
                        },
                        confsenha:{
@@ -84,7 +84,7 @@
                        },
                         senha:{
                           required:"Este campo é obrigatório",
-                          rangelength:"Sua senha deve ter 5 a 10 caracteres"
+                          rangelength:"Sua senha deve ter 5 a 20 caracteres"
 
                        },
                        confsenha:{

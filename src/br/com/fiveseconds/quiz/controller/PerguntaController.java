@@ -152,7 +152,7 @@ public class PerguntaController {
 
 	return "forward:ExibirListarPerguntas";
     }
-
+/*
     @RequestMapping("/ListarDisciplinaNivel")
     public String ListarDisciplinaNivel(Model model) {
 
@@ -166,7 +166,7 @@ public class PerguntaController {
 
 	return "Perguntas/ListarPerguntas";
     }
-
+*/
     /*
      * @RequestMapping("alterarPergunta") public String alterarPergunta(Pergunta
      * pergunta, Model model) {

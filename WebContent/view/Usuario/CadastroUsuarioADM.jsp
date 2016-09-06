@@ -60,7 +60,7 @@
                        },
                         senha:{
                           required:true,
-                          rangelength:[5,10]
+                          rangelength:[5,20]
 
                        },
                        confsenha:{
@@ -84,7 +84,7 @@
                        },
                         senha:{
                           required:"Este campo é obrigatório",
-                          rangelength:"Sua senha deve ter 5 a 10 caracteres"
+                          rangelength:"Sua senha deve ter 5 a 20 caracteres"
 
                        },
                        confsenha:{
@@ -151,7 +151,7 @@
 				
 				<div class="mensagemCadastro" style="font-size: 20px; color: yellow; "> ${mensagem} </div>
 				
-					<form class="form-horizontal" method="post" action="CadastrarUsuario" id="Form1">
+					<form class="form-horizontal" method="post" action="CadastrarUsuarioADM" id="Form1">
 						
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label"> Nome 

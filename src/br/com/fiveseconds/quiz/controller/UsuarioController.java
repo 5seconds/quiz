@@ -69,6 +69,22 @@ public class UsuarioController {
 		model.addAttribute("mensagem", "Cadastro Realizado com Sucesso");
 		return "Usuario/CadastroUsuario";
 	}
+	
+	@RequestMapping("CadastrarUsuarioADM")
+	public String CadastrarUsuarioADM(@Valid Usuario usuario, Model model)
+			throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
+
+		UsuarioDao dao = new UsuarioDao();
+		TipoUsuario tipoUsuario = new TipoUsuario();
+		tipoUsuario.setId(1);
+		usuario.setTipoUsuario(tipoUsuario);
+		usuario.setSenha(Criptografia.sha1(usuario.getSenha()));
+
+		dao.salvar(usuario);
+		dao.fecharConexao();
+		model.addAttribute("mensagem", "Cadastro Realizado com Sucesso");
+		return "Usuario/CadastroUsuarioADM";
+	}
 
 	@RequestMapping("/ExibirListarUsuario")
 	public String ExibirListarUsuario(Model model) {

@@ -30,6 +30,7 @@ id int primary key auto_increment,
 nome varchar(100) not null
 );
 
+
 create table Perguntas(
 
 id int primary key auto_increment,
@@ -37,9 +38,13 @@ descricao varchar(1000) not null,
 idNivelFK int,
 idDisciplinaFK int,
 
-foreign key (idNivelFK) references Nivel(id),
+foreign key (idNivelFK) references Nivel(id)
+ ON DELETE CASCADE,
 foreign key (idDisciplinaFK) references Disciplina(id)
+ ON DELETE CASCADE
 );
+
+delete from Perguntas where id = 1;
 
 create table Alternativa(
 
@@ -49,12 +54,9 @@ alterCorreta varchar(200) not null,
 idPerguntaFK int,
 
 foreign	key (idPerguntaFK) references Perguntas(id)
+ ON DELETE CASCADE
+
 );
-
-
-select p.descricao AS " Pergunta ", a.alterCorreta AS "Correta",  a.descricao  AS "Respostas", p.idDisciplinaFK "Disciplina", p.idNivelFK AS "Nivel "  from Alternativa a, Perguntas p where p.id = a.idPerguntaFk;
-
-
 
 -------------------------------- INSERT ------------------------------------------------------------------
 insert into TipoUsuario (nome) values ("Usuario Normal");
@@ -70,6 +72,7 @@ insert into Disciplina (nome) values ("Lógica de Programação");
 insert into Nivel (nome) values ("Básico");
 insert into Nivel (nome) values ("Médio");
 insert into Nivel (nome) values ("Expert");
+
 
 
 
