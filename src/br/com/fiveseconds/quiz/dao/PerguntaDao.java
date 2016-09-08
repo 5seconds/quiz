@@ -133,6 +133,30 @@ public class PerguntaDao  {
 		}
 	}
 	
+	public List<Pergunta> listarPerguntaUnica(int limit) {
+
+		try {
+			List<Pergunta> listaPergunta= new ArrayList<Pergunta>();
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Perguntas limit ?,1");
+			stmt.setInt(1, limit);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				listaPergunta.add(montarObjeto(rs));
+			}
+
+			rs.close();
+			stmt.close();
+			connection.close();
+			
+
+			return listaPergunta;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	
 	
 	

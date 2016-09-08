@@ -18,6 +18,8 @@ import br.com.fiveseconds.quiz.model.Pergunta;
 
 @Controller
 public class RespostaController {
+	
+	int limit = 0;
 
     @RequestMapping("/ExibirJogo")
     public String ExibirJogo(Model model) {
@@ -41,7 +43,7 @@ public class RespostaController {
     public String ExibirJogoADM(Model model) {
 
 	PerguntaDao dao = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao.listar();
+	List<Pergunta> listaPergunta = dao.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 
 	NivelDao dao2 = new NivelDao();
