@@ -72,6 +72,21 @@
 		document.getElementById("idResposta").value = idResposta;
 	}
 	
+	
+	
+	 $(document).ready(function(){
+		 
+		 $("#div1").prop('disabled',false);
+		 
+		 
+         $("#btn").click(function(){
+             $.ajax({url: "view/Resposta/verificarResposta.jsp",data : {radioResposta : $('input:radio[name=radioResposta]:checked').val()}, success: function(result){
+             	 $("#div1").html(result);
+             	document.getElementById("div1").style.display = "";
+             }});
+         });
+     });
+	
 </script>
 
 
@@ -97,10 +112,10 @@
 	padding-left: 500px;
 	text-align: justify;
 }
-.nivel{
-font-size: 20px;
-color: yellow;
 
+.nivel {
+	font-size: 20px;
+	color: yellow;
 }
 </style>
 
@@ -113,13 +128,16 @@ color: yellow;
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			        	
-              <a class="navbar-brand page-scroll">Five Quiz</a>
-              <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
-			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuário</a>
-			<a class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar Usuário</a>
-			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
-			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
+
+			<a class="navbar-brand page-scroll">Five Quiz</a> <a
+				class="navbar-brand page-scroll" href="ExibirHomeAdm">Página
+				Inicial</a> <a class="navbar-brand page-scroll"
+				href="ExibirListarUsuario">Listar Usuário</a> <a
+				class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar
+				Usuário</a> <a class="navbar-brand page-scroll"
+				href="ExibirCadastroPerguntas">Cadastrar Perguntas</a> <a
+				class="navbar-brand page-scroll" href="ExibirListarPerguntas">Listar
+				Perguntas</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -150,35 +168,33 @@ color: yellow;
 	<form action="pesquisarPerguntaADM">
 		<center>
 
-			 <span class="nivel"> Nível >> </span>
-				<select name="nivel" id="nivel" class="btn btn-primary  login-button">
-					<option value="">Selecione
-					</option>
-					
-						<c:forEach items="${listaNivel}" var="obj">
-					
+			<span class="nivel"> Nível >> </span> <select name="nivel" id="nivel"
+				class="btn btn-primary  login-button">
+				<option value="">Selecione</option>
+
+				<c:forEach items="${listaNivel}" var="obj">
+
 					<option value="${obj.id}"
 						<c:if test="${obj.id eq pergunta.nivel.id}">selected="selected"</c:if>>${obj.nome}
-					
+
 					</option>
 				</c:forEach>
-			</select>
-				&nbsp;				&nbsp;				&nbsp;				&nbsp;				&nbsp;				&nbsp;
-			<span class="nivel"> Disciplina >>
-			 </span>				
-				<select name="disciplina" id="disciplina" class="btn btn-primary  login-button">
-				
-				<option value="">Selecione			 </option>
-				
-						<c:forEach items="${listaDiciplina}" var="obj">
-				
+			</select> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="nivel">
+				Disciplina >> </span> <select name="disciplina" id="disciplina"
+				class="btn btn-primary  login-button">
+
+				<option value="">Selecione</option>
+
+				<c:forEach items="${listaDiciplina}" var="obj">
+
 					<option value="${obj.id}"
 						<c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}
 					</option>
-				
+
 				</c:forEach>
-			</select>
-<br><br><br>
+			</select> <br>
+			<br>
+			<br>
 			<div class="form-group ">
 				<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
 			</div>
@@ -186,8 +202,11 @@ color: yellow;
 		</center>
 	</form>
 
-<br><br><br>
-	<form class="form-horizontal" method="post" action="responderADM" id="Form1">
+	<br>
+	<br>
+	<br>
+	<form class="form-horizontal" method="post" action="responderADM"
+		id="Form1">
 
 		<input type="hidden" name="nivel" id="idNivel"
 			value="${pergunta.nivel.id}"> <input type="hidden"
@@ -206,8 +225,10 @@ color: yellow;
 
 				<c:forEach var="resposta" items="${pergunta.alternativas}">
 					<div class="divResposta">
-						<input type="radio" id="radioResposta" name="radioResposta"	value="${resposta.id}"
-							onclick="javascript:marcarResposta(${pergunta.id}, ${resposta.id})" required="required	"><span
+						<input type="radio" id="radioResposta" name="radioResposta"
+							value="${resposta.id}"
+							
+							required="required	"><span
 							style="text-transform: uppercase;"> ${resposta.descricao}
 						</span>
 						<c:if
@@ -216,11 +237,18 @@ color: yellow;
 						</c:if>
 					</div>
 				</c:forEach>
+				<br>
+				<br>
+				<div class="container">
+					<div id="div1" class="alert alert-success" role="alert"
+						style="display: none"></div>
+				</div>
 			</div>
 
 			<br>
 			<br>
-			<button type="submit" class="btn btn-primary btn-xl page-scroll">Responder</button>
+			<button type="button" id="btn"
+				class="btn btn-primary btn-xl page-scroll">Responder</button>
 			<br>
 			<br>
 		</c:forEach>

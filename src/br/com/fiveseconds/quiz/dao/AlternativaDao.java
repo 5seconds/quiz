@@ -66,14 +66,14 @@ public class AlternativaDao {
 		}
 	}
 
-	public boolean verificaRespostaCorreta(int idPergunta, int idResposta) {
+	public boolean verificaRespostaCorreta(int idResposta) {
 
 		try {
 			List<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
 			PreparedStatement stmt = this.connection
-					.prepareStatement("SELECT alterCorreta From Alternativa where id = ? and idPerguntaFK = ? ");
+					.prepareStatement("SELECT alterCorreta From Alternativa where id = ? and alterCorreta=1");
 			stmt.setInt(1, idResposta);
-			stmt.setInt(2, idPergunta);
+		
 			
 			ResultSet rs = stmt.executeQuery();
 			
