@@ -82,6 +82,8 @@ border-collapse: collapse; }
 
 <script type="text/javascript">
 
+
+
 	$(document).ready(function() {
 		
 		$("#nome").keyup(function() {
@@ -99,8 +101,16 @@ border-collapse: collapse; }
 				$('#tabelaListarUsuario').html(dados);
 			});
 		});
+		
+				
 	});
+	
+
 </script>
+
+
+	
+
 </head>
 
 <body id="page-top">
@@ -181,13 +191,14 @@ border-collapse: collapse; }
 				<td class="linha2">${usuario.nome}</td>
 				<td class="linha2">${usuario.email}</td>
 				<td class='linha2'>	
-					<a href='removerUsuario?id=${usuario.id}' class="btn btn-danger" role="button"> Remover </a>
+					<a href="removerUsuario?id=${usuario.id}" onclick=" return confirm('Confirma exclusão do registro')" class="btn btn-danger" role="button"> Remover </a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	
 </center>
+
 	
 	
 	
