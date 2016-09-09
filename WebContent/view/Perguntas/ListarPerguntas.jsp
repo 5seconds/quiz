@@ -170,7 +170,7 @@ $(document).ready(function() {
 				<td class="linha2">${pergunta.nivel}</td>
 				<td class="linha2">${pergunta.disciplina}</td>
 				<td class="linha2">	
-					<a href='removerPergunta?id=${pergunta.id}' class="btn btn-danger" role="button"> Remover </a>
+					<a href='removerPergunta?id=${pergunta.id}'onclick=" return confirm('Confirma exclusão do registro')" class="btn btn-danger" role="button"> Remover </a>
 				</td>
 			</tr>
 		</c:forEach>

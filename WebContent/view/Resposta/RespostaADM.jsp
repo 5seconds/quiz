@@ -192,9 +192,7 @@
 					</option>
 
 				</c:forEach>
-			</select> <br>
-			<br>
-			<br>
+			</select> <br> <br> <br>
 			<div class="form-group ">
 				<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
 			</div>
@@ -205,8 +203,7 @@
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" method="post" action="responderADM"
-		id="Form1">
+	<form class="form-horizontal" method="post" action="responderADM" id="Form1">
 
 		<input type="hidden" name="nivel" id="idNivel"
 			value="${pergunta.nivel.id}"> <input type="hidden"
@@ -226,9 +223,7 @@
 				<c:forEach var="resposta" items="${pergunta.alternativas}">
 					<div class="divResposta">
 						<input type="radio" id="radioResposta" name="radioResposta"
-							value="${resposta.id}"
-							
-							required="required	"><span
+							value="${resposta.id}" required="required	"><span
 							style="text-transform: uppercase;"> ${resposta.descricao}
 						</span>
 						<c:if
@@ -237,8 +232,7 @@
 						</c:if>
 					</div>
 				</c:forEach>
-				<br>
-				<br>
+				<br> <br>
 				<div class="container">
 					<div id="div1" class="alert alert-success" role="alert"
 						style="display: none"></div>
@@ -247,8 +241,12 @@
 
 			<br>
 			<br>
-			<button type="button" id="btn"
-				class="btn btn-primary btn-xl page-scroll">Responder</button>
+			<a href="anteriorADM"> <button type="button" id="btn" class="btn btn-primary btn-xl page-scroll">Anterior</button>   </a>
+			
+			<button type="button" id="btn" class="btn btn-primary btn-xl page-scroll">Responder</button>
+			
+			
+			<a href="proximoADM">  <button type="button" id="btn" class="btn btn-primary btn-xl page-scroll">Proximo</button> </a>
 			<br>
 			<br>
 		</c:forEach>

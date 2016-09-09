@@ -130,7 +130,7 @@ public class PerguntaController {
 	    st.append("<td class='linha2'> " + p.getNivel() + " </td>");
 	    st.append("<td class='linha2'> " + p.getDisciplina() + " </td>");
 	    st.append("<td class='linha2'>");
-	    st.append("<a href='removerPergunta?id=" + p.getId()   + "' class='btn btn-danger' role='button'> Remover </a>");
+	    st.append("<a href='removerPergunta?id=" + p.getId()   + "'class='btn btn-danger' role='button'> Remover </a>");
 	    st.append("</td>");
 	    st.append("</tr>");
 
