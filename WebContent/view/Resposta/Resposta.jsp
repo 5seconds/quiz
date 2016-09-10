@@ -46,47 +46,58 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
-
 	$(document).ready(function() {
-		
+
 		$("#nivel").keyup(function() {
 			var nivel = $('#nivel').val();
 			var disciplina = $('#disciplina').val();
-			
+
 			$('#idNivel').val(nivel);
 			$('#idDisciplina').val(disciplina);
 		});
-		
+
 		$("#disciplina").change(function() {
 			var nivel = $('#nivel').val();
 			var disciplina = $('#disciplina').val();
-			
+
 			$('#idNivel').val(nivel);
 			$('#idDisciplina').val(disciplina);
 		});
 	});
-	
+
 	function marcarResposta(idPergunta, idResposta) {
-		
+
 		document.getElementById("idPergunta").value = idPergunta;
 		document.getElementById("idResposta").value = idResposta;
 	}
-	
-	
-	
-	 $(document).ready(function(){
-		 
-		 $("#div1").prop('disabled',false);
-		 
-		 
-         $("#btn").click(function(){
-             $.ajax({url: "view/Resposta/verificarResposta.jsp",data : {radioResposta : $('input:radio[name=radioResposta]:checked').val()}, success: function(result){
-             	 $("#div1").html(result);
-             	document.getElementById("div1").style.display = "";
-             }});
-         });
-     });
-	
+
+	$(document)
+			.ready(
+					function() {
+
+						$("#div1").prop('disabled', false);
+
+						$("#btn")
+								.click(
+										function() {
+											$
+													.ajax({
+														url : "view/Resposta/verificarResposta.jsp",
+														data : {
+															radioResposta : $(
+																	'input:radio[name=radioResposta]:checked')
+																	.val()
+														},
+														success : function(
+																result) {
+															$("#div1").html(
+																	result);
+															document
+																	.getElementById("div1").style.display = "";
+														}
+													});
+										});
+					});
 </script>
 
 
@@ -121,6 +132,7 @@
 
 
 </head>
+
 
 <body id="page-top">
 
@@ -204,8 +216,8 @@
 		id="Form1">
 
 		<input type="hidden" name="nivel" id="idNivel"
-			value="${pergunta.nivel.id}"> <input type="hidden" n
-			ame="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
+			value="${pergunta.nivel.id}"> <input type="hidden"
+			name="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
 		<input type="hidden" id="idPergunta" name="idPergunta" value="">
 		<input type="hidden" id="idResposta" name="idResposta" value="">
 
@@ -239,8 +251,29 @@
 
 			<br>
 			<br>
+
+
 			<button type="button" id="btn"
 				class="btn btn-primary btn-xl page-scroll">Responder</button>
+
+			<div>
+
+				<a href="anterior">
+					<button type="button" id="btn"
+						class="btn btn-primary btn-xl page-scroll">Anterior</button>
+				</a>
+
+			</div>
+
+
+			<div>
+
+				<a href="proximo">
+					<button type="button" id="btn"
+						class="btn btn-primary btn-xl page-scroll">Proximo</button>
+				</a>
+
+			</div>
 			<br>
 			<br>
 		</c:forEach>
