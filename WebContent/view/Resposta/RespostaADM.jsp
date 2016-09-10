@@ -46,47 +46,58 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
-
 	$(document).ready(function() {
-		
+
 		$("#nivel").keyup(function() {
 			var nivel = $('#nivel').val();
 			var disciplina = $('#disciplina').val();
-			
+
 			$('#idNivel').val(nivel);
 			$('#idDisciplina').val(disciplina);
 		});
-		
+
 		$("#disciplina").change(function() {
 			var nivel = $('#nivel').val();
 			var disciplina = $('#disciplina').val();
-			
+
 			$('#idNivel').val(nivel);
 			$('#idDisciplina').val(disciplina);
 		});
 	});
-	
+
 	function marcarResposta(idPergunta, idResposta) {
-		
+
 		document.getElementById("idPergunta").value = idPergunta;
 		document.getElementById("idResposta").value = idResposta;
 	}
-	
-	
-	
-	 $(document).ready(function(){
-		 
-		 $("#div1").prop('disabled',false);
-		 
-		 
-         $("#btn").click(function(){
-             $.ajax({url: "view/Resposta/verificarResposta.jsp",data : {radioResposta : $('input:radio[name=radioResposta]:checked').val()}, success: function(result){
-             	 $("#div1").html(result);
-             	document.getElementById("div1").style.display = "";
-             }});
-         });
-     });
-	
+
+	$(document)
+			.ready(
+					function() {
+
+						$("#div1").prop('disabled', false);
+
+						$("#btn")
+								.click(
+										function() {
+											$
+													.ajax({
+														url : "view/Resposta/verificarResposta.jsp",
+														data : {
+															radioResposta : $(
+																	'input:radio[name=radioResposta]:checked')
+																	.val()
+														},
+														success : function(
+																result) {
+															$("#div1").html(
+																	result);
+															document
+																	.getElementById("div1").style.display = "";
+														}
+													});
+										});
+					});
 </script>
 
 
@@ -203,7 +214,8 @@
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" method="post" action="responderADM" id="Form1">
+	<form class="form-horizontal" method="post" action="responderADM"
+		id="Form1">
 
 		<input type="hidden" name="nivel" id="idNivel"
 			value="${pergunta.nivel.id}"> <input type="hidden"
@@ -241,12 +253,29 @@
 
 			<br>
 			<br>
-			<a href="anteriorADM"> <button type="button" id="btn" class="btn btn-primary btn-xl page-scroll">Anterior</button>   </a>
-			
-			<button type="button" id="btn" class="btn btn-primary btn-xl page-scroll">Responder</button>
 			
 			
-			<a href="proximoADM">  <button type="button" id="btn" class="btn btn-primary btn-xl page-scroll">Proximo</button> </a>
+			<button type="button" id="btn"
+				class="btn btn-primary btn-xl page-scroll">Responder</button>
+
+			<div>
+			
+			<a href="anteriorADM">
+				<button type="button" id="btn"
+					class="btn btn-primary btn-xl page-scroll">Anterior</button>
+			</a>
+			
+			</div>
+
+
+			<div>
+			
+			<a href="proximoADM">
+				<button type="button" id="btn"
+					class="btn btn-primary btn-xl page-scroll">Proximo</button>
+			</a>
+			
+			</div>
 			<br>
 			<br>
 		</c:forEach>
