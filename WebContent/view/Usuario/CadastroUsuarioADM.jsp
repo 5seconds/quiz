@@ -107,9 +107,9 @@
 
 <body >
 <c:import url="/view/comum/menuADM.jsp" />
+    
     <header>
-        
-        
+          
         	<div class="container">
 			<div class="row main">
 				<div class="panel-heading">

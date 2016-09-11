@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<nav class="navbar navbar">
+<nav class="navbar navbar-inverse">
 		
 					<a class="navbar-brand page-scroll">Five Quiz</a>
 		            <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
@@ -19,7 +19,6 @@
 		
 					</ul>
 				
-		
-		
+			
 		</nav>
 	
