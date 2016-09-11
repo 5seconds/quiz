@@ -283,9 +283,8 @@
 						
 						
 						<div class="form-group ">
-							<button type="submit"class="btn btn-success">Cadastrar</button>
-					&nbsp;&nbsp;&nbsp;
-							<button type="reset"class="btn btn-danger dropdown-toggle">   Limpar   </button>
+							<button type="submit"class="btn btn-success">Alterar</button>
+					
 						</div>
 						
   
