@@ -117,9 +117,9 @@ public class PerguntaController {
 	st.append("<tr>");
 	st.append("<th class='linha'> ID </th>");
 	st.append("<th class='linha'> PERGUNTA  </th>");
-	st.append("<th class='linha'> NÍVEL  </th>");
+	st.append("<th class='linha'> NÃ�VEL  </th>");
 	st.append("<th class='linha'> DISCIPLINA  </th>");
-	st.append("<th class='linha'> AÇÔES  </th>");
+	st.append("<th class='linha'> AÃ‡Ã”ES  </th>");
 	st.append("</tr>");
 	st.append("<thead>");
 
@@ -152,6 +152,101 @@ public class PerguntaController {
 
 	return "forward:ExibirListarPerguntas";
     }
+    
+    @RequestMapping("PerguntabuscarPorId")
+	public String buscarPorId(Model model, Pergunta pergunta) {
+
+		DisciplinaDao dao1 = new DisciplinaDao();
+		List<Disciplina> listaDisciplina = dao1.listar();
+		model.addAttribute("listaDisciplina", listaDisciplina);
+
+		NivelDao dao2 = new NivelDao();
+		List<Nivel> listaNivel = dao2.listar();
+		model.addAttribute("listaNivel", listaNivel);
+
+		PerguntaDao dao = new PerguntaDao();
+		pergunta = dao.buscarPorId(pergunta.getId());
+		model.addAttribute("pergunta", pergunta);
+
+		for (int x = 0, c = 0, t = 1; c <= t; x++) {
+			AlternativaDao dao3 = new AlternativaDao();
+			Alternativas resposta1 = dao3.buscarPorId(x, pergunta);
+			if (resposta1 != null) {
+				c++;
+				if (c == t) {
+					model.addAttribute("resposta" + c + "", resposta1);
+					t++;
+
+					if (t == 5) {
+						break;
+					}
+				}
+			}
+		}
+
+		return "Perguntas/AlterarPerguntas";
+	}
+    
+    @RequestMapping("PerguntaAlterar")
+	public String alterar(Pergunta pergunta, Model model, HttpServletResponse response, HttpServletRequest request)
+			throws SQLException {
+
+		DisciplinaDao dao1 = new DisciplinaDao();
+		List<Disciplina> listaDisciplina = dao1.listar();
+		model.addAttribute("listaDisciplina", listaDisciplina);
+		ArrayList<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
+
+		for (int x = 1; x <= 4; x++) {
+			String alte = request.getParameter("optionsRadios");
+			Alternativas alternativa = new Alternativas();
+
+			alternativa.setDescricao(request.getParameter("resposta" + x));
+
+			if (request.getParameter("optionsRadios").equals(String.valueOf(x))) {
+
+				alternativa.setAlterCorreta("1");
+
+			} else {
+
+				alternativa.setAlterCorreta("0");
+			}
+
+			listaAlternativa.add(alternativa);
+		}
+
+		pergunta.setAlternativas(listaAlternativa);
+
+		NivelDao dao2 = new NivelDao();
+		List<Nivel> listaNivel = dao2.listar();
+		model.addAttribute("listaNivel", listaNivel);
+
+		PerguntaDao dao = new PerguntaDao();
+		dao.alterar(pergunta);
+
+		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
+		int idPergunta = dao.buscarUltimoId();
+		dao.fecharConexao();
+
+		pergunta.setId(idPergunta);
+		AlternativaDao daoAlter = new AlternativaDao();
+
+		Alternativas alternativas = daoAlter.buscarPorIdAlternativa(pergunta.getId());
+
+		int x = alternativas.getId();
+
+		for (Alternativas alternativa : pergunta.getAlternativas()) {
+
+			daoAlter.alterar(alternativa, idPergunta, x);
+			x++;
+
+		}
+
+		daoAlter.fecharConexao();
+		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
+		return "forward:ExibirListarPerguntas";
+
+	}
+
 /*
     @RequestMapping("/ListarDisciplinaNivel")
     public String ListarDisciplinaNivel(Model model) {
@@ -185,4 +280,6 @@ public class PerguntaController {
      * 
      * return "Perguntas/AlterarPergunta"; }
      */
+    
+    
 }

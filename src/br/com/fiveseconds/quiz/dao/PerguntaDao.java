@@ -40,6 +40,24 @@ public class PerguntaDao  {
 		}
 	}
 	
+	public void alterar(Pergunta pergunta) {
+
+		try {
+			String sql = "UPDATE Perguntas SET descricao = ?, idNivelFK = ?, idDisciplinaFK = ? WHERE id = ?";
+
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, pergunta.getDescricao());
+			stmt.setInt(2, pergunta.getNivel().getId());
+			stmt.setInt(3, pergunta.getDisciplina().getId());
+			stmt.setInt(4, pergunta.getId());
+			stmt.execute();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	
 	public int buscarUltimoId() {
 
 		try {

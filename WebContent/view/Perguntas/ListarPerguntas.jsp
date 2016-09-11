@@ -23,26 +23,24 @@
 	margin: 0px;
 }
 
-.linha{
-
-text-align: center; 
-font-size: 20px;
-color: yellow;
-font-size: 20px;
+.linha {
+	text-align: center;
+	font-size: 20px;
+	color: yellow;
+	font-size: 20px;
 }
 
-.linha2{
-
-text-align: center; 
-font-size: 22px;
-color: white;
-font-size: 20px;
-
+.linha2 {
+	text-align: center;
+	font-size: 22px;
+	color: white;
+	font-size: 20px;
 }
-.tabela { 
 
-border: 1px solid #000; 
-border-collapse: collapse; }
+.tabela {
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
 </style>
 
 
@@ -77,11 +75,13 @@ border-collapse: collapse; }
 <script type="text/javascript" src="view/js/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="view/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-		
+	$(document).ready(function() {
+
 		$("#descricao").keyup(function() {
 			var texto = $('#descricao').val();
-			$.post("AjaxPergunta", {'descricao' : texto, }, function(dados) {
+			$.post("AjaxPergunta", {
+				'descricao' : texto,
+			}, function(dados) {
 				$('#tabelaListarPergunta').html(dados);
 			});
 		});
@@ -96,13 +96,16 @@ $(document).ready(function() {
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
-			        	
-              <a class="navbar-brand page-scroll">Five Quiz</a>
-              <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
-			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuário</a>
-			<a class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar Usuário</a>
-			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
-			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
+
+			<a class="navbar-brand page-scroll">Five Quiz</a> <a
+				class="navbar-brand page-scroll" href="ExibirHomeAdm">Página
+				Inicial</a> <a class="navbar-brand page-scroll"
+				href="ExibirListarUsuario">Listar Usuário</a> <a
+				class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar
+				Usuário</a> <a class="navbar-brand page-scroll"
+				href="ExibirCadastroPerguntas">Cadastrar Perguntas</a> <a
+				class="navbar-brand page-scroll" href="ExibirListarPerguntas">Listar
+				Perguntas</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -123,9 +126,7 @@ $(document).ready(function() {
 
 
 
-    <header>
-        
-	<br>
+	<header> <br>
 	<br>
 	<br>
 
@@ -136,51 +137,59 @@ $(document).ready(function() {
 			<hr />
 		</div>
 	</div>
-	
-	
-	
-	
-	<br><br>
-	
-<center>
 
 
-	<div  style='color: black; font-weight: bold;'>
-    <input type="text"  id="descricao" name="descricao" autofocus="" placeholder="Digite a pergunta">
-  
-	</div>
-	<br><br><br>
 
 
-	<table  class="tabela" id="tabelaListarPergunta" border='1' style='width: 100%; text-align: center'>
-		<thead>
-			<tr >
-				<th class="linha" > ID</th>
-				<th class="linha" >PERGUNTA</th>
-				<th  class="linha">NÍVEL</th>
-				<th class="linha">DISCIPLINA </th>
-				<th class="linha"> AÇÕES </th>
-			</tr>
-		</thead>
+	<br>
+	<br>
 
-		<c:forEach var="pergunta" items="${LISTAR}">
-			<tr>
-				<td class="linha2"> ${pergunta.id}</td>
-				<td class="linha2">${pergunta.descricao}</td>
-				<td class="linha2">${pergunta.nivel}</td>
-				<td class="linha2">${pergunta.disciplina}</td>
-				<td class="linha2">	
-					<a href='removerPergunta?id=${pergunta.id}'onclick=" return confirm('Confirma exclusão do registro')" class="btn btn-danger" role="button"> Remover </a>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-	
-</center>
-	
-	
-	
-</header>
+	<center>
+
+
+		<div style='color: black; font-weight: bold;'>
+			<input type="text" id="descricao" name="descricao" autofocus=""
+				placeholder="Digite a pergunta">
+
+		</div>
+		<br>
+		<br>
+		<br>
+
+
+		<table class="tabela" id="tabelaListarPergunta" border='1'
+			style='width: 100%; text-align: center'>
+			<thead>
+				<tr>
+					<th class="linha">ID</th>
+					<th class="linha">PERGUNTA</th>
+					<th class="linha">NÍVEL</th>
+					<th class="linha">DISCIPLINA</th>
+					<th class="linha">AÇÕES</th>
+				</tr>
+			</thead>
+
+			<c:forEach var="pergunta" items="${LISTAR}">
+				<tr>
+					<td class="linha2">${pergunta.id}</td>
+					<td class="linha2">${pergunta.descricao}</td>
+					<td class="linha2">${pergunta.nivel}</td>
+					<td class="linha2">${pergunta.disciplina}</td>
+					<td class="linha2"><a
+						href='PerguntabuscarPorId?id=${pergunta.id}'
+						class="btn btn-danger" role="button"> Alterar </a> <a
+						href='removerPergunta?id=${pergunta.id}'
+						onclick=" return confirm('Confirma exclusão do registro')"
+						class="btn btn-danger" role="button"> Remover </a></td>
+				</tr>
+			</c:forEach>
+		</table>
+
+	</center>
+
+
+
+	</header>
 
 </body>
 
