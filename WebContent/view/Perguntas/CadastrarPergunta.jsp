@@ -131,7 +131,7 @@
 				},
 
 				optionsRadios : {
-					required : "Este campo é obrigatório",
+					required : "Selecione qual a resposta CORRETA",
 					
 				}
 			}
@@ -141,166 +141,153 @@
 </script>
 </head>
 
-<body id="page-top">
+<body >
 
-	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			        	
-              <a class="navbar-brand page-scroll">Five Quiz</a>
-              <a class="navbar-brand page-scroll" href="ExibirHomeAdm">Página Inicial</a>
-			<a class="navbar-brand page-scroll" href="ExibirListarUsuario">Listar Usuário</a>
-			<a class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar Usuário</a>
-			 <a class="navbar-brand page-scroll"href="ExibirCadastroPerguntas">Cadastrar Perguntas</a>
-			 <a class="navbar-brand page-scroll"href="ExibirListarPerguntas">Listar Perguntas</a>
+<c:import url="/view/comum/menuADM.jsp" />
+		
+
+<header>
+
+	<br><br><br><br><br><br>
+		<div class="panel-heading">
+
+		<div class="panel-title text-center">
+			<h1 class="title">Cadastrar Perguntas</h1>
+			<hr />
 		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-
-				<li><a class="page-scroll"> <b>Bem vindo,&nbsp;
-							${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-				<li><a class="page-scroll" href="logout"> Sair </a></li>
-
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
 	</div>
-	<!-- /.container-fluid --> </nav>
-
-	<header>
-
-
+	
+	<br><br><br>
+	
+		
 	<div class="container">
-		<div class="row main">
-			<div class="panel-heading">
-				<div class="panel-title text-center">
-					<h1 class="title">Cadastro de Perguntas</h1>
-					<hr />
-				</div>
-
-			</div>
-			<div class="main-login main-center">
-
-				<div class="mensagemCadastro" style="font-size: 20px; color: yellow; ">${mensagem}</div>
-
-				<form class="form-horizontal" method="post" action="CadastrarPerguntas" id="meuForm">
-
-					<div class="form-group">
-						<label for="name" class="cols-sm-2 control-label">Pergunta</label>
-							<div class="input-group">
-								<span class="input-group-addon">
-								<i class="glyphicon glyphicon-comment" aria-hidden="true"></i>
-								</span> 
-								<input type="text" class="form-control" name="descricao" id="descricao" autofocus="" placeholder="Digite sua Pergunta"/>
-							</div>
+	 <form  method="post" action="CadastrarPerguntas" id="meuForm" > 
+	    
+	    <div class="mensagemCadastro" style="font-size: 20px; color: yellow; "><b>${mensagem}</b></div>
+	    
+	    <div class="form-group row">
+	       <input type="text" class="form-control " name="descricao" id="descricao" autofocus="" placeholder="Digite sua Pergunta">
+	    </div>
+	    
+	       <label for="" class="cols-sm-2 control-label">
+							 Disciplina
+						</label> 
 						
-					</div>
-
-					
-
-					<label for="" class="cols-sm-2 control-label">
-						 Disciplina
-					</label> 
-					
-					<select name="disciplina" id="disciplina" class="btn btn-primary btn-lg btn-block login-button">
-
-						<option value="">Selecione</option>
-						<c:forEach items="${listaDisciplina}" var="obj">
-							<option value="${obj.id}">${obj.nome}</option>
-						</c:forEach>
-					</select>
-					 
-					 </br> 
-					
-					<label for="" class="cols-sm-2 control-label">
-						Nivel De Pergunta
-					</label> 
-					
-					<select name="nivel" id="nivel" class="btn btn-primary btn-lg btn-block login-button">
-
-						<option value="">Selecione</option>
-						<c:forEach items="${listaNivel}" var="obj">
-							<option value="${obj.id}">${obj.nome}</option>
-						</c:forEach>
-					</select> </br>
-					
-					
-					</br> 
-					
-					 <label for="" class="cols-sm-2 control-label">Resposta 1</label>
-
-					
-					<div class="input-group">
-						<span class="input-group-addon"> 
+						<select name="disciplina" id="disciplina" class="btn btn-primary  ">
+	
+							<option value="">Selecione</option>
+							<c:forEach items="${listaDisciplina}" var="obj">
+								<option value="${obj.id}">${obj.nome}</option>
+							</c:forEach>
+						</select>
+						 
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="1" >
-						</span> 
-						<input type="text" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta" autofocus="" class="form-control" >
-					</div>
-
-
-					 </br> 
-					 
-					 <label for="" class="cols-sm-2 control-label">Resposta 2</label>
-
-					
-					<div class="input-group">
-						<span class="input-group-addon"> 
+						<label for="" class="cols-sm-2 control-label">
+							Nivel De Pergunta
+						</label> 
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="2" >
-						</span> 
-						<input type="text" name="resposta2" id="resposta2" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
-					</div>
-
-					 </br> 
-					 
-					<label for="" class="cols-sm-2 control-label">Resposta 3</label>
-
-				
-					<div class="input-group">
-						<span class="input-group-addon"> 
+						<select name="nivel" id="nivel" class="btn btn-primary ">
+	
+							<option value="">Selecione</option>
+							<c:forEach items="${listaNivel}" var="obj">
+								<option value="${obj.id}">${obj.nome}</option>
+							</c:forEach>
+						</select> </br>
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="3" >
+						<br>
+	       
+	       
+	       
+	   <div class="row">
+	   		<div class="col-lg-15">
+			    <div class="input-group">
+			     
+			      <span class="input-group-addon">
+			        <input type="radio" name="optionsRadios" id="optionsRadios" value="1">
+			        
+			      </span>
+			      
+			      <input type="text" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			    	
+			    </div><!-- /input-group -->
+	  		</div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+	  
+	  <br>
+	  
+	    <div class="row">
+	   		<div class="col-lg-15">
+			    <div class="input-group">
+			     
+			      <span class="input-group-addon">
+			        <input type="radio" name="optionsRadios" id="optionsRadios" value="2">
+			        
+			      </span>
+			      
+			      <input type="text" name="resposta2" id="resposta2"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			    	
+			    </div><!-- /input-group -->
+	  		</div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+		
+		<br>
+		
+		 <div class="row">
+	   		<div class="col-lg-15">
+			    <div class="input-group">
+			     
+			      <span class="input-group-addon">
+			        <input type="radio" name="optionsRadios" id="optionsRadios" value="3">
+			        
+			      </span>
+			      
+			      <input type="text" name="resposta3" id="resposta3"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			    	
+			    </div><!-- /input-group -->
+	  		</div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+		
+		<br>
+		
+		 <div class="row">
+	   		<div class="col-lg-15">
+			    <div class="input-group">
+			     
+			      <span class="input-group-addon">
+			        <input type="radio" name="optionsRadios" id="optionsRadios" value="4">
+			        
+			      </span>
+			      
+			      <input type="text" name="resposta4" id="resposta4"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			    	
+			    </div><!-- /input-group -->
+	  		</div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+	     <br>
+	   
+	  			
+	                            </br> </br>
 						
-						</span> 
-						<input type="text" name="resposta3" id="resposta3" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
-					</div>
-
-					 </br>
-					 
-					  <label for="" class="cols-sm-2 control-label">Resposta 4</label>
-
-					
-					<div class="input-group">
-						<span class="input-group-addon"> 
 						
-						<input type="radio" name="optionsRadios" id="optionsRadios" value="4">
-						</span> 
-						<input type="text" name="resposta4" id="resposta4" placeholder="Digite sua Resposta" autofocus="" class="form-control" >
-					</div>
+						
+						<div class="form-group ">
+							<button type="submit"class="btn btn-success">Cadastrar</button>
+					&nbsp;&nbsp;&nbsp;
+							<button type="reset"class="btn btn-danger dropdown-toggle">   Limpar   </button>
+						</div>
+						
+  
+     
+</form>
+</div>
+	
 
 
 
-                            </br> </br>
-					
-					
-					
-					<div class="form-group ">
-						<button type="submit"
-							class="btn btn-primary btn-lg btn-block login-button">Cadastrar</button>
-					</div>
 
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	</header>
+</header>
 
 
 </body>

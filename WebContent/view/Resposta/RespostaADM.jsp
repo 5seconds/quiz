@@ -97,6 +97,28 @@
 														}
 													});
 										});
+						
+						
+						
+						$('#form').validate({
+
+							rules : {
+								
+								radioResposta : {
+									required : true,
+									
+								}
+
+							},
+							messages : {
+								
+								radioResposta : {
+									required : "Selecione qual a resposta CORRETA",
+									
+								}
+							}
+
+						});
 					});
 </script>
 
@@ -133,38 +155,9 @@
 
 </head>
 
-<body id="page-top">
+<body >
 
-	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-
-			<a class="navbar-brand page-scroll">Five Quiz</a> <a
-				class="navbar-brand page-scroll" href="ExibirHomeAdm">Página
-				Inicial</a> <a class="navbar-brand page-scroll"
-				href="ExibirListarUsuario">Listar Usuário</a> <a
-				class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar
-				Usuário</a> <a class="navbar-brand page-scroll"
-				href="ExibirCadastroPerguntas">Cadastrar Perguntas</a> <a
-				class="navbar-brand page-scroll" href="ExibirListarPerguntas">Listar
-				Perguntas</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-
-				<li><a class="page-scroll"> <b>Bem vindo,&nbsp;
-							${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-				<li><a class="page-scroll" href="logout"> Sair </a></li>
-
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
+	<c:import url="/view/comum/menuADM.jsp" />
 
 
 	<header> <br>
@@ -176,7 +169,7 @@
 	<br>
 	<br>
 
-	<form action="pesquisarPerguntaADM">
+	<form action="pesquisarPerguntaADM" id="form">
 		<center>
 
 			<span class="nivel"> Nível >> </span> <select name="nivel" id="nivel"
@@ -235,7 +228,7 @@
 				<c:forEach var="resposta" items="${pergunta.alternativas}">
 					<div class="divResposta">
 						<input type="radio" id="radioResposta" name="radioResposta"
-							value="${resposta.id}" required="required	"><span
+							value="${resposta.id}" required="required"><span
 							style="text-transform: uppercase;"> ${resposta.descricao}
 						</span>
 						<c:if
@@ -254,26 +247,37 @@
 			<br>
 			<br>
 			
+			<nav>
+				  <ul class="pager">
+				    <li><a href="anteriorADM">Anterior</a></li>
+				    
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   
+				    
+				    <button type="button" id="btn"class="btn btn-primary btn-xl page-scroll">Responder</button>
+				    
+				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    
+				    <li><a href="proximoADM">Proximo</a></li>
+				  </ul>
+				</nav>
 			
-			<button type="button" id="btn"
-				class="btn btn-primary btn-xl page-scroll">Responder</button>
+			
+			
 
 			<div>
 			
-			<a href="anteriorADM">
-				<button type="button" id="btn"
-					class="btn btn-primary btn-xl page-scroll">Anterior</button>
-			</a>
 			
-			</div>
-
-
-			<div>
+			     
+				
+				
 			
-			<a href="proximoADM">
-				<button type="button" id="btn"
-					class="btn btn-primary btn-xl page-scroll">Proximo</button>
-			</a>
+			
+			
+			
+			
 			
 			</div>
 			<br>

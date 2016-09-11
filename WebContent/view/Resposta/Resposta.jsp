@@ -97,6 +97,27 @@
 														}
 													});
 										});
+						
+						
+						$('#form').validate({
+
+							rules : {
+								
+								radioResposta : {
+									required : true,
+									
+								}
+
+							},
+							messages : {
+								
+								radioResposta : {
+									required : "Selecione qual a resposta CORRETA",
+									
+								}
+							}
+
+						});
 					});
 </script>
 
@@ -174,7 +195,7 @@
 	<br>
 	<br>
 
-	<form action="pesquisarPergunta">
+	<form action="pesquisarPergunta" id="form">
 		<center>
 
 			<span class="nivel"> Nível >> </span> <select name="nivel" id="nivel"
@@ -253,27 +274,22 @@
 			<br>
 
 
-			<button type="button" id="btn"
-				class="btn btn-primary btn-xl page-scroll">Responder</button>
-
-			<div>
-
-				<a href="anterior">
-					<button type="button" id="btn"
-						class="btn btn-primary btn-xl page-scroll">Anterior</button>
-				</a>
-
-			</div>
-
-
-			<div>
-
-				<a href="proximo">
-					<button type="button" id="btn"
-						class="btn btn-primary btn-xl page-scroll">Proximo</button>
-				</a>
-
-			</div>
+			<nav>
+				  <ul class="pager">
+				    <li><a href="anterior">Anterior</a></li>
+				    
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				   
+				    
+				    <button type="button" id="btn"class="btn btn-primary btn-xl page-scroll">Responder</button>
+				    
+				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				    
+				    <li><a href="proximo">Proximo</a></li>
+				  </ul>
+				</nav>
 			<br>
 			<br>
 		</c:forEach>

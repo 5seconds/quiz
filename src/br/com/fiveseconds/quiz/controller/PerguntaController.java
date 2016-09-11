@@ -117,9 +117,9 @@ public class PerguntaController {
 	st.append("<tr>");
 	st.append("<th class='linha'> ID </th>");
 	st.append("<th class='linha'> PERGUNTA  </th>");
-	st.append("<th class='linha'> NÃ�VEL  </th>");
+	st.append("<th class='linha'> NÍVEL  </th>");
 	st.append("<th class='linha'> DISCIPLINA  </th>");
-	st.append("<th class='linha'> AÃ‡Ã”ES  </th>");
+	st.append("<th class='linha'> AÇÕES  </th>");
 	st.append("</tr>");
 	st.append("<thead>");
 
@@ -130,7 +130,8 @@ public class PerguntaController {
 	    st.append("<td class='linha2'> " + p.getNivel() + " </td>");
 	    st.append("<td class='linha2'> " + p.getDisciplina() + " </td>");
 	    st.append("<td class='linha2'>");
-	    st.append("<a href='removerPergunta?id=" + p.getId()   + "'class='btn btn-danger' role='button'> Remover </a>");
+	    st.append("<a href='PerguntabuscarPorId?id=" + p.getId()   + "'class='btn btn-success' role='button'> Alterar </a>&nbsp;&nbsp;&nbsp;&nbsp;");
+	    st.append("<a href='removerPergunta?id=" + p.getId()   + "' onclick=' return confirm('Confirma exclusão do registro')'     class='btn btn-danger' role='button'> Remover </a>");
 	    st.append("</td>");
 	    st.append("</tr>");
 

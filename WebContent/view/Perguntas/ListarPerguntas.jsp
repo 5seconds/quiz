@@ -90,38 +90,9 @@
 
 </head>
 
-<body id="page-top">
+<body >
 
-	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-
-			<a class="navbar-brand page-scroll">Five Quiz</a> <a
-				class="navbar-brand page-scroll" href="ExibirHomeAdm">Página
-				Inicial</a> <a class="navbar-brand page-scroll"
-				href="ExibirListarUsuario">Listar Usuário</a> <a
-				class="navbar-brand page-scroll" href="ExibirCadastroUsuarioADM">Cadastrar
-				Usuário</a> <a class="navbar-brand page-scroll"
-				href="ExibirCadastroPerguntas">Cadastrar Perguntas</a> <a
-				class="navbar-brand page-scroll" href="ExibirListarPerguntas">Listar
-				Perguntas</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
-
-				<li><a class="page-scroll"> <b>Bem vindo,&nbsp;
-							${usuarioLogado.nome}</b></a></li> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-				<li><a class="page-scroll" href="logout"> Sair </a></li>
-
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
+	<c:import url="/view/comum/menuADM.jsp" />
 
 
 
@@ -175,12 +146,10 @@
 					<td class="linha2">${pergunta.descricao}</td>
 					<td class="linha2">${pergunta.nivel}</td>
 					<td class="linha2">${pergunta.disciplina}</td>
-					<td class="linha2"><a
-						href='PerguntabuscarPorId?id=${pergunta.id}'
-						class="btn btn-danger" role="button"> Alterar </a> <a
-						href='removerPergunta?id=${pergunta.id}'
-						onclick=" return confirm('Confirma exclusão do registro')"
-						class="btn btn-danger" role="button"> Remover </a></td>
+					<td class="linha2">
+					<a href='PerguntabuscarPorId?id=${pergunta.id}'	class="btn btn-success" role="button"> Alterar </a>
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+					<a href='removerPergunta?id=${pergunta.id}'	onclick=" return confirm('Confirma exclusão do registro')" class="btn btn-danger" role="button"> Remover </a></td>
 				</tr>
 			</c:forEach>
 		</table>
