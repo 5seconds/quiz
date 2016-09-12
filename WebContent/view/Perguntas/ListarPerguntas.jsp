@@ -117,12 +117,41 @@
 
 	<center>
 
-		
-		<div style='color: black; font-weight: bold; margin-left: 500px; margin-right: 500px' class="col-xs-6">
-		
-			<input type="text" class="form-control " id="descricao" name="descricao" autofocus=""		placeholder="Digite a pergunta">
+		<form action="ExibirListarPerguntas" id="form">
+		<center>
 
-		</div>
+			<span class="nivel"> Nível >> </span> <select name="nivel" id="nivel"
+				class="btn btn-primary  login-button">
+				<option value="">Selecione</option>
+
+				<c:forEach items="${listaNivel}" var="obj">
+
+					<option value="${obj.id}"
+						<c:if test="${obj.id eq pergunta.nivel.id}">selected="selected"</c:if>>${obj.nome}
+
+					</option>
+				</c:forEach>
+			</select> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="nivel">
+				Disciplina >> </span> <select name="disciplina" id="disciplina"
+				class="btn btn-primary  login-button">
+
+				<option value="">Selecione</option>
+
+				<c:forEach items="${listaDiciplina}" var="obj">
+
+					<option value="${obj.id}"
+						<c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}
+					</option>
+
+				</c:forEach>
+			</select> <br> <br> <br>
+			<div class="form-group ">
+				<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
+			</div>
+
+		</center>
+	</form>
+
 		<br>
 		<br>
 		<br>
@@ -141,7 +170,7 @@
 				</tr>
 			</thead>
 
-			<c:forEach var="pergunta" items="${LISTAR}">
+			<c:forEach var="pergunta" items="${listaPergunta}">
 				<tr>
 					<td style="width: 3%; vertical-align: middle; text-align: center; font-size: 15px;" >${pergunta.id}</td>
 					<td style="width: 50%; vertical-align: middle; text-align: center; font-size: 20px;">${pergunta.descricao}</td>

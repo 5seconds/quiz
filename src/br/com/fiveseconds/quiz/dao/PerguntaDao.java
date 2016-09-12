@@ -234,6 +234,7 @@ public class PerguntaDao  {
 		} catch (SQLException e) {
 		throw new RuntimeException(e);
 		}
+		
 		}
 	
 	public List<Pergunta> AjaxPergunta(String descricao) {

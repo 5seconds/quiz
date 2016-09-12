@@ -207,8 +207,7 @@
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" method="post" action="responder"
-		id="Form1">
+	<form class="form-horizontal" method="post" action="responder" id="Form1">
 
 		<input type="hidden" name="nivel" id="idNivel"
 			value="${pergunta.nivel.id}"> <input type="hidden"

@@ -94,16 +94,29 @@ public class PerguntaController {
         
         
     @RequestMapping("/ExibirListarPerguntas")
-    public String ExibirListarPerguntas(Model model) {
+    public String ExibirListarPerguntas(Model model,Pergunta pergunta) {
 
 	PerguntaDao dao = new PerguntaDao();
 	List<Pergunta> listarPergunta = dao.listar();
 	model.addAttribute("LISTAR", listarPergunta);
+	 	
+	NivelDao dao2 = new NivelDao();
+		List<Nivel> listaNivel = dao2.listar();
+		model.addAttribute("listaNivel", listaNivel);
+
+		DisciplinaDao dao3 = new DisciplinaDao();
+		List<Disciplina> listaDiciplina = dao3.listar();
+		model.addAttribute("listaDiciplina", listaDiciplina);
+		
+		PerguntaDao dao4 = new PerguntaDao();
+		List<Pergunta> listaPergunta = dao4.pesquisar(pergunta);
+		model.addAttribute("listaPergunta", listaPergunta);
+		model.addAttribute("pergunta", pergunta);
 
 	return "Perguntas/ListarPerguntas";
     }
     
-    
+    /*
     @RequestMapping("/AjaxPergunta")
     public @ResponseBody String AjaxPergunta(@RequestParam String descricao, HttpServletResponse response) {
 
@@ -143,7 +156,7 @@ public class PerguntaController {
 	return st.toString();
 
     }
-
+*/
     @RequestMapping("removerPergunta")
     public String removerPergunta(Pergunta pergunta, Model model) {
 
