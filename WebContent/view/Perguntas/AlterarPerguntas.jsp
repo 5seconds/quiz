@@ -167,9 +167,10 @@
 	    
 	    
 	    <div class="form-group row">
-	       <input type="text" class="form-control "value="${pergunta.descricao}" name="descricao" id="descricao"autofocus="" placeholder="Digite sua Pergunta">
+	       <b style="font-size: 25px;"> Pergunta </b>
+	       <textarea class="form-control" rows="2"  name="descricao" id="descricao"autofocus="">${pergunta.descricao }</textarea>
 	    </div>
-	    
+	    <br>
 	       <label for="" class="cols-sm-2 control-label">
 							 Disciplina
 						</label> 
@@ -204,9 +205,10 @@
 	       
 	       
 	   <div class="row">
+	  
 	   		<div class="col-lg-15">
 			    
-			     <label for="" class="cols-sm-2 control-label">Resposta 1</label>
+			     <label style="font-size: 25px;"> <b > Alternativa 1 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
@@ -224,8 +226,8 @@
 	  
 	    <div class="row">
 	   		<div class="col-lg-15">
-	   		
-	   		     <label for="" class="cols-sm-2 control-label" >Resposta 2</label>
+	   		<label style="font-size: 25px;"> <b > Alternativa 2 </b></label>
+	   		    
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
@@ -243,8 +245,7 @@
 		
 		 <div class="row">
 	   		<div class="col-lg-15">
-	   		
-	   				     <label for="" class="cols-sm-2 control-label">Resposta 3</label>
+	   		<label style="font-size: 25px;"> <b > Alternativa 3 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
@@ -262,7 +263,7 @@
 		
 		 <div class="row">
 	   		<div class="col-lg-15">
-	   		     <label for="" class="cols-sm-2 control-label">Resposta 4</label>
+	   		<label style="font-size: 25px;"> <b > Alternativa 4 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">

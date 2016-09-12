@@ -166,8 +166,10 @@
 	    <div class="mensagemCadastro" style="font-size: 20px; color: yellow; "><b>${mensagem}</b></div>
 	    
 	    <div class="form-group row">
-	       <input type="text" class="form-control " name="descricao" id="descricao" autofocus="" placeholder="Digite sua Pergunta">
+	      <b style="font-size: 25px;"> Pergunta </b>
+	       <textarea class="form-control" rows="2"  name="descricao" id="descricao" autofocus="" placeholder="Digite sua Pergunta"></textarea>
 	    </div>
+	    <br>
 	    
 	       				<label for="" class="cols-sm-2 control-label">
 							 Disciplina
@@ -202,6 +204,7 @@
 	       
 	   <div class="row">
 	   		<div class="col-lg-15">
+	   		 <label style="font-size: 25px;"> <b > Alternativa 1 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
@@ -209,7 +212,7 @@
 			        
 			      </span>
 			      
-			       <textarea class="form-control" rows="5" id="comment" name="resposta1" id="resposta1" placeholder="Digite sua Resposta"> </textarea>
+			       <textarea class="form-control" rows="5"  name="resposta1" id="resposta1" placeholder="Digite sua REsposta"> </textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -219,6 +222,7 @@
 	  
 	    <div class="row">
 	   		<div class="col-lg-15">
+	   		 <label style="font-size: 25px;"> <b > Alternativa 2 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
@@ -226,7 +230,7 @@
 			        
 			      </span>
 			      
-			      <textarea class="form-control" rows="5" id="comment" name="resposta2" id="resposta2" placeholder="Digite sua Resposta"> </textarea>
+			      <textarea class="form-control" rows="5" name="resposta2" id="resposta2" placeholder="Digite sua Resposta"> </textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -236,6 +240,7 @@
 		
 		 <div class="row">
 	   		<div class="col-lg-15">
+	   		 <label style="font-size: 25px;"> <b > Alternativa 3 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
@@ -243,7 +248,7 @@
 			        
 			      </span>
 			      
-			      <textarea class="form-control" rows="5" id="comment" name="resposta3" id="resposta3" placeholder="Digite sua Resposta"> </textarea>
+			      <textarea class="form-control" rows="5"  name="resposta3" id="resposta3" placeholder="Digite sua Resposta"> </textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -253,13 +258,14 @@
 		
 		 <div class="row">
 	   		<div class="col-lg-15">
+	   		 <label style="font-size: 25px;"> <b > Alternativa 4 </b></label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
 			        <input type="radio" name="optionsRadios" id="optionsRadios" value="4">
 			        
 			      </span>
-			      <textarea class="form-control" rows="5" id="comment" name="resposta4" id="resposta4" placeholder="Digite sua Resposta"> </textarea>
+			      <textarea class="form-control" rows="5" name="resposta4" id="resposta4" placeholder="Digite sua Resposta"> </textarea>
 			    
 			    	
 			    </div><!-- /input-group -->
