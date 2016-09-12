@@ -17,13 +17,14 @@ import br.com.fiveseconds.quiz.model.Pergunta;
 @Controller
 public class RespostaController {
 
-    int limit = 0;
+    public int limit = 0;
 
     // CLIENTE
 
     @RequestMapping("/ExibirJogo")
     public String ExibirJogo(Model model) {
 
+    limit = 0;
 	PerguntaDao dao = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
