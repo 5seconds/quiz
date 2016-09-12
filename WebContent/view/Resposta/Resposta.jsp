@@ -126,15 +126,13 @@
 .mensagemResposta {
 	font-family: sans-serif;
 	font-style: bold;
-	font-size: 15px;
-	text-align: right;
-	color: orange;
-	padding-left: 30px;
+	font-size: 25px;
+	
 }
 
 .divPergunta {
 	font-family: sans-serif;
-	font-style: italic;
+	font-style: bold;
 }
 
 .divResposta {
@@ -227,12 +225,12 @@
 				<c:forEach var="resposta" items="${pergunta.alternativas}">
 					<div class="divResposta">
 						<input type="radio" id="radioResposta" name="radioResposta"
-							value="${resposta.id}" required="required	"><span
-							style="text-transform: uppercase;"> ${resposta.descricao}
+							value="${resposta.id}" required="required	">
+							<span class="mensagemResposta"> ${resposta.descricao}</div> 
 						</span>
 						<c:if
 							test="${idPergunta eq pergunta.id and idResposta eq resposta.id}">
-							<span class="mensagemResposta"> ${msg} </span>
+							 ${msg} 
 						</c:if>
 					</div>
 				</c:forEach>
