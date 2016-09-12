@@ -169,7 +169,7 @@
 	       <input type="text" class="form-control " name="descricao" id="descricao" autofocus="" placeholder="Digite sua Pergunta">
 	    </div>
 	    
-	       <label for="" class="cols-sm-2 control-label">
+	       				<label for="" class="cols-sm-2 control-label">
 							 Disciplina
 						</label> 
 						

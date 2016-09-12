@@ -112,26 +112,26 @@ public class PerguntaController {
 
 	StringBuilder st = new StringBuilder();
 	st.append("<center>");
-	st.append("<table class='tabela' border='1' style='width: 100%; text-align: center'>");
+	st.append("<table id='tabelaListarPergunta'class='table' style='background-color:black ;'>");
 	st.append("<thead>");
 	st.append("<tr>");
-	st.append("<th class='linha'> ID </th>");
-	st.append("<th class='linha'> PERGUNTA  </th>");
-	st.append("<th class='linha'> NÍVEL  </th>");
-	st.append("<th class='linha'> DISCIPLINA  </th>");
-	st.append("<th class='linha'> AÇÕES  </th>");
+	st.append("<th style='width: 3%; vertical-align: middle; text-align: center; font-size: 20px';> ID </th>");
+	st.append("<th style='width: 50%; vertical-align: middle; text-align: center; font-size: 20px';> PERGUNTA  </th>");
+	st.append("<th style='width: 5%; vertical-align: middle; text-align: center; font-size: 20px';> NÍVEL  </th>");
+	st.append("<th style='width: 8%; vertical-align: middle; text-align: center; font-size: 20px';> DISCIPLINA  </th>");
+	st.append("<th style='width: 5%; vertical-align: middle; text-align: center; font-size: 20px';> AÇÕES  </th>");
 	st.append("</tr>");
 	st.append("<thead>");
 
 	for (Pergunta p : lista) {
 	    st.append("<tr>");
-	    st.append("<td class='linha2'> " + p.getId() + " </td>");
-	    st.append("<td class='linha2'> " + p.getDescricao() + " </td>");
-	    st.append("<td class='linha2'> " + p.getNivel() + " </td>");
-	    st.append("<td class='linha2'> " + p.getDisciplina() + " </td>");
-	    st.append("<td class='linha2'>");
-	    st.append("<a href='PerguntabuscarPorId?id=" + p.getId()   + "'class='btn btn-success' role='button'> Alterar </a>&nbsp;&nbsp;&nbsp;&nbsp;");
-	    st.append("<a href='removerPergunta?id=" + p.getId()   + "' onclick=' return confirm('Confirma exclusão do registro')'     class='btn btn-danger' role='button'> Remover </a>");
+	    st.append("<td style='width: 3%; vertical-align: middle; text-align: center; font-size: 15px;'> " + p.getId() + " </td>");
+	    st.append("<td style='width: 50%; vertical-align: middle; text-align: center; font-size: 20px;'> " + p.getDescricao() + " </td>");
+	    st.append("<td style='width: 5%; vertical-align: middle; text-align: center; font-size: 15px;color: yellow;'> " + p.getNivel().getNome() + " </td>");
+	    st.append("<td style='width: 8%; vertical-align: middle; text-align: center; font-size: 15px;color: pink;'> " + p.getDisciplina().getNome() + " </td>");
+	    st.append("<td style='width: 5%; vertical-align: middle; text-align: center; font-size: 15px;'>");
+	    st.append("<a href='PerguntabuscarPorId?id=" + p.getId()   + "'class='btn btn-warning' role='button'> E </a>&nbsp;");
+	    st.append("<a href='removerPergunta?id=" + p.getId()   + "'	class='btn btn-danger' role='button'> R </a>");
 	    st.append("</td>");
 	    st.append("</tr>");
 

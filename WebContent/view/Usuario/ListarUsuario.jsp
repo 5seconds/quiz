@@ -165,7 +165,7 @@ border-collapse: collapse; }
 				<td class="linha2">${usuario.nome}</td>
 				<td class="linha2">${usuario.email}</td>
 				<td class='linha2'>	
-					<a href="removerUsuario?id=${usuario.id}" onclick=" return confirm('Confirma exclusão do registro')" class="btn btn-danger" role="button"> Remover </a>
+					<a href="removerUsuario?id=${usuario.id}"	onclick=" return confirm('Confirma exclusão do registro')"class="btn btn-danger" role="button">R</a>
 				</td>
 			</tr>
 		</c:forEach>

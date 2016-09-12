@@ -67,7 +67,6 @@ insert into Usuario (nome,email,senha,tipoUsuarioFk) values ("Administrador", "a
 insert into Disciplina (nome) values ("Engenharia de Software");
 insert into Disciplina (nome) values ("Banco de Dados");
 insert into Disciplina (nome) values ("Desenvolvimento Web");
-insert into Disciplina (nome) values ("Lógica de Programação");
 
 insert into Nivel (nome) values ("Básico");
 insert into Nivel (nome) values ("Médio");

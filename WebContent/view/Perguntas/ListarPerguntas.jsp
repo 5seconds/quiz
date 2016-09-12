@@ -98,8 +98,8 @@
 
 
 	<header> <br>
-	<br>
-	<br>
+	
+
 
 	<div class="panel-heading">
 
@@ -117,39 +117,40 @@
 
 	<center>
 
-
-		<div style='color: black; font-weight: bold;'>
-			<input type="text" id="descricao" name="descricao" autofocus=""
-				placeholder="Digite a pergunta">
+		
+		<div style='color: black; font-weight: bold; margin-left: 500px; margin-right: 500px' class="col-xs-6">
+		
+			<input type="text" class="form-control " id="descricao" name="descricao" autofocus=""		placeholder="Digite a pergunta">
 
 		</div>
 		<br>
 		<br>
 		<br>
+		<br>
+	
 
 
-		<table class="tabela" id="tabelaListarPergunta" border='1'
-			style='width: 100%; text-align: center'>
-			<thead>
-				<tr>
-					<th class="linha">ID</th>
-					<th class="linha">PERGUNTA</th>
-					<th class="linha">NÍVEL</th>
-					<th class="linha">DISCIPLINA</th>
-					<th class="linha">AÇÕES</th>
+		<table  id="tabelaListarPergunta" class="table " style="background-color:black ;" >
+			<thead >
+				<tr >
+					<th style="width: 3%; vertical-align: middle; text-align: center; font-size: 20px;">ID</th>
+					<th style="width: 50%; vertical-align: middle; text-align: center; font-size: 20px;">PERGUNTA</th>
+					<th style="width: 5%; vertical-align: middle; text-align: center; font-size: 20px;">NÍVEL</th>
+					<th style="width: 8%; vertical-align: middle; text-align: center; font-size: 20px;">DISCIPLINA</th>
+					<th style="width: 5%; vertical-align: middle; text-align: center; font-size: 20px;">AÇÕES</th>
 				</tr>
 			</thead>
 
 			<c:forEach var="pergunta" items="${LISTAR}">
 				<tr>
-					<td class="linha2">${pergunta.id}</td>
-					<td class="linha2">${pergunta.descricao}</td>
-					<td class="linha2">${pergunta.nivel}</td>
-					<td class="linha2">${pergunta.disciplina}</td>
-					<td class="linha2">
-					<a href='PerguntabuscarPorId?id=${pergunta.id}'	class="btn btn-success" role="button"> Alterar </a>
-					&nbsp;&nbsp;&nbsp;&nbsp; 
-					<a href='removerPergunta?id=${pergunta.id}'	onclick=" return confirm('Confirma exclusão do registro')" class="btn btn-danger" role="button"> Remover </a></td>
+					<td style="width: 3%; vertical-align: middle; text-align: center; font-size: 15px;" >${pergunta.id}</td>
+					<td style="width: 50%; vertical-align: middle; text-align: center; font-size: 20px;">${pergunta.descricao}</td>
+					<td style="width: 5%; vertical-align: middle; text-align: center; font-size: 15px; color: yellow;">${pergunta.nivel.nome}</td>
+					<td style="width: 8%; vertical-align: middle; text-align: center; font-size: 15px;  color: pink;">${pergunta.disciplina.nome}</td>
+					<td style="width: 5%; vertical-align: middle; text-align: center; font-size: 15px;">
+					<a href='PerguntabuscarPorId?id=${pergunta.id}'	class="btn btn-warning" role="button">E</a> &nbsp;
+
+					<a href='removerPergunta?id=${pergunta.id}'	onclick=" return confirm('Confirma exclusão do registro')"class="btn btn-danger" role="button">R</a></td>
 				</tr>
 			</c:forEach>
 		</table>
