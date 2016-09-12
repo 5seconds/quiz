@@ -214,8 +214,8 @@
 			        
 			      </span>
 			      
-			      <input type="text" class="form-control" value="${resposta1.descricao }" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta" autofocus="" >
-			    	
+			     
+			    	  <textarea class="form-control" rows="5" id="comment" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta"> ${resposta1.descricao }</textarea>
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
 		</div><!-- /.row -->
@@ -225,15 +225,15 @@
 	    <div class="row">
 	   		<div class="col-lg-15">
 	   		
-	   		     <label for="" class="cols-sm-2 control-label">Resposta 2</label>
+	   		     <label for="" class="cols-sm-2 control-label" >Resposta 2</label>
 			    <div class="input-group">
 			     
 			      <span class="input-group-addon">
 			        <input type="radio" name="optionsRadios" id="optionsRadios" value="2">
 			        
 			      </span>
-			      
-			      <input type="text" value="${resposta2.descricao }" name="resposta2" id="resposta2"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			      <textarea class="form-control" rows="5" id="comment" name="resposta2" id="resposta2" placeholder="Digite sua Resposta"> ${resposta2.descricao }</textarea>
+			     
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -252,7 +252,7 @@
 			        
 			      </span>
 			      
-			      <input type="text" value="${resposta3.descricao }" name="resposta3" id="resposta3"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			          <textarea class="form-control" rows="5" id="comment" name="resposta3" id="resposta3" placeholder="Digite sua Resposta"> ${resposta3.descricao }</textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -270,7 +270,7 @@
 			        
 			      </span>
 			      
-			      <input type="text" value="${resposta4.descricao }" name="resposta4" id="resposta4"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			        <textarea class="form-control" rows="5" id="comment" name="resposta4" id="resposta4" placeholder="Digite sua Resposta"> ${resposta4.descricao }</textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->

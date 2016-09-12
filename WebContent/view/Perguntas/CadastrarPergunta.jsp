@@ -209,7 +209,7 @@
 			        
 			      </span>
 			      
-			      <input type="text" name="resposta1" id="resposta1"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			       <textarea class="form-control" rows="5" id="comment" name="resposta1" id="resposta1" placeholder="Digite sua Resposta"> </textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -226,7 +226,7 @@
 			        
 			      </span>
 			      
-			      <input type="text" name="resposta2" id="resposta2"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			      <textarea class="form-control" rows="5" id="comment" name="resposta2" id="resposta2" placeholder="Digite sua Resposta"> </textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -243,7 +243,7 @@
 			        
 			      </span>
 			      
-			      <input type="text" name="resposta3" id="resposta3"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			      <textarea class="form-control" rows="5" id="comment" name="resposta3" id="resposta3" placeholder="Digite sua Resposta"> </textarea>
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
@@ -259,8 +259,8 @@
 			        <input type="radio" name="optionsRadios" id="optionsRadios" value="4">
 			        
 			      </span>
-			      
-			      <input type="text" name="resposta4" id="resposta4"  placeholder="Digite sua Resposta" autofocus="" class="form-control">
+			      <textarea class="form-control" rows="5" id="comment" name="resposta4" id="resposta4" placeholder="Digite sua Resposta"> </textarea>
+			    
 			    	
 			    </div><!-- /input-group -->
 	  		</div><!-- /.col-lg-6 -->
