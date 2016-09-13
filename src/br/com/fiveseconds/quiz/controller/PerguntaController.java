@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.fiveseconds.quiz.dao.AlternativaDao;
 import br.com.fiveseconds.quiz.dao.DisciplinaDao;
@@ -26,7 +24,7 @@ import br.com.fiveseconds.quiz.model.Pergunta;
 public class PerguntaController {
 
     @RequestMapping("/ExibirCadastroPerguntas")
-    public String ExibirCadastroPerguntas(Model model) {
+    public String ExibirCadastroPerguntas(Model model) throws SQLException {
 
 	DisciplinaDao dao = new DisciplinaDao();
 	List<Disciplina> listaDisciplina = dao.listar();
@@ -35,7 +33,8 @@ public class PerguntaController {
 	NivelDao dao2 = new NivelDao();
 	List<Nivel> listaNivel = dao2.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao.fecharConexao();
+	dao2.fecharConexao();
 	return "Perguntas/CadastrarPergunta";
     }
 
@@ -85,7 +84,9 @@ public class PerguntaController {
 	for (Alternativas alternativa : pergunta.getAlternativas()) {
 	    daoAlter.salvar(alternativa, idPergunta);
 	}
-
+	dao2.fecharConexao();
+	dao.fecharConexao();
+	dao1.fecharConexao();
 	daoAlter.fecharConexao();
 	model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
 	return "Perguntas/CadastrarPergunta";
@@ -94,25 +95,30 @@ public class PerguntaController {
         
         
     @RequestMapping("/ExibirListarPerguntas")
-    public String ExibirListarPerguntas(Model model,Pergunta pergunta) {
+    public String ExibirListarPerguntas(Model model,Pergunta pergunta) throws SQLException {
 
-	PerguntaDao dao = new PerguntaDao();
-	List<Pergunta> listarPergunta = dao.listar();
-	model.addAttribute("LISTAR", listarPergunta);
-	 	
-	NivelDao dao2 = new NivelDao();
+        	PerguntaDao dao = new PerguntaDao();
+        	List<Pergunta> listarPergunta = dao.listar();
+        	model.addAttribute("LISTAR", listarPergunta);
+	 	dao.fecharConexao();
+        	
+		NivelDao dao2 = new NivelDao();
 		List<Nivel> listaNivel = dao2.listar();
 		model.addAttribute("listaNivel", listaNivel);
-
+		dao2.fecharConexao();
+		
 		DisciplinaDao dao3 = new DisciplinaDao();
 		List<Disciplina> listaDiciplina = dao3.listar();
 		model.addAttribute("listaDiciplina", listaDiciplina);
+		dao3.fecharConexao();
 		
 		PerguntaDao dao4 = new PerguntaDao();
 		List<Pergunta> listaPergunta = dao4.pesquisar(pergunta);
 		model.addAttribute("listaPergunta", listaPergunta);
 		model.addAttribute("pergunta", pergunta);
-
+		dao4.fecharConexao();
+		
+		
 	return "Perguntas/ListarPerguntas";
     }
     
@@ -158,30 +164,33 @@ public class PerguntaController {
     }
 */
     @RequestMapping("removerPergunta")
-    public String removerPergunta(Pergunta pergunta, Model model) {
+    public String removerPergunta(Pergunta pergunta, Model model) throws SQLException {
 
 	PerguntaDao dao = new PerguntaDao();
 	dao.remover(pergunta);
 	model.addAttribute("msg", "Pergunta Removida");
-
+	dao.fecharConexao();
 	return "forward:ExibirListarPerguntas";
     }
     
     @RequestMapping("PerguntabuscarPorId")
-	public String buscarPorId(Model model, Pergunta pergunta) {
+	public String buscarPorId(Model model, Pergunta pergunta) throws SQLException {
 
 		DisciplinaDao dao1 = new DisciplinaDao();
 		List<Disciplina> listaDisciplina = dao1.listar();
 		model.addAttribute("listaDisciplina", listaDisciplina);
-
+		dao1.fecharConexao();
+		
 		NivelDao dao2 = new NivelDao();
 		List<Nivel> listaNivel = dao2.listar();
 		model.addAttribute("listaNivel", listaNivel);
-
+		dao2.fecharConexao();
+		
 		PerguntaDao dao = new PerguntaDao();
 		pergunta = dao.buscarPorId(pergunta.getId());
 		model.addAttribute("pergunta", pergunta);
-
+		dao.fecharConexao();
+		
 		for (int x = 0, c = 0, t = 1; c <= t; x++) {
 			AlternativaDao dao3 = new AlternativaDao();
 			Alternativas resposta1 = dao3.buscarPorId(x, pergunta);
@@ -190,14 +199,17 @@ public class PerguntaController {
 				if (c == t) {
 					model.addAttribute("resposta" + c + "", resposta1);
 					t++;
+					dao3.fecharConexao();
 
 					if (t == 5) {
 						break;
 					}
 				}
 			}
+			dao3.fecharConexao();
 		}
 
+		
 		return "Perguntas/AlterarPerguntas";
 	}
     
@@ -209,6 +221,7 @@ public class PerguntaController {
 		List<Disciplina> listaDisciplina = dao1.listar();
 		model.addAttribute("listaDisciplina", listaDisciplina);
 		ArrayList<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
+		dao1.fecharConexao();
 
 		for (int x = 1; x <= 4; x++) {
 			String alte = request.getParameter("optionsRadios");
@@ -233,7 +246,8 @@ public class PerguntaController {
 		NivelDao dao2 = new NivelDao();
 		List<Nivel> listaNivel = dao2.listar();
 		model.addAttribute("listaNivel", listaNivel);
-
+		dao2.fecharConexao();
+		
 		PerguntaDao dao = new PerguntaDao();
 		dao.alterar(pergunta);
 
@@ -259,6 +273,7 @@ public class PerguntaController {
 		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
 		return "forward:ExibirListarPerguntas";
 
+		
 	}
 
 /*

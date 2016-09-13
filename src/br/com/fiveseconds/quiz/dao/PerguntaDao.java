@@ -208,20 +208,20 @@ public class PerguntaDao  {
 		
 		
 	    if (pergunta.getNivel() != null && pergunta.getDisciplina() == null) {
-		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idNivelFK = ? ORDER BY descricao");
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idNivelFK = ? ORDER BY id");
 		stmt.setInt(1, pergunta.getNivel().getId());
 		}
 	    else if (pergunta.getNivel() == null && pergunta.getDisciplina() != null) {
-		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? ORDER BY descricao");
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? ORDER BY id");
 		stmt.setInt(1, pergunta.getDisciplina().getId());
 		}
 	    else if (pergunta.getNivel() != null && pergunta.getDisciplina() != null) {
-		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? AND idNivelFK = ? ORDER BY descricao");
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? AND idNivelFK = ? ORDER BY id");
 		stmt.setInt(1, pergunta.getDisciplina().getId());
 		stmt.setInt(2, pergunta.getNivel().getId());
 		}
 	    else {
-		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas ORDER BY descricao");
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas ORDER BY id");
 		}
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {

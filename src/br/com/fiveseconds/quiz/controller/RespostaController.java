@@ -119,7 +119,7 @@ public class RespostaController {
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
-
+	
 	return "Resposta/Resposta";
     }
 
@@ -130,9 +130,9 @@ public class RespostaController {
 
 	// Código para popular o combo de categoria de produto
 
-	limit++;
+	
 	PerguntaDao dao = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao.listarPerguntaUnica(limit);
+	List<Pergunta> listaPergunta = dao.pesquisar(pergunta);
 	model.addAttribute("listaPergunta", listaPergunta);
 
 	NivelDao dao2 = new NivelDao();
