@@ -206,10 +206,17 @@ public class RespostaController {
 	model.addAttribute("listaDiciplina", listaDiciplina);
 
 	limit--;
+	if(limit < 1 ){
+	   
+	    return "forward:pesquisarPergunta";
+	}
+	else{
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 	dao3.fecharConexao();
+	}
+	
 	return "Resposta/Resposta";
     }
 
@@ -219,6 +226,7 @@ public class RespostaController {
     public String anteriorADM(Model model, Pergunta pergunta) throws SQLException {
 
 	
+
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
@@ -228,10 +236,16 @@ public class RespostaController {
 	model.addAttribute("listaDiciplina", listaDiciplina);
 
 	limit--;
+	if(limit < 1 ){
+	   
+	    return "forward:pesquisarPerguntaADM";
+	}
+	else{
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 	dao3.fecharConexao();
+	}
 
 	return "Resposta/RespostaADM";
     }

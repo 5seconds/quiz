@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Jogo</title>
+<title> Jogo </title>
 
 
 <!-- Bootstrap Core CSS -->
@@ -71,54 +71,46 @@
 		document.getElementById("idResposta").value = idResposta;
 	}
 
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 
-						$("#div1").prop('disabled', false);
+		$("#div1").prop('disabled', false);
 
-						$("#btn")
-								.click(
-										function() {
-											$
-													.ajax({
-														url : "view/Resposta/verificarResposta.jsp",
-														data : {
-															radioResposta : $(
-																	'input:radio[name=radioResposta]:checked')
-																	.val()
-														},
-														success : function(
-																result) {
-															$("#div1").html(
-																	result);
-															document
-																	.getElementById("div1").style.display = "";
-														}
-													});
-										});
+		$("#btn").click(function() {
+			
+			$.ajax({url : "view/Resposta/verificarResposta.jsp",data : {
+				
+					radioResposta : $('input:radio[name=radioResposta]:checked').val()
+																		},
+				success : function(result) {
+	
+					$("#div1").html(result);
+						document.getElementById("div1").style.display = "";
+						
+				}
+			});
+		});
 						
 						
-						$('#form').validate({
+						
+		$('#form').validate({
 
-							rules : {
-								
-								radioResposta : {
-									required : true,
-									
-								}
+			rules : {
+					radioResposta : {
+					required : true,
+					
+				}
 
-							},
-							messages : {
-								
-								radioResposta : {
-									required : "Selecione qual a resposta CORRETA",
-									
-								}
-							}
+			},
+			messages : {
+				
+					radioResposta : {
+					required : "Selecione qual a resposta CORRETA",
+					
+				}
+			}
 
-						});
-					});
+		});
+	});
 </script>
 
 
@@ -133,6 +125,17 @@
 .divPergunta {
 	font-family: sans-serif;
 	font-style: bold;
+	background-color: black;
+	color: white;
+	padding-right:40px;
+	padding-left: 40px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	text-align: justify;
+}
+.teste{
+	padding-right:400px;
+	padding-left: 400px;
 }
 
 .divResposta {
@@ -152,51 +155,63 @@
 
 </head>
 
-
 <body >
 
 	<c:import url="/view/comum/menu.jsp" />
 
 
-	<header> <br>
+<header> 
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
+	
 
 	<form action="pesquisarPergunta" id="form">
 		<center>
 
-			<span class="nivel"> Nível >> </span> <select name="nivel" id="nivel"
-				class="btn btn-primary  login-button">
-				<option value="">Selecione</option>
+			<span class="nivel"> Nível >> </span> 
+			
+			   <select name="nivel" id="nivel"	class="btn btn-primary  login-button">
+				
+				<option value=""> Selecione </option>
 
 				<c:forEach items="${listaNivel}" var="obj">
 
 					<option value="${obj.id}"
-						<c:if test="${obj.id eq pergunta.nivel.id}">selected="selected"</c:if>>${obj.nome}
+						
+						<c:if test="${obj.id eq pergunta.nivel.id}"> selected="selected" </c:if>> ${obj.nome}
 
 					</option>
+				
 				</c:forEach>
-			</select> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="nivel">
-				Disciplina >> </span> <select name="disciplina" id="disciplina"
-				class="btn btn-primary  login-button">
+			</select>
+			
+			 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			 
+			 <span class="nivel">	Disciplina >> </span>
+			 
+			  <select name="disciplina" id="disciplina"	class="btn btn-primary  login-button">
 
-				<option value="">Selecione</option>
+				<option value=""> Selecione </option>
 
 				<c:forEach items="${listaDiciplina}" var="obj">
 
 					<option value="${obj.id}"
-						<c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}
+					
+							<c:if test="${obj.id eq pergunta.disciplina.id}">selected="selected"</c:if>>${obj.nome}
+					
 					</option>
 
 				</c:forEach>
-			</select> <br> <br> <br>
+				
+			</select>
+			
+			 <br> <br> 
 			<div class="form-group ">
-				<button type="submit" class="btn btn-primary login-button">Pesquisar</button>
+				
+				<button type="submit"  class="btn btn-primary login-button"> Pesquisar </button>
+			
 			</div>
 
 		</center>
@@ -205,64 +220,66 @@
 	<br>
 	<br>
 	<br>
-	<form class="form-horizontal" method="post" action="responder" id="Form1">
+	<form class="form-horizontal" method="post" action="responder"	id="Form1">
 
-		<input type="hidden" name="nivel" id="idNivel"
-			value="${pergunta.nivel.id}"> <input type="hidden"
-			name="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
+		<input type="hidden" name="nivel" id="idNivel"	value="${pergunta.nivel.id}"> 
+		<input type="hidden"name="disciplina" id="idDisciplina" value="${pergunta.disciplina.id}">
 		<input type="hidden" id="idPergunta" name="idPergunta" value="">
 		<input type="hidden" id="idResposta" name="idResposta" value="">
 
 		<c:forEach var="pergunta" items="${listaPergunta}">
-
-			<div class="divPergunta">
-				<h3 style="text-transform: uppercase;">${pergunta.descricao}</h3>
-			</div>
-			<div class="form-group">
-				<br />
-
-
-				<c:forEach var="resposta" items="${pergunta.alternativas}">
-					<div class="divResposta">
-						<input type="radio" id="radioResposta" name="radioResposta"
-							value="${resposta.id}" required="required	">
-							<span class="mensagemResposta"> ${resposta.descricao}</div> 
-						</span>
-						<c:if
-							test="${idPergunta eq pergunta.id and idResposta eq resposta.id}">
-							 ${msg} 
-						</c:if>
-					</div>
-				</c:forEach>
-				<br> <br>
-				<div class="container">
-					<div id="div1" class="alert alert-success" role="alert"
-						style="display: none"></div>
-				</div>
-			</div>
-
-			<br>
-			<br>
-
-
-			<nav>
-				  <ul class="pager">
-				    <li><a href="anterior">Anterior</a></li>
-				    
-				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				   
-				    
-				    <button type="button" id="btn"class="btn btn-primary btn-xl page-scroll">Responder</button>
-				    
-				     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				    
-				    <li><a href="proximo">Proximo</a></li>
-				  </ul>
-				</nav>
-			<br>
-			<br>
+			
+						<div class="teste">
+							<h3 class="divPergunta" style="text-transform: uppercase;"> &nbsp;&nbsp;&nbsp;${pergunta.descricao}</h3>
+						</div>
+						
+						<div class="form-group">
+							<br />
+							<c:forEach var="resposta" items="${pergunta.alternativas}">
+			
+								<div class="divResposta">
+									<input type="radio" id="radioResposta" name="radioResposta"	value="${resposta.id}" required="required">
+										
+										<span class="mensagemResposta"> 
+										
+											&nbsp;&nbsp;${resposta.descricao}
+										</span>
+										<p></p>
+								</div>
+									
+									<c:if
+										test="${idPergunta eq pergunta.id and idResposta eq resposta.id}">
+										 ${msg} 
+									</c:if>
+							
+							</c:forEach>
+						</div>
+								
+							<br> <br>
+							
+							<div class="container">
+								<div id="div1" class="alert alert-success" role="alert"	style="display: none">
+								</div>
+							</div>
+						<br>
+						<br>
+						
+						<nav>
+							  <ul class="pager">
+								    <li> <a href="anterior">Anterior</a> </li>
+								    
+								    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								    
+								    <button type="button" id="btn"class="btn btn-primary btn-xl page-scroll">Responder</button>
+								    
+								     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								    
+								    <li><a href="proximo">Proximo</a></li>
+							  </ul>
+						</nav>
+						
+						<br>
+						<br>
 		</c:forEach>
 	</form>
 
@@ -274,7 +291,7 @@
 
 
 
-	</header>
+</header>
 
 </body>
 </html>

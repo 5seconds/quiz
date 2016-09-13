@@ -84,9 +84,7 @@ public class PerguntaController {
 	for (Alternativas alternativa : pergunta.getAlternativas()) {
 	    daoAlter.salvar(alternativa, idPergunta);
 	}
-	dao2.fecharConexao();
-	dao.fecharConexao();
-	dao1.fecharConexao();
+	
 	daoAlter.fecharConexao();
 	model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
 	return "Perguntas/CadastrarPergunta";

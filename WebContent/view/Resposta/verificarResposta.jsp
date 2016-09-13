@@ -3,12 +3,20 @@
 <%
 
 String idResposta = request.getParameter("radioResposta");
-
+int cont = 0;
 AlternativaDao dao = new AlternativaDao();
+
+
+
+
 if (dao.verificaRespostaCorreta(Integer.valueOf(idResposta))) {
-	out.write("Alternativa Correta");
-} else {
-	out.write("Alternativa incorreta");
+	cont++;
+     out.write(" Alternativa Correta  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Pontos: " + cont );
+} 
+
+
+else {
+	out.write(" <b> Alternativa incorreta </b>");
 }
 
 
