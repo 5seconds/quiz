@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 
 
+
+
 import br.com.fiveseconds.quiz.model.TipoUsuario;
 import br.com.fiveseconds.quiz.model.Usuario;
 
@@ -22,6 +24,7 @@ public class TipoUsuarioDao {
 	public TipoUsuarioDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -58,12 +61,13 @@ public class TipoUsuarioDao {
 
 		tipoUsuario.setId(rs.getInt("id"));
 		tipoUsuario.setNome(rs.getString("nome"));
+	
 		return tipoUsuario;
 	}
 	
 	
 public void fecharConexao() throws SQLException{
-		
+    System.out.println("Fechar conexao");
 		connection.close();
 	}
 

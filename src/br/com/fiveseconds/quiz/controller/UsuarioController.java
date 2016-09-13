@@ -87,18 +87,18 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/ExibirListarUsuario")
-	public String ExibirListarUsuario(Model model) {
+	public String ExibirListarUsuario(Model model) throws SQLException {
 
 		UsuarioDao dao = new UsuarioDao();
 		List<Usuario> listarUsuario = dao.listar();
 		model.addAttribute("listarUsuario", listarUsuario);
-
+		dao.fecharConexao();
 		return "Usuario/ListarUsuario";
 	}
 
 	@RequestMapping("/PesquisarUsuario")
 	public @ResponseBody String pesquisarUsuario(@RequestParam String nome, @RequestParam String email,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws SQLException {
 
 		UsuarioDao dao = new UsuarioDao();
 		List<Usuario> listarUsuario = dao.pesquisar(nome, email);
@@ -131,27 +131,29 @@ public class UsuarioController {
 		
 		
 		response.setStatus(200);
+		dao.fecharConexao();
 		return st.toString();
 
 	}
 
 	@RequestMapping("removerUsuario")
-	public String removerUsuario(Usuario usuario, Model model) {
+	public String removerUsuario(Usuario usuario, Model model) throws SQLException {
 
 		UsuarioDao dao = new UsuarioDao();
 		dao.remover(usuario);
 		model.addAttribute("msg", "Usuário Removido");
+		dao.fecharConexao();
 
 		return "forward:ExibirListarUsuario";
 	}
 
-	@RequestMapping("alterarUsuario")
+	/*@RequestMapping("alterarUsuario")
 	public String alterarUsuario(Usuario usuario, Model model) {
 
 		UsuarioDao dao = new UsuarioDao();
 		dao.alterar(usuario);
 		model.addAttribute("msg", "Usuário alterado com sucesso !");
-
+		
 		return "forward:ExibirListarUsuario";
 	}
 
@@ -164,5 +166,5 @@ public class UsuarioController {
 
 		return "Usuario/AlterarUsuario";
 	}
-
+    */
 }

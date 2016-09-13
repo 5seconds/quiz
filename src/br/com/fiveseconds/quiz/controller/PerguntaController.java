@@ -29,12 +29,13 @@ public class PerguntaController {
 	DisciplinaDao dao = new DisciplinaDao();
 	List<Disciplina> listaDisciplina = dao.listar();
 	model.addAttribute("listaDisciplina", listaDisciplina);
-
+	dao.fecharConexao();
+	
 	NivelDao dao2 = new NivelDao();
 	List<Nivel> listaNivel = dao2.listar();
 	model.addAttribute("listaNivel", listaNivel);
-	dao.fecharConexao();
 	dao2.fecharConexao();
+
 	return "Perguntas/CadastrarPergunta";
     }
 
@@ -71,13 +72,13 @@ public class PerguntaController {
 	NivelDao dao2 = new NivelDao();
 	List<Nivel> listaNivel = dao2.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	
+	
 	PerguntaDao dao = new PerguntaDao();
 	dao.salvar(pergunta);
 
 	int idPergunta = dao.buscarUltimoId();
-	dao.fecharConexao();
-
+	
 	pergunta.setId(idPergunta);
 	AlternativaDao daoAlter = new AlternativaDao();
 
@@ -85,8 +86,12 @@ public class PerguntaController {
 	    daoAlter.salvar(alternativa, idPergunta);
 	}
 	
-	daoAlter.fecharConexao();
 	model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
+	
+	dao2.fecharConexao();
+	dao.fecharConexao();
+	dao1.fecharConexao();
+	daoAlter.fecharConexao();
 	return "Perguntas/CadastrarPergunta";
     }
 
@@ -177,17 +182,17 @@ public class PerguntaController {
 		DisciplinaDao dao1 = new DisciplinaDao();
 		List<Disciplina> listaDisciplina = dao1.listar();
 		model.addAttribute("listaDisciplina", listaDisciplina);
-		dao1.fecharConexao();
+		
 		
 		NivelDao dao2 = new NivelDao();
 		List<Nivel> listaNivel = dao2.listar();
 		model.addAttribute("listaNivel", listaNivel);
-		dao2.fecharConexao();
+		
 		
 		PerguntaDao dao = new PerguntaDao();
 		pergunta = dao.buscarPorId(pergunta.getId());
 		model.addAttribute("pergunta", pergunta);
-		dao.fecharConexao();
+		
 		
 		for (int x = 0, c = 0, t = 1; c <= t; x++) {
 			AlternativaDao dao3 = new AlternativaDao();
@@ -197,7 +202,7 @@ public class PerguntaController {
 				if (c == t) {
 					model.addAttribute("resposta" + c + "", resposta1);
 					t++;
-					dao3.fecharConexao();
+					
 
 					if (t == 5) {
 						break;
@@ -206,8 +211,11 @@ public class PerguntaController {
 			}
 			dao3.fecharConexao();
 		}
-
 		
+		
+		dao1.fecharConexao();
+		dao2.fecharConexao();
+		dao.fecharConexao();
 		return "Perguntas/AlterarPerguntas";
 	}
     

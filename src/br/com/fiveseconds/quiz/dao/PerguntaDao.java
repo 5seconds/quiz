@@ -18,6 +18,7 @@ public class PerguntaDao  {
 	public PerguntaDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -344,16 +345,17 @@ public class PerguntaDao  {
 		int idDisciplina = rs.getInt("idDisciplinaFK");
 		DisciplinaDao dis = new DisciplinaDao();
 		pergunta.setDisciplina(dis.buscarPorId(idDisciplina));
+		dis.fecharConexao();
 		
 		int idNivel = rs.getInt("idNivelFK");
 		NivelDao niv = new NivelDao();
 		pergunta.setNivel(niv.buscarPorId(idNivel));
-		
+		niv.fecharConexao();
 		
 		AlternativaDao dao = new AlternativaDao();
 		ArrayList<Alternativas> lista = dao.listarPergunta(pergunta.getId());
 		pergunta.setAlternativas(lista);
-		
+		dao.fecharConexao();
 		
 		
 		
@@ -382,7 +384,7 @@ public class PerguntaDao  {
 	*/	
 	
 	public void fecharConexao() throws SQLException{
-		
+	    System.out.println("Fechar  conexao");
 		connection.close();
 	}
 	

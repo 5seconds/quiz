@@ -20,6 +20,7 @@ public class AlternativaDao {
 	public AlternativaDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -64,8 +65,7 @@ public class AlternativaDao {
 
 		try {
 			ArrayList<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
-			PreparedStatement stmt = this.connection
-					.prepareStatement("SELECT * FROM Alternativa WHERE idPerguntaFK = ?");
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM Alternativa WHERE idPerguntaFK = ?");
 			stmt.setInt(1, idPergunta);
 			ResultSet rs = stmt.executeQuery();
 
@@ -88,8 +88,7 @@ public class AlternativaDao {
 
 		try {
 			List<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
-			PreparedStatement stmt = this.connection
-					.prepareStatement("SELECT alterCorreta From Alternativa where id = ? and alterCorreta=1");
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT alterCorreta From Alternativa where id = ? and alterCorreta=1");
 			stmt.setInt(1, idResposta);
 		
 			
@@ -105,6 +104,7 @@ public class AlternativaDao {
 			connection.close();
 
 			if (resposta == 1) {
+			    
 				return true;
 			} else {
 				return false;
@@ -172,7 +172,7 @@ public class AlternativaDao {
 	}
 
 	public void fecharConexao() throws SQLException {
-
+	    System.out.println("Fechar conexao");
 		connection.close();
 	}
 }

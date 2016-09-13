@@ -20,6 +20,7 @@ public class NivelDao  {
 	public NivelDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -85,7 +86,7 @@ public class NivelDao  {
 	}
 	
 	public void fecharConexao() throws SQLException{
-		
+	    System.out.println("Fechar conexao");
 		connection.close();
 	}
 	

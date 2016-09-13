@@ -16,6 +16,7 @@ public class UsuarioDao {
 	public UsuarioDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -189,7 +190,7 @@ public class UsuarioDao {
 	}
 
 	public void fecharConexao() throws SQLException {
-
+	    System.out.println("FEchar conexao");
 		connection.close();
 	}
 

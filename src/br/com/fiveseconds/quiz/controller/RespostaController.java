@@ -23,41 +23,47 @@ public class RespostaController {
     // CLIENTE
 
     @RequestMapping("/ExibirJogo")
-    public String ExibirJogo(Model model) {
+    public String ExibirJogo(Model model) throws SQLException {
 
     limit = 0;
 	PerguntaDao dao = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
+	dao.fecharConexao();
 
 	NivelDao dao2 = new NivelDao();
 	List<Nivel> listaNivel = dao2.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao2.fecharConexao();
+	
 	DisciplinaDao dao3 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao3.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao3.fecharConexao();
+	
 	return "Resposta/Resposta";
     }
 
     // ADMINISTRADOR
 
     @RequestMapping("/ExibirJogoADM")
-    public String ExibirJogoADM(Model model) {
+    public String ExibirJogoADM(Model model) throws SQLException {
 
 	PerguntaDao dao = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao.listarPerguntaUnica(limit);
 	model.addAttribute("listaPergunta", listaPergunta);
-
+	dao.fecharConexao();
+	
 	NivelDao dao2 = new NivelDao();
 	List<Nivel> listaNivel = dao2.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao2.fecharConexao();
+	
 	DisciplinaDao dao3 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao3.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao3.fecharConexao();
+	
 	return "Resposta/RespostaADM";
     }
 
@@ -110,11 +116,13 @@ public class RespostaController {
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao.fecharConexao();
+	
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao2.fecharConexao();
+	
 	limit++;
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
@@ -129,21 +137,24 @@ public class RespostaController {
     // ADMINISTRADOR
 
     @RequestMapping("/pesquisarPerguntaADM")
-    public String pesquisarPerguntaADM(Pergunta pergunta, Model model) {
+    public String pesquisarPerguntaADM(Pergunta pergunta, Model model) throws SQLException {
 
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao.fecharConexao();
+	
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao2.fecharConexao();
+	
 	limit++;
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
-
+	dao3.fecharConexao();
+	
 	return "Resposta/RespostaADM";
     }
 
@@ -156,11 +167,13 @@ public class RespostaController {
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao.fecharConexao();
+	
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao2.fecharConexao();
+	
 	limit++;
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
@@ -179,11 +192,13 @@ public class RespostaController {
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao.fecharConexao();
+	
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao2.fecharConexao();
+	
 	limit++;
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
@@ -200,11 +215,13 @@ public class RespostaController {
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
-
+	dao.fecharConexao();
+	
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao2.fecharConexao();
+	
 	limit--;
 	if(limit < 1 ){
 	   
@@ -230,11 +247,13 @@ public class RespostaController {
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
+	dao.fecharConexao();
 
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
-
+	dao2.fecharConexao();
+	
 	limit--;
 	if(limit < 1 ){
 	   

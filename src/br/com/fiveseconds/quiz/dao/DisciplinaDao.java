@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import br.com.fiveseconds.quiz.model.Disciplina;
 import br.com.fiveseconds.quiz.model.Usuario;
 
@@ -19,6 +22,7 @@ public class DisciplinaDao  {
 	public DisciplinaDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -83,7 +87,7 @@ public class DisciplinaDao  {
 	}
 
 	public void fecharConexao() throws SQLException{
-		
+	    System.out.println("Fechar conexao");
 		connection.close();
 	}
 }

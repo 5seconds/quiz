@@ -18,6 +18,7 @@ public class LoginDao  {
 	public LoginDao() {
 		try {
 			this.connection = new ConnectionFactory().getConnection();
+			System.out.println("Abrir conexao");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -88,12 +89,13 @@ public class LoginDao  {
 		TipoUsuarioDao dao = new TipoUsuarioDao();
 		TipoUsuario tipoUsuario = dao.buscarPorId(id);
 		usuario.setTipoUsuario(tipoUsuario);
+		dao.fecharConexao();
 		return usuario;
 	}
 
 
 	public void fecharConexao() throws SQLException{
-		
+	    System.out.println("Fechar conexao");
 		connection.close();
 	}
 	
