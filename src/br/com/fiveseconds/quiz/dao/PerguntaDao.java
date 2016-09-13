@@ -237,6 +237,48 @@ public class PerguntaDao  {
 		
 		}
 	
+	public List<Pergunta> pesquisarLimit(Pergunta pergunta, int limit) {
+		limit  = 0;
+	    
+	    try {
+		List<Pergunta> listaPergunta = new ArrayList<Pergunta>();
+		PreparedStatement stmt = null;
+		
+		
+		
+	    if (pergunta.getNivel() != null && pergunta.getDisciplina() == null) {
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idNivelFK = ? LIMIT ?,1");
+		stmt.setInt(1, pergunta.getNivel().getId());
+		stmt.setInt(2, limit);
+		}
+	    else if (pergunta.getNivel() == null && pergunta.getDisciplina() != null) {
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? LIMIT ?,1");
+		stmt.setInt(1, pergunta.getDisciplina().getId());
+		stmt.setInt(2, limit);
+		}
+	    else if (pergunta.getNivel() != null && pergunta.getDisciplina() != null) {
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas WHERE idDisciplinaFK = ? AND idNivelFK = ? LIMIT ?,1");
+		stmt.setInt(1, pergunta.getDisciplina().getId());
+		stmt.setInt(2, pergunta.getNivel().getId());
+		stmt.setInt(3, limit);
+		}
+	    else {
+		stmt = this.connection.prepareStatement("SELECT * FROM Perguntas LIMIT ?,1");
+		}
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			listaPergunta.add(montarObjeto(rs));
+		}
+		rs.close();
+		stmt.close();
+		connection.close();
+		return listaPergunta;
+		} catch (SQLException e) {
+		throw new RuntimeException(e);
+		}
+		
+		}
+	
 	public List<Pergunta> AjaxPergunta(String descricao) {
 
 		try {
