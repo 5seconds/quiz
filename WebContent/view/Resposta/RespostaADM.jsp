@@ -216,9 +216,11 @@
 
 		</center>
 	</form>
+	
 
 	<br>
 	<br>
+	<div class="mensagemCadastro" style="font-size: 20px; color: red; "> ${msg} </div>
 	<br>
 	<form class="form-horizontal" method="post" action="responderADM"	id="Form1">
 
@@ -281,6 +283,8 @@
 						<br>
 						<br>
 		</c:forEach>
+		
+		
 	</form>
 
 	<br />

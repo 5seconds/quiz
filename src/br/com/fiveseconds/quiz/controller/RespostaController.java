@@ -128,7 +128,7 @@ public class RespostaController {
 	model.addAttribute("listaDiciplina", listaDiciplina);
 	dao2.fecharConexao();
 	
-	limit++;
+	
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
@@ -144,7 +144,7 @@ public class RespostaController {
     @RequestMapping("/pesquisarPerguntaADM")
     public String pesquisarPerguntaADM(Pergunta pergunta, Model model) throws SQLException {
 
-	limit=0;
+	limit= 0;
 	this.disicplina = pergunta.getDisciplina();
 	this.nivel = pergunta.getNivel();
 	
@@ -158,7 +158,6 @@ public class RespostaController {
 	model.addAttribute("listaDiciplina", listaDiciplina);
 	dao2.fecharConexao();
 	
-	limit++;
 	PerguntaDao dao3 = new PerguntaDao();
 	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
@@ -187,8 +186,8 @@ public class RespostaController {
 	
 	limit++;
 	if(limit > 4 ){
-	   
-	    return "forward:pesquisarPerguntaADM";
+	    model.addAttribute("msg", "Informe o Nivel e/ou Disciplina");
+	    return "forward:pesquisarPergunta";
 	}
 	else{
 	PerguntaDao dao3 = new PerguntaDao();
@@ -221,7 +220,7 @@ public class RespostaController {
 	
 	limit++;
 	if(limit > 4){
-	   
+	    model.addAttribute("msg", "Informe o Nivel e/ou Disciplina");
 	    return "forward:pesquisarPerguntaADM";
 	}
 	else{
@@ -252,7 +251,7 @@ public class RespostaController {
 	
 	limit--;
 	if(limit < 0 ){
-	   
+	    model.addAttribute("msg", "Informe o Nivel e/ou Disciplina");
 	    return "forward:pesquisarPergunta";
 	}
 	else{
@@ -285,8 +284,8 @@ public class RespostaController {
 	
 	limit--;
 	if(limit < 0 ){
-	   
-	    return "forward:pesquisarPergunta";
+	    model.addAttribute("msg", "Informe o Nivel e/ou Disciplina");
+	    return "forward:pesquisarPerguntaADM";
 	}
 	else{
 	PerguntaDao dao3 = new PerguntaDao();

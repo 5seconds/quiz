@@ -8,7 +8,6 @@ import java.util.List;
 
 import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Pergunta;
-import br.com.fiveseconds.quiz.model.Usuario;
 
 public class PerguntaDao  {
 
@@ -357,7 +356,8 @@ public class PerguntaDao  {
 		pergunta.setAlternativas(lista);
 		dao.fecharConexao();
 		
-		
+		pergunta.setAlternativas(lista);
+		dao.fecharConexao();
 		
 		return pergunta;
 		
@@ -382,6 +382,24 @@ public class PerguntaDao  {
 		}
 	}
 	*/	
+	
+	public void salvarResposta(int idPergunta, int codigoUsuario, String respostaCorreta) {
+		try {
+			String sql = "INSERT INTO Resposta (idPerguntasFK,idUsuarioFK,correto) VALUES (?,?,?)";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, idPergunta);
+			stmt.setInt(2, codigoUsuario);
+			stmt.setString(3, respostaCorreta);
+			
+
+			stmt.execute();
+			
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	
 	public void fecharConexao() throws SQLException{
 	    System.out.println("Fechar  conexao");
