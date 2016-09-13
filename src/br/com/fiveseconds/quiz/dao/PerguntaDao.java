@@ -239,7 +239,7 @@ public class PerguntaDao  {
 		}
 	
 	public List<Pergunta> pesquisarLimit(Pergunta pergunta, int limit) {
-		limit  = 0;
+		//limit  = 0;
 	    
 	    try {
 		List<Pergunta> listaPergunta = new ArrayList<Pergunta>();

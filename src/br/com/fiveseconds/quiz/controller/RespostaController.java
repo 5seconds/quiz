@@ -19,6 +19,8 @@ import br.com.fiveseconds.quiz.model.Pergunta;
 public class RespostaController {
 
     public int limit = 0;
+    public Nivel nivel= null;
+    public Disciplina disicplina= null;
 
     // CLIENTE
 
@@ -111,8 +113,11 @@ public class RespostaController {
 
     @RequestMapping("/pesquisarPergunta")
     public String pesquisarPergunta(Pergunta pergunta, Model model) throws SQLException {
-
-
+	
+	limit=0;
+	this.disicplina = pergunta.getDisciplina();
+	this.nivel = pergunta.getNivel();
+	
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
@@ -139,6 +144,10 @@ public class RespostaController {
     @RequestMapping("/pesquisarPerguntaADM")
     public String pesquisarPerguntaADM(Pergunta pergunta, Model model) throws SQLException {
 
+	limit=0;
+	this.disicplina = pergunta.getDisciplina();
+	this.nivel = pergunta.getNivel();
+	
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
@@ -163,7 +172,9 @@ public class RespostaController {
     @RequestMapping("/proximo")
     public String proximo(Model model, Pergunta pergunta) throws SQLException {
 
-		
+	pergunta.setDisciplina(this.disicplina);
+	pergunta.setNivel(this.nivel);
+	
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
@@ -175,10 +186,16 @@ public class RespostaController {
 	dao2.fecharConexao();
 	
 	limit++;
+	if(limit > 4 ){
+	   
+	    return "forward:pesquisarPerguntaADM";
+	}
+	else{
 	PerguntaDao dao3 = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
+	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 	dao3.fecharConexao();
+	}
 
 	return "Resposta/Resposta";
     }
@@ -188,6 +205,9 @@ public class RespostaController {
     @RequestMapping("/proximoADM")
     public String proximoADM(Model model, Pergunta pergunta) throws SQLException {
 
+
+	pergunta.setDisciplina(this.disicplina);
+	pergunta.setNivel(this.nivel);
 	
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
@@ -200,17 +220,25 @@ public class RespostaController {
 	dao2.fecharConexao();
 	
 	limit++;
+	if(limit > 4){
+	   
+	    return "forward:pesquisarPerguntaADM";
+	}
+	else{
 	PerguntaDao dao3 = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
+	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 	dao3.fecharConexao();
-
+	}
 	return "Resposta/RespostaADM";
     }
 
     // CLIENTE
     @RequestMapping("/anterior")
     public String anterior(Model model, Pergunta pergunta) throws SQLException {
+	
+	pergunta.setDisciplina(this.disicplina);
+	pergunta.setNivel(this.nivel);
 	
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
@@ -223,13 +251,13 @@ public class RespostaController {
 	dao2.fecharConexao();
 	
 	limit--;
-	if(limit < 1 ){
+	if(limit < 0 ){
 	   
 	    return "forward:pesquisarPergunta";
 	}
 	else{
 	PerguntaDao dao3 = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
+	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 	dao3.fecharConexao();
 	}
@@ -242,26 +270,27 @@ public class RespostaController {
     @RequestMapping("/anteriorADM")
     public String anteriorADM(Model model, Pergunta pergunta) throws SQLException {
 
+	pergunta.setDisciplina(this.disicplina);
+	pergunta.setNivel(this.nivel);
 	
-
 	NivelDao dao = new NivelDao();
 	List<Nivel> listaNivel = dao.listar();
 	model.addAttribute("listaNivel", listaNivel);
 	dao.fecharConexao();
-
+	
 	DisciplinaDao dao2 = new DisciplinaDao();
 	List<Disciplina> listaDiciplina = dao2.listar();
 	model.addAttribute("listaDiciplina", listaDiciplina);
 	dao2.fecharConexao();
 	
 	limit--;
-	if(limit < 1 ){
+	if(limit < 0 ){
 	   
-	    return "forward:pesquisarPerguntaADM";
+	    return "forward:pesquisarPergunta";
 	}
 	else{
 	PerguntaDao dao3 = new PerguntaDao();
-	List<Pergunta> listaPergunta = dao3.listarPerguntaUnica(limit);
+	List<Pergunta> listaPergunta = dao3.pesquisarLimit(pergunta, limit);
 	model.addAttribute("listaPergunta", listaPergunta);
 	dao3.fecharConexao();
 	}
