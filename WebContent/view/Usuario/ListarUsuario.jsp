@@ -1,23 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<html lang="pt">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
 <head>
-
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<title>Listar Usuário</title>
+<title>Listar Usuarios</title>
 
+<!-- Bootstrap Core CSS -->
+<link href="view/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="view/css/Form.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="view/css/font-awesome.min.css" rel="stylesheet"	type="text/css">
+<link	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+<!-- Plugin CSS -->
+<link href="view/css/magnific-popup.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="view/css/creative.min.css" rel="stylesheet">
+
+<script type="text/javascript"	src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+<script type="text/javascript"	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="view/js/ListarUsuario.js"> </script>
 
 <style type="text/css">
 .pagina {
@@ -45,72 +58,6 @@ font-size: 22px;
 border: 1px solid #000; 
 border-collapse: collapse; }
 </style>
-
-
-
-
-
-<!-- Bootstrap Core CSS -->
-<link href="view/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="view/css/Form.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="view/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-	rel='stylesheet' type='text/css'>
-
-<!-- Plugin CSS -->
-<link href="view/css/magnific-popup.css" rel="stylesheet">
-
-<!-- Theme CSS -->
-<link href="view/css/creative.min.css" rel="stylesheet">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-<script type="text/javascript" src="view/js/jquery-2.1.4.js"></script>
-<script type="text/javascript" src="view/bootstrap/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-
-
-
-	$(document).ready(function() {
-		
-		$("#nome").keyup(function() {
-			var texto = $('#nome').val();
-			var email = $('#email').val();
-			$.post("PesquisarUsuario", {'nome' : texto, 'email' : email}, function(dados) {
-				$('#tabelaListarUsuario').html(dados);
-			});
-		});
-
-		$("#email").keyup(function() {
-			var texto = $('#nome').val();
-			var email = $('#email').val();
-			$.post("PesquisarUsuario", {'nome' : texto, 'email' : email}, function(dados) {
-				$('#tabelaListarUsuario').html(dados);
-			});
-		});
-		
-				
-	});
-	
-
-</script>
-
-
-	
-
 </head>
 
 <body >
@@ -129,7 +76,7 @@ border-collapse: collapse; }
 	<div class="panel-heading">
 
 		<div class="panel-title text-center">
-			<h1 class="title">Pesquisar Usuário</h1>
+			<h1 class="title">Pesquisar UsuÃ¡rio</h1>
 			<hr />
 		</div>
 	</div>
@@ -155,7 +102,7 @@ border-collapse: collapse; }
 				<th class="linha"> ID</th>
 				<th class="linha" >NOME</th>
 				<th  class="linha">EMAIL</th>
-				<th  class="linha">AÇÕES</th>
+				<th  class="linha">AÃ‡Ã•ES</th>
 			</tr>
 		</thead>
 		<c:forEach var="usuario" items="${listarUsuario}">
@@ -165,7 +112,7 @@ border-collapse: collapse; }
 				<td class="linha2">${usuario.nome}</td>
 				<td class="linha2">${usuario.email}</td>
 				<td class='linha2'>	
-					<a href="removerUsuario?id=${usuario.id}"	onclick=" return confirm('Confirma exclusão do registro')"class="btn btn-danger" role="button">R</a>
+					<a href="removerUsuario?id=${usuario.id}"	onclick=" return confirm('Confirma exclusÃ£o do registro')"class="btn btn-danger" role="button">R</a>
 				</td>
 			</tr>
 		</c:forEach>
