@@ -6,12 +6,12 @@ String idResposta = request.getParameter("radioResposta");
 AlternativaDao dao = new AlternativaDao();
 
 if (dao.verificaRespostaCorreta(Integer.valueOf(idResposta))) {
-     out.write(" Alternativa Correta  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> Pontos: " );
+     out.write("<b style='font-size: 20px;'> Parabéns, Você acertou! </b>" );
 } 
 
 
 else {
-	out.write(" <b> Alternativa incorreta </b>");
+	out.write(" <b style='font-size: 15px;'> Alternativa incorreta </b>");
 }
 
     

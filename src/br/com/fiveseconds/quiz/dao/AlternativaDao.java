@@ -15,7 +15,7 @@ import br.com.fiveseconds.quiz.model.Usuario;
 
 public class AlternativaDao {
 
-  
+  /*
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +24,7 @@ public class AlternativaDao {
 	HttpServletRequest req = (HttpServletRequest); 
 
 	
-
+*/
 	private com.mysql.jdbc.Connection connection;
 
 	public AlternativaDao() {
@@ -105,27 +105,27 @@ public class AlternativaDao {
 			ResultSet rs = stmt.executeQuery();
 			
 			int resposta = 0;
-			int idPergunta =0;
+	//		int idPergunta =0;
 			if (rs.next()) {
 				resposta = rs.getInt("alterCorreta");
-				idPergunta = rs.getInt("idPerguntaFK");
+	//			idPergunta = rs.getInt("idPerguntaFK");
 			}
 			rs.close();
 			stmt.close();
 
-			PerguntaDao dao = new PerguntaDao();
+	//		PerguntaDao dao = new PerguntaDao();
 
 
 
-			HttpSession session = (HttpSession) req.getSession();
+			/*HttpSession session = (HttpSession) req.getSession();
 			Usuario usr = (Usuario) session.getAttribute("usuarioLogado");
-
+	*/
 
 			if (resposta == 1) {
-				dao.salvarResposta(idPergunta, usr.getId(), "1");
+				//dao.salvarResposta(idPergunta, usr.getId(), "1");
 				return true;
 			} else {
-				dao.salvarResposta(idPergunta, usr.getId(), "0");
+				//dao.salvarResposta(idPergunta, usr.getId(), "0");
 
 				return false;
 			}
