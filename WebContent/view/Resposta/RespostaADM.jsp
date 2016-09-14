@@ -179,7 +179,7 @@
 							<br> <br>
 							
 							<div class="container">
-								<div id="div1" class="alert alert-success" role="alert"	style="display: none">
+								<div id="div1"  role="alert"	style="display: none">
 								</div>
 							</div>
 						<br>
