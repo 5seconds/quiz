@@ -44,7 +44,6 @@ foreign key (idDisciplinaFK) references Disciplina(id)
  ON DELETE CASCADE
 );
 
-delete from Perguntas where id = 1;
 
 create table Alternativa(
 
