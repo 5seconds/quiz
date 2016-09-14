@@ -50,7 +50,7 @@ public class AlternativaDao {
 		}
 	}
 
-	public void alterar(Alternativas alternativa, int idPergunta, int x) {
+	public void alterar(Alternativas alternativa, Pergunta pergunta, int x) {
 
 		try {
 			String sql = "UPDATE Alternativa SET descricao = ?, AlterCorreta = ?, idPerguntaFK = ? WHERE id = ?";
@@ -58,8 +58,8 @@ public class AlternativaDao {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, alternativa.getDescricao());
 			stmt.setString(2, alternativa.getAlterCorreta());
-			stmt.setInt(3, idPergunta);
-
+			stmt.setInt(3, pergunta.getId());
+			
 			stmt.setInt(4, x);
 			stmt.execute();
 			stmt.close();
@@ -67,6 +67,7 @@ public class AlternativaDao {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 	public ArrayList<Alternativas> listarPergunta(int idPergunta) {
 
@@ -172,7 +173,27 @@ public class AlternativaDao {
 		}
 
 	}
+	public Alternativas buscarPorIdPerguntaFK(int y) {
 
+		try {
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alternativa WHERE idPerguntaFK = ?");
+			stmt.setInt(1, y);
+			ResultSet rs = stmt.executeQuery();
+
+			Alternativas alternativa = null;
+			if (rs.next()) {
+				alternativa = montarObjeto(rs);
+			}
+
+			rs.close();
+			stmt.close();
+		
+			return alternativa;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
 	private Alternativas montarObjeto(ResultSet rs) throws SQLException {
 
 		Alternativas alternativa = new Alternativas();
@@ -184,7 +205,8 @@ public class AlternativaDao {
 
 		return alternativa;
 	}
-
+	
+	
 	public void fecharConexao() throws SQLException {
 		System.out.println("Fechar conexao");
 		connection.close();

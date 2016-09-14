@@ -220,67 +220,67 @@ public class PerguntaController {
 	}
     
     @RequestMapping("PerguntaAlterar")
-	public String alterar(Pergunta pergunta, Model model, HttpServletResponse response, HttpServletRequest request)
-			throws SQLException {
+   	public String alterar(Pergunta pergunta, Model model, HttpServletResponse response, HttpServletRequest request)
+   			throws SQLException {
 
-		DisciplinaDao dao1 = new DisciplinaDao();
-		List<Disciplina> listaDisciplina = dao1.listar();
-		model.addAttribute("listaDisciplina", listaDisciplina);
-		ArrayList<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
-		dao1.fecharConexao();
+   		DisciplinaDao dao1 = new DisciplinaDao();
+   		List<Disciplina> listaDisciplina = dao1.listar();
+   		model.addAttribute("listaDisciplina", listaDisciplina);
+   		ArrayList<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
+   		dao1.fecharConexao();
 
-		for (int x = 1; x <= 4; x++) {
-			String alte = request.getParameter("optionsRadios");
-			Alternativas alternativa = new Alternativas();
+   		for (int x = 1; x <= 4; x++) {
+   			String alte = request.getParameter("optionsRadios");
+   			Alternativas alternativa = new Alternativas();
 
-			alternativa.setDescricao(request.getParameter("resposta" + x));
+   			alternativa.setDescricao(request.getParameter("resposta" + x));
 
-			if (request.getParameter("optionsRadios").equals(String.valueOf(x))) {
+   			if (request.getParameter("optionsRadios").equals(String.valueOf(x))) {
 
-				alternativa.setAlterCorreta("1");
+   				alternativa.setAlterCorreta("1");
 
-			} else {
+   			} else {
 
-				alternativa.setAlterCorreta("0");
-			}
+   				alternativa.setAlterCorreta("0");
+   			}
 
-			listaAlternativa.add(alternativa);
-		}
+   			listaAlternativa.add(alternativa);
+   		}
 
-		pergunta.setAlternativas(listaAlternativa);
+   		pergunta.setAlternativas(listaAlternativa);
 
-		NivelDao dao2 = new NivelDao();
-		List<Nivel> listaNivel = dao2.listar();
-		model.addAttribute("listaNivel", listaNivel);
-		dao2.fecharConexao();
-		
-		PerguntaDao dao = new PerguntaDao();
-		dao.alterar(pergunta);
+   		NivelDao dao2 = new NivelDao();
+   		List<Nivel> listaNivel = dao2.listar();
+   		model.addAttribute("listaNivel", listaNivel);
+   		dao2.fecharConexao();
+   		
+   		PerguntaDao dao = new PerguntaDao();
+   		dao.alterar(pergunta);
 
-		model.addAttribute("mensagem", "Pergunta Alterada com sucesso!");
-		int idPergunta = dao.buscarUltimoId();
-		dao.fecharConexao();
+   		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
 
-		pergunta.setId(idPergunta);
-		AlternativaDao daoAlter = new AlternativaDao();
+   		AlternativaDao daoAlter = new AlternativaDao();
+   		
+   		int y = pergunta.getId();
 
-		Alternativas alternativas = daoAlter.buscarPorIdAlternativa(pergunta.getId());
+   		Alternativas alternativas = daoAlter.buscarPorIdPerguntaFK(y);
 
-		int x = alternativas.getId();
+   		int x = alternativas.getId();
 
-		for (Alternativas alternativa : pergunta.getAlternativas()) {
+   		for (Alternativas alternativa : pergunta.getAlternativas()) {
 
-			daoAlter.alterar(alternativa, idPergunta, x);
-			x++;
+   			daoAlter.alterar(alternativa, pergunta, x);
+   			x++;
 
-		}
+   		}
 
-		daoAlter.fecharConexao();
-		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
-		return "forward:ExibirListarPerguntas";
+   		daoAlter.fecharConexao();
+   		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
+   		return "forward:ExibirListarPerguntas";
 
-		
-	}
+   		
+   	}
+
 
 /*
     @RequestMapping("/ListarDisciplinaNivel")
