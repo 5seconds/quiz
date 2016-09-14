@@ -6,16 +6,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import br.com.fiveseconds.quiz.model.Alternativas;
 import br.com.fiveseconds.quiz.model.Pergunta;
 import br.com.fiveseconds.quiz.model.Usuario;
 
 public class AlternativaDao {
 
-  /*
+	/*
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,8 +20,8 @@ public class AlternativaDao {
 
 	HttpServletRequest req = (HttpServletRequest); 
 
-	
-*/
+
+	 */
 	private com.mysql.jdbc.Connection connection;
 
 	public AlternativaDao() {
@@ -52,7 +49,7 @@ public class AlternativaDao {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public void alterar(Alternativas alternativa, int idPergunta, int x) {
 
 		try {
@@ -62,7 +59,7 @@ public class AlternativaDao {
 			stmt.setString(1, alternativa.getDescricao());
 			stmt.setString(2, alternativa.getAlterCorreta());
 			stmt.setInt(3, idPergunta);
-			
+
 			stmt.setInt(4, x);
 			stmt.execute();
 			stmt.close();
@@ -94,48 +91,44 @@ public class AlternativaDao {
 		}
 	}
 
-	public boolean verificaRespostaCorreta(int idResposta) {
+	public boolean verificaRespostaCorreta(int idResposta, Usuario usuario) {
 
 		try {
 			List<Alternativas> listaAlternativa = new ArrayList<Alternativas>();
-			PreparedStatement stmt = this.connection.prepareStatement("SELECT alterCorreta From Alternativa where id = ? and alterCorreta=1");
+			PreparedStatement stmt = this.connection.prepareStatement("SELECT * From Alternativa where id = ? and alterCorreta=1");
 			stmt.setInt(1, idResposta);
-		
-			
+
+
 			ResultSet rs = stmt.executeQuery();
-			
+
 			int resposta = 0;
-	//		int idPergunta =0;
+			Alternativas alternativa = buscarPorIdAlternativa(idResposta);
 			if (rs.next()) {
 				resposta = rs.getInt("alterCorreta");
-	//			idPergunta = rs.getInt("idPerguntaFK");
+
 			}
 			rs.close();
 			stmt.close();
 
-	//		PerguntaDao dao = new PerguntaDao();
+			PerguntaDao dao = new PerguntaDao();
 
-
-
-			/*HttpSession session = (HttpSession) req.getSession();
-			Usuario usr = (Usuario) session.getAttribute("usuarioLogado");
-	*/
 
 			if (resposta == 1) {
-				//dao.salvarResposta(idPergunta, usr.getId(), "1");
+				dao.salvarResposta(alternativa.getIdPerguntaFK(), usuario.getId(), "1");
+				dao.fecharConexao();
 				return true;
 			} else {
-				//dao.salvarResposta(idPergunta, usr.getId(), "0");
-
+				dao.salvarResposta(alternativa.getIdPerguntaFK(), usuario.getId(), "0");
+				dao.fecharConexao();
 				return false;
 			}
-
+			
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public Alternativas buscarPorId(int id, Pergunta pergunta) {
 
 		try {
@@ -151,7 +144,7 @@ public class AlternativaDao {
 
 			rs.close();
 			stmt.close();
-		
+
 			return alternativa;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -161,7 +154,7 @@ public class AlternativaDao {
 	public Alternativas buscarPorIdAlternativa(int id) {
 
 		try {
-			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alternativa WHERE idPerguntaFK = ?");
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alternativa WHERE id = ?");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 
@@ -172,7 +165,7 @@ public class AlternativaDao {
 
 			rs.close();
 			stmt.close();
-		
+
 			return alternativa;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -193,7 +186,7 @@ public class AlternativaDao {
 	}
 
 	public void fecharConexao() throws SQLException {
-	    System.out.println("Fechar conexao");
+		System.out.println("Fechar conexao");
 		connection.close();
 	}
 }
