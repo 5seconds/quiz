@@ -257,7 +257,7 @@ public class PerguntaController {
 		PerguntaDao dao = new PerguntaDao();
 		dao.alterar(pergunta);
 
-		model.addAttribute("mensagem", "Pergunta Cadastrada com sucesso!");
+		model.addAttribute("mensagem", "Pergunta Alterada com sucesso!");
 		int idPergunta = dao.buscarUltimoId();
 		dao.fecharConexao();
 
